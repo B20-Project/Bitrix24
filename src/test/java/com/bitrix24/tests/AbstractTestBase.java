@@ -1,7 +1,7 @@
-package com.bitirx24.tests;
+package com.bitrix24.tests;
 
-import com.bitirx24.util.ConfigurationReader;
-import com.bitirx24.util.Driver;
+import com.bitrix24.util.ConfigurationReader;
+import com.bitrix24.util.Driver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 

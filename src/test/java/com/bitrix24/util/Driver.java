@@ -1,4 +1,4 @@
-package com.bitirx24.util;
+package com.bitrix24.util;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -25,8 +25,7 @@ public class Driver {
 
     public static WebDriver getDriver(){
         if (driver==null){
-//            String browser = com.phptravels.Utility.ConfigurationReader.getProperty("browser").toLowerCase();
-            String browser = "chrome";
+            String browser = com.bitrix24.util.ConfigurationReader.getProperty("browser").toLowerCase();
             switch (browser){
                 case "chrome":
                     WebDriverManager.chromedriver().setup();

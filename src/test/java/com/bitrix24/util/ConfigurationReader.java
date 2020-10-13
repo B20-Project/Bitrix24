@@ -1,4 +1,4 @@
-package com.bitirx24.util;
+package com.bitrix24.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;

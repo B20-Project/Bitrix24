@@ -1,6 +1,6 @@
-package com.bitirx24.pages;
+package com.bitrix24.pages;
 
-import com.bitirx24.util.Driver;
+import com.bitrix24.util.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

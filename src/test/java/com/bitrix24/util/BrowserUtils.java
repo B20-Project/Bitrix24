@@ -1,4 +1,4 @@
-package com.bitirx24.util;
+package com.bitrix24.util;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
