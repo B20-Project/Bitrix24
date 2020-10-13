@@ -9,14 +9,11 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractTestBase {
 
-//    HomePage homepage;
-
     @BeforeMethod
     public void setUp() {
         String URL = ConfigurationReader.getProperty("phptravelsUrl");
         Driver.getDriver().get(URL);
         Driver.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-//        homepage = new HomePage();
     }
 
     @AfterMethod
