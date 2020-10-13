@@ -4,7 +4,6 @@ public class GlobalDataUtil {
 
     private String tabName;
 
-
     public String getTabName() {
         return tabName;
     }
