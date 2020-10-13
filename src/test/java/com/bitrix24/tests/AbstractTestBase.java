@@ -11,9 +11,9 @@ public abstract class AbstractTestBase {
 
     @BeforeMethod
     public void setUp() {
-        String URL = ConfigurationReader.getProperty("phptravelsUrl");
+        String URL = ConfigurationReader.getProperty("URL");
         Driver.getDriver().get(URL);
-        Driver.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        Driver.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     @AfterMethod
