@@ -12,7 +12,7 @@ public class LoginTest extends AbstractTestBase {
     public void test1(){
         login.login("marketing");
         BrowserUtils.wait(3);
-        login.click_header("search");
+        login.click_menu("Calendar");
         BrowserUtils.wait(3);
     }
 }
