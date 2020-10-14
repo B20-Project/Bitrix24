@@ -16,14 +16,26 @@ public abstract class AbstractPageBase {
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * click any menu items (left column)
+     * @param item
+     */
     public void click_menu(String item){
         XpathUtil.get_webElement(XpathUtil.getMenuXpath(),item).click();
     }
 
+    /**
+     * click any header items (top)
+     * @param item
+     */
     public void click_header(String item){
         XpathUtil.get_webElement(XpathUtil.getHeaderXpath(),item).click();
     }
 
+    /**
+     * click any msg bar items (right column)
+     * @param item
+     */
     public void click_msg_bar(String item){
         XpathUtil.get_webElement(XpathUtil.getMsgBarXpath(),item).click();
     }

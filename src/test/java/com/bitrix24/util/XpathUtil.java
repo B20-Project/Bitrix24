@@ -21,10 +21,22 @@ public class XpathUtil {
         return MSG_BAR;
     }
 
+    /**
+     * format xpath and return specific webelement
+     * @param xpath
+     * @param element
+     * @return webElement
+     */
     public static WebElement get_webElement(String xpath, String element){
         return Driver.getDriver().findElement(By.xpath(String.format(xpath,element)));
     }
 
+    /**
+     * format xpath and return specific element locator
+     * @param xpath
+     * @param element
+     * @return locator
+     */
     public static By get_locator(String xpath, String element){
         return By.xpath(String.format(xpath,element));
     }
