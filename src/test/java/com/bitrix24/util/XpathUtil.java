@@ -5,21 +5,9 @@ import org.openqa.selenium.WebElement;
 
 public class XpathUtil {
 
-    private static final String MENU_ITEM = "//a[@title='%s']";
-    private static final String HEADER_ITEM = "//div[@id='header-inner']//div[contains(@class,'%s')]";
-    private static final String MSG_BAR = "//div[@id='bx-im-bar']//div[contains(@id,'%s')]";
-
-    public static String getMenuXpath() {
-        return MENU_ITEM;
-    }
-
-    public static String getHeaderXpath() {
-        return HEADER_ITEM;
-    }
-
-    public static String getMsgBarXpath() {
-        return MSG_BAR;
-    }
+    public static final String MENU_ITEM = "//a[@title='%s']";
+    public static final String HEADER_ITEM = "//div[@id='header-inner']//div[contains(@class,'%s')]";
+    public static final String MSG_BAR = "//div[@id='bx-im-bar']//div[contains(@id,'%s')]";
 
     /**
      * format xpath and return specific webelement
