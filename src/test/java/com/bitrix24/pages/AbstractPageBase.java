@@ -21,7 +21,7 @@ public abstract class AbstractPageBase {
      * @param item
      */
     public void click_menu(String item){
-        XpathUtil.get_webElement(XpathUtil.MENU_ITEM,item).click();
+        XpathUtil.get_webElement(XpathUtil.GEN_MENU_ITEM_FORMAT,item).click();
     }
 
     /**
@@ -29,7 +29,7 @@ public abstract class AbstractPageBase {
      * @param item
      */
     public void click_header(String item){
-        XpathUtil.get_webElement(XpathUtil.HEADER_ITEM,item).click();
+        XpathUtil.get_webElement(XpathUtil.GEN_HEADER_ITEM_FORMAT,item).click();
     }
 
     /**
@@ -37,7 +37,7 @@ public abstract class AbstractPageBase {
      * @param item
      */
     public void click_msg_bar(String item){
-        XpathUtil.get_webElement(XpathUtil.MSG_BAR,item).click();
+        XpathUtil.get_webElement(XpathUtil.GEN_MSG_BAR_FORMAT,item).click();
     }
 }
 
