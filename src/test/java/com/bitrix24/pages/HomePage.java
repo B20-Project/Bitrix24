@@ -24,6 +24,9 @@ public class HomePage {
     @FindBy(xpath = "//div[@class='bx-im-bottom-block']")
     public WebElement bottomBlock;
 
+    @FindBy(xpath = "//div[@class='bx-desktop-appearance']")
+    public WebElement sideWindow;
+
     /*
     @FindBy(className = "//div[@class='bx-desktop-appearance-avatar']")
     private WebElement notification_contact_you;
