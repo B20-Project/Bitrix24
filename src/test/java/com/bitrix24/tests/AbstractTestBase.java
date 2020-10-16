@@ -9,15 +9,14 @@ import org.testng.annotations.BeforeMethod;
 import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractTestBase {
-    LoginPage loginPage = new LoginPage();
 
     @BeforeMethod
     public void setUp() throws InterruptedException {
+        LoginPage loginPage = new LoginPage();
         String URL = ConfigurationReader.getProperty("URL");
         Driver.getDriver().get(URL);
         Driver.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage.login("marketing");
-        Thread.sleep(3000);
     }
 
     @AfterMethod

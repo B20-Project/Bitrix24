@@ -12,7 +12,7 @@ public class HomePage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy(xpath = "//div[@class='bx-im-informer-icon']")
+    @FindBy(xpath = "//div[@class='bx-im-informer bx-im-border-b']")
     public  WebElement notificationIcon;
 
     @FindBy(xpath = "//div[@class = 'bx-im-search bx-im-border-b']")
