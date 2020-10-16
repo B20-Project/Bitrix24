@@ -14,7 +14,7 @@ public class TestHomePageTest extends AbstractTestBase {
         homePage.notificationIcon.click();
         BrowserUtils.wait(1);
 
-        Assert.assertTrue(homePage.sideWindow.isDisplayed());
+        Assert.assertTrue(homePage.sideWindowPopUp.isDisplayed());
     }
 
     @Test(description = "click search")
@@ -23,7 +23,7 @@ public class TestHomePageTest extends AbstractTestBase {
         homePage.search.click();
         BrowserUtils.wait(1);
 
-        Assert.assertTrue(homePage.sideWindow.isDisplayed());
+        Assert.assertTrue(homePage.sideWindowPopUp.isDisplayed());
     }
 
     @Test(description = "click listOfCurrentContacted")
@@ -32,13 +32,15 @@ public class TestHomePageTest extends AbstractTestBase {
         homePage.listOfCurrentContacted.click();
         BrowserUtils.wait(1);
 
-        Assert.assertTrue(homePage.sideWindow.isDisplayed());
+        Assert.assertTrue(homePage.sideWindowPopUp.isDisplayed());
     }
 
-    @Test(description = "click notification")
+    @Test(description = "click bottomBlock and is not display")
     public void click_bottomBlock(){
         HomePage homePage = new HomePage();
         homePage.bottomBlock.click();
         BrowserUtils.wait(1);
+
+        Assert.assertFalse(homePage.sideWindowPopUp.isDisplayed());
     }
 }

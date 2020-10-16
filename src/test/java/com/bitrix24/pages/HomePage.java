@@ -25,26 +25,6 @@ public class HomePage {
     public WebElement bottomBlock;
 
     @FindBy(xpath = "//div[@class='bx-desktop-appearance']")
-    public WebElement sideWindow;
-
-    /*
-    @FindBy(className = "//div[@class='bx-desktop-appearance-avatar']")
-    private WebElement notification_contact_you;
-
-    @FindBy(className = "//div[@class='bx-desktop-tab-icon bx-desktop-tab-icon-im']")
-    private WebElement notification_message;
-
-    @FindBy(className = "//div[@class='bx-desktop-tab bx-desktop-tab-notify']")
-    private WebElement notification_notifications;
-
-    @FindBy(className = "//div[@class='bx-desktop-tab-icon bx-desktop-tab-icon-config']")
-    private WebElement notification_setting;
-
-    @FindBy(className = "//div[@class='bx-desktop-tab-icon bx-desktop-tab-icon-im-lf']")
-    private WebElement notification_clones;
-
- */
-
-
+    public WebElement sideWindowPopUp;
 
 }
