@@ -26,6 +26,7 @@ public class TestHomePageTest extends AbstractTestBase {
         BrowserUtils.wait(1);
 
         Assert.assertTrue(homePage.sideWindowPopUp.isDisplayed());
+
     }
 
     @Test(description = "click listOfCurrentContacted")

@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
                 features = "src/test/resources/featurces/RightSied.feature",
                 glue = "com/bitrix24/step_definitions",
-                dryRun = true
+                dryRun = false
                 )
 public class CucumberRunner {
 

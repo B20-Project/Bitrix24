@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class RightSiedStepDefinition {
 
-    @Given("user is no the home page")
+    @Given("user is on the home page")
     public void user_is_no_the_home_page() {
         LoginPage loginPage = new LoginPage();
         String URL = ConfigurationReader.getProperty("URL");
