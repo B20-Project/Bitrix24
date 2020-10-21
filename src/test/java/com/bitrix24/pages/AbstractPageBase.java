@@ -13,7 +13,6 @@ public abstract class AbstractPageBase {
     protected WebDriverWait wait = new WebDriverWait(driver,5);
 
     protected String menuItem = "//a[@title='%s']";
-    protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
     protected String headerItem = "//div[@id='header-inner']//div[contains(@class,'%s')]";
     protected String messengerBar = "//div[@id='bx-im-bar']//div[contains(@id,'%s')]";
 

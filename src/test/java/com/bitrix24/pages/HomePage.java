@@ -89,8 +89,6 @@ public class HomePage extends AbstractPageBase {
         sidePopUpWindow_clones.click();
     }
 
-    public void clickActivityStreamTab(String tab){
-        driver.findElement(By.xpath(String.format(activityStreamTab,tab))).click();
-    }
+
 
 }
