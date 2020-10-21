@@ -14,8 +14,6 @@ public class ActivityStreamPage extends AbstractPageBase {
     protected String contactPopupFormat = "//div[@id='BXSocNetLogDestination']//a[contains(.,'%s')]";
     protected String contactPopupClose = "//span[@class='popup-window-close-icon']";
     protected String selectedContact = "//span[@id='feed-add-post-destination-item']";
-    protected String mainWindow;
-    protected String remoteDrive;
     public void clickActivityStreamTab(String tab){
         driver.findElement(By.xpath(String.format(activityStreamTab,tab))).click();
     }
@@ -33,18 +31,14 @@ public class ActivityStreamPage extends AbstractPageBase {
     }
 
     public void openBitrixRemoteDrive(){
-        mainWindow = driver.getWindowHandle();
         driver.findElement(By.xpath(bitrixRemoteDrive)).click();
-        remoteDrive = driver.getWindowHandle();
-        driver.switchTo().window(remoteDrive);
     }
 
     public void uploadFromCompanyDrive(String file){
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[.='Sales and marketing']"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='Quotes']"))).click();
-        driver.findElement(By.xpath(String.format("//a[.='%s']",file))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format("//a[.='%s']",file)))).click();
         driver.findElement(By.xpath("//span[.='Select document']")).click();
-        driver.switchTo().window(mainWindow);
     }
 
     public void addEmployeeByTab(String employee, String tab){

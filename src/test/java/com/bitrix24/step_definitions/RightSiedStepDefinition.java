@@ -28,6 +28,7 @@ public class RightSiedStepDefinition {
         HomePage homePage= new HomePage();
         homePage.click_sidePopUpWindow_contact_you();
     }
+
     @Then("user should see popUp window page")
     public void user_should_see_pop_up_window_page() {
         HomePage homePage= new HomePage();
