@@ -19,7 +19,7 @@ public class RightSiedStepDefinition {
         String URL = ConfigurationReader.getProperty("URL");
         Driver.getDriver().get(URL);
         Driver.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        loginPage.login("marketing");
+        loginPage.login("helpdesk");
     }
 
     @When("user click notification icon")
