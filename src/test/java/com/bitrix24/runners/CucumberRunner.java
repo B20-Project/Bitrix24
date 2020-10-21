@@ -6,9 +6,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-                features = "src/test/resources/featurces/RightSied.feature",
+                features = "src/test/resources/featurces/Message.feature",
                 glue = "com/bitrix24/step_definitions",
-                dryRun = false
+                dryRun = true
                 )
 public class CucumberRunner {
 
