@@ -4,6 +4,7 @@ import com.bitrix24.pages.HomePage;
 import com.bitrix24.pages.LoginPage;
 import com.bitrix24.util.ConfigurationReader;
 import com.bitrix24.util.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -27,6 +28,7 @@ public class RightSiedStepDefinition {
         HomePage homePage= new HomePage();
         homePage.click_sidePopUpWindow_contact_you();
     }
+
     @Then("user should see popUp window page")
     public void user_should_see_pop_up_window_page() {
         HomePage homePage= new HomePage();

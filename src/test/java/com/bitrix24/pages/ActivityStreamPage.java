@@ -25,4 +25,55 @@ public class ActivityStreamPage extends AbstractPageBase{
     public boolean editorTextBar_is_displayed(){
         return editorTextBar.isDisplayed();
     }
+
+
+
+    protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
+    protected String msgTabPostBtn = "//div[contains(@class,'form-wrap')]//span[contains(@title,'%s')]";
+    protected String localFileBox = "//input[@name='bxu_files[]']";
+    protected String msgTabAttachedFile = "//span[@title='Click to insert file']";
+    protected String bitrixRemoteDrive = "//div[@style='display: block;']//span[.='Select document from Bitrix24']";
+    protected String addContact = "//a[.='Add more']";
+    protected String contactPopupFormat = "//div[@id='BXSocNetLogDestination']//a[contains(.,'%s')]";
+    protected String contactPopupClose = "//span[@class='popup-window-close-icon']";
+    protected String selectedContact = "//span[@id='feed-add-post-destination-item']";
+    public void clickActivityStreamTab(String tab){
+        driver.findElement(By.xpath(String.format(activityStreamTab,tab))).click();
+    }
+
+    public void clickPostBtn(String btn){
+        driver.findElement(By.xpath(String.format(msgTabPostBtn,btn))).click();
+    }
+
+    public void uploadLocalFile(String fileAddress){
+        driver.findElement(By.xpath(localFileBox)).sendKeys(fileAddress);
+    }
+
+    public String getTextFromAttachedFile(){
+        return driver.findElement(By.xpath(msgTabAttachedFile)).getText();
+    }
+
+    public void openBitrixRemoteDrive(){
+        driver.findElement(By.xpath(bitrixRemoteDrive)).click();
+    }
+
+    public void uploadFromCompanyDrive(String file){
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[.='Sales and marketing']"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='Quotes']"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format("//a[.='%s']",file)))).click();
+        driver.findElement(By.xpath("//span[.='Select document']")).click();
+    }
+
+    public void addEmployeeByTab(String employee, String tab){
+        driver.findElement(By.xpath(addContact)).click();
+        driver.findElement(By.xpath(String.format(contactPopupFormat,"All employees"))).click();
+        driver.findElement(By.xpath(String.format(contactPopupFormat,tab))).click();
+        driver.findElement(By.xpath(String.format(contactPopupFormat,employee))).click();
+        driver.findElement(By.xpath(contactPopupClose)).click();
+    }
+
+    public String getTextFromSelectedEmployee(){
+        return driver.findElement(By.xpath(selectedContact)).getText();
+    }
+
 }
