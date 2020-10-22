@@ -2,6 +2,7 @@ package com.bitrix24.step_definitions;
 
 import com.bitrix24.pages.ActivityStreamPage;
 import com.bitrix24.pages.HomePage;
+import com.bitrix24.util.BrowserUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,13 +21,15 @@ public class messageStepDefinition {
 
     @Given("user is on the home page")
     public void user_is_on_the_home_page() {
-        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+        Driver.getDriver().get(ConfigurationReader.getProperty("URL"));
         loginPage.login("marketing");
     }
-    @When("user clicks menu {string}")
-    public void user_clicks_menu_and_tab(String string) throws InterruptedException {
-        activityStream.click_leftMenu_tab("Activity Stream");
-    }
+
+//    @When("user clicks menu {string}")
+//    public void user_clicks_menu_and_tab(String string) throws InterruptedException {
+//        activityStream.click_leftMenu_tab("Activity Stream");
+//    }
+
     @And("user click {string} module")
     public void user_click_module(String string) throws InterruptedException {
         activityStream.click_tab_under_activity_stream("Message");
@@ -83,7 +86,9 @@ public class messageStepDefinition {
     }
 
     @And("user adds employee {string} from contacts {string} tab")
+
     public void userAddsEmployeeFromContactsTab(String employee, String tab) {
+
         activityStream.addEmployeeByTab(employee,tab);
     }
 

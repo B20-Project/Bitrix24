@@ -25,3 +25,7 @@ Background: login
     And  user adds employee "helpdesk23@cybertekschool.com" from contacts "Recent" tab
     Then employee "helpdesk23@cybertekschool.com" should appear in the destination box
 
+  @getEditorTextBar
+  Scenario: get visual editor text bar
+    And user clicks on "Visual editor" icon
+    Then user should be able to see the editor text-bar displays on top message box

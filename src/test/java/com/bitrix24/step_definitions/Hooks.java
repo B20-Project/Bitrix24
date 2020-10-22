@@ -14,7 +14,7 @@ public class Hooks {
         System.out.println(scenario.getSourceTagNames());
         System.out.println("Starting Automation");
         Driver.getDriver().manage().window().maximize();
-        Driver.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Driver.getDriver().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @After
