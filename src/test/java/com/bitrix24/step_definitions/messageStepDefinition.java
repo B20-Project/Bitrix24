@@ -33,8 +33,7 @@ public class messageStepDefinition {
         Assert.assertEquals(expectedResult, actualResult);
         Driver.closeDriver();
     }
-
-
+    
     @When("user click \"Add mention\" icon")
     public void user_click_icon() {
         HomePage homePage = new HomePage();
