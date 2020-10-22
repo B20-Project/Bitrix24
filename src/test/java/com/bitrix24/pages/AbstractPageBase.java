@@ -2,6 +2,7 @@ package com.bitrix24.pages;
 
 import com.bitrix24.util.Driver;
 import com.bitrix24.util.XpathUtil;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -9,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class AbstractPageBase {
 
     protected WebDriver driver = Driver.getDriver();
-    protected WebDriverWait wait = new WebDriverWait(driver,5);
+    protected WebDriverWait wait = new WebDriverWait(driver,10);
 
 
     public AbstractPageBase() {
@@ -38,6 +39,11 @@ public abstract class AbstractPageBase {
      */
     public void click_msg_bar(String item){
         XpathUtil.get_webElement(XpathUtil.GEN_MSG_BAR_FORMAT,item).click();
+    }
+
+    public void click_leftMenu_tab(String tabName){
+        String xpath = String.format("//a[contains(@title,'%s')]", tabName );
+        driver.findElement(By.xpath(xpath)).click();
     }
 }
 
