@@ -1,9 +1,12 @@
 package com.bitrix24.pages;
 
 import com.bitrix24.util.ConfigurationReader;
+import com.bitrix24.util.Driver;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.concurrent.TimeUnit;
 
 public class LoginPage extends AbstractPageBase{
 
@@ -32,6 +35,8 @@ public class LoginPage extends AbstractPageBase{
      * @param password
      */
     public void login(String username, String password){
+        Driver.getDriver().get(ConfigurationReader.getProperty("URL"));
+        Driver.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         this.username.sendKeys(username);
         this.password.sendKeys(password, Keys.ENTER);
     }
@@ -43,8 +48,7 @@ public class LoginPage extends AbstractPageBase{
      */
     public void login(String role){
         try{
-            username.sendKeys(ConfigurationReader.getProperty(role));
-            password.sendKeys(ConfigurationReader.getProperty("password"),Keys.ENTER);
+            login(ConfigurationReader.getProperty(role),ConfigurationReader.getProperty("password"));
         }catch (Exception e){
             throw new RuntimeException("invalid role");
         }
