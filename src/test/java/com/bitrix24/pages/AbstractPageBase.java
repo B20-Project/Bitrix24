@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class AbstractPageBase {
 
     protected WebDriver driver = Driver.getDriver();
-    protected WebDriverWait wait = new WebDriverWait(driver,5);
+    protected WebDriverWait wait = new WebDriverWait(driver,10);
 
     protected String menuItem = "//a[@title='%s']";
     protected String headerItem = "//div[@id='header-inner']//div[contains(@class,'%s')]";
@@ -42,6 +42,11 @@ public abstract class AbstractPageBase {
      */
     public void click_msg_bar(String item){
         driver.findElement(By.xpath(String.format(messengerBar,item))).click();
+    }
+
+    public void click_leftMenu_tab(String tabName){
+        String xpath = String.format("//a[contains(@title,'%s')]", tabName );
+        driver.findElement(By.xpath(xpath)).click();
     }
 }
 
