@@ -1,7 +1,6 @@
 package com.bitrix24.pages;
 
 import com.bitrix24.util.Driver;
-import com.bitrix24.util.XpathUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

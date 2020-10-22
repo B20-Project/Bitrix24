@@ -2,7 +2,6 @@ package com.bitrix24.step_definitions;
 
 import com.bitrix24.pages.ActivityStreamPage;
 import com.bitrix24.pages.HomePage;
-import com.bitrix24.util.BrowserUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,7 +13,7 @@ import io.cucumber.java.en.Given;
 
 
 
-public class messageStepDefinition {
+public class MessageStepDefinition {
 
     LoginPage loginPage = new LoginPage();
     ActivityStreamPage activityStream = new ActivityStreamPage();
@@ -24,11 +23,6 @@ public class messageStepDefinition {
         Driver.getDriver().get(ConfigurationReader.getProperty("URL"));
         loginPage.login("marketing");
     }
-
-//    @When("user clicks menu {string}")
-//    public void user_clicks_menu_and_tab(String string) throws InterruptedException {
-//        activityStream.click_leftMenu_tab("Activity Stream");
-//    }
 
     @And("user click {string} module")
     public void user_click_module(String string) throws InterruptedException {
