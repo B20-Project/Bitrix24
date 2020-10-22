@@ -10,8 +10,8 @@ Background: login
   @uploadFromLocal
   Scenario: upload single file from local disk
     When user clicks on post button "Upload files"
-    And  user uploads local file "C:/Users/Aji/Desktop/CRM24/old7file.txt"
-    Then "old7file.txt" should display under attached files
+    And  user uploads local file "C:/Users/Aji/Desktop/CRM24/old11file.txt"
+    Then "old11file.txt" should display under attached files
 
   @uploadFromRemoteCompanyDrive
   Scenario: upload single file from remote drive
