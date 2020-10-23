@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
                 features = "src/test/resources/features",
                 glue = "com/bitrix24/step_definitions",
                 dryRun = false,
-                tags = "@US1AC5"
+                tags = "@AC3"
                 )
 public class CucumberRunner {
 

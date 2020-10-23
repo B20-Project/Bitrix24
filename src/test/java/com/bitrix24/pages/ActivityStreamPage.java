@@ -1,5 +1,7 @@
 package com.bitrix24.pages;
 
+import com.bitrix24.util.BrowserUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -77,6 +79,23 @@ public class ActivityStreamPage extends AbstractPageBase {
         return message_addMention_DepartmentTab_peron.getText();
     }
 
+
+
+    @FindBy(xpath = "//span[@title='Link']")
+    private WebElement linkIcon;
+
+    @FindBy(xpath = "//input[contains(@id,'blogPostForm-text')]")
+    private WebElement linkText;
+
+    @FindBy(xpath = "//input[contains(@id,'blogPostForm-href')]")
+    private WebElement linkUrl;
+
+    @FindBy(xpath = "//span[@title='Insert video']")
+    private WebElement videoIcon;
+
+    @FindBy(xpath = "//input[contains(@id,'blogPostForm-source')]")
+    private WebElement videoUrl;
+
     public void click_tab_under_activity_stream(String module){
         String xpath = String.format("//div[@id='feed-add-post-form-tab']/span[.='%s']", module);
         driver.findElement(By.xpath(xpath)).click();
@@ -90,6 +109,12 @@ public class ActivityStreamPage extends AbstractPageBase {
         return editorTextBar.isDisplayed();
     }
 
+
+
+
+    protected String saveButton = "//div[contains(@class,'%s-dialog')]//input[@value = 'Save']";
+
+    //inserted extra wait time here
     public void clickActivityStreamTab(String tab){
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(activityStreamTab,tab)))).click();
     }
@@ -132,5 +157,31 @@ public class ActivityStreamPage extends AbstractPageBase {
     public String getTextFromSelectedEmployee(){
         return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(selectedContact)))).getText();
     }
+
+    //Methods for AC_3
+    public void click_on_link_icon(){ linkIcon.click(); }
+    public void enter_link_text(String linktext){ linkText.sendKeys(linktext); }
+    public void enter_link_url(String linkurl){ linkUrl.sendKeys(linkurl); }
+
+    public boolean is_new_created_link_displayed(String text){
+        driver.switchTo().frame(0);
+        boolean result = driver.findElement(By.linkText(text)).isDisplayed();
+        driver.switchTo().parentFrame();
+        return result;
+    }
+
+    //Methods for AC_4
+    public void click_on_video_icon(){ videoIcon.click();}
+    public void enter_video_url(String url){ videoUrl.sendKeys(url); }
+
+    /**
+     *
+     * @param type link, video
+     */
+    public void click_on_save_button(String type){
+        BrowserUtils.wait(3);
+        driver.findElement(By.xpath(String.format(saveButton,type))).click();
+    }
+
 
 }
