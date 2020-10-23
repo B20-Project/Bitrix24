@@ -7,17 +7,15 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractPageBase {
-
+    public AbstractPageBase() {
+        PageFactory.initElements(driver, this);
+    }
     protected WebDriver driver = Driver.getDriver();
     protected WebDriverWait wait = new WebDriverWait(driver,10);
 
     protected String menuItem = "//a[@title='%s']";
     protected String headerItem = "//div[@id='header-inner']//div[contains(@class,'%s')]";
     protected String messengerBar = "//div[@id='bx-im-bar']//div[contains(@id,'%s')]";
-
-    public AbstractPageBase() {
-        PageFactory.initElements(driver, this);
-    }
 
     /**
      * click any menu items (left column)

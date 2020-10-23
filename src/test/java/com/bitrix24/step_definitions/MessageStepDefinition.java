@@ -1,7 +1,7 @@
 package com.bitrix24.step_definitions;
 
 import com.bitrix24.pages.ActivityStreamPage;
-import com.bitrix24.pages.HomePage;
+import com.bitrix24.util.BrowserUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -29,30 +29,29 @@ public class MessageStepDefinition {
         activityStream.click_tab_under_activity_stream("Message");
         Thread.sleep(3);
     }
+
     @And("user clicks on {string} icon")
+
     public void user_clicks_on_icon(String string) {
         activityStream.click_icon_under_activity_stream();
 
     }
+
     @Then("user should be able to see the editor text-bar displays on top message box")
     public void user_should_be_able_to_see_the_editor_text_bar_displays_on_top_message_box() {
         Assert.assertTrue(activityStream.editorTextBar_is_displayed());
     }
 
-
-    HomePage home = new HomePage();
-
-
     @And("user clicks menu {string}")
     public void userClicksMenu(String item) {
-        home.click_menu(item);
+        activityStream.click_menu(item);
     }
 
     @And("user clicks {string} tab under Activity Stream")
     public void userClicksTabUnderActivityStream(String tab) {
         activityStream.clickActivityStreamTab(tab);
+        BrowserUtils.wait(3);
     }
-
 
     @When("user clicks on post button {string}")
     public void userClicksOnPostButton(String btn) {
@@ -90,11 +89,8 @@ public class MessageStepDefinition {
     public void employeeShouldAppearInTheDestinationBox(String employee) {
         Assert.assertEquals(activityStream.getTextFromSelectedEmployee(),employee);
     }
-    @When("user click \"message\"")
-    public void user_click_message() {
 
-        activityStream.click_message();
-    }
+
 
     @And("user click \"quote text\" icon")
     public void userClickIcon() {
@@ -112,30 +108,28 @@ public class MessageStepDefinition {
         String actualResult = activityStream.getText_message_quote();
 
         Assert.assertEquals(expectedResult, actualResult);
-        Driver.closeDriver();
     }
 
     @When("user click \"Add mention\" icon")
     public void user_click_icon() {
 
         activityStream.click_message_addMention();
+        BrowserUtils.wait(3);
     }
 
     @Then("user should able to mention contacts from giving list;")
     public void user_should_able_to_mention_contacts_from_giving_list() {
-
         activityStream.click_message_addMention_DepartmentTab();
+        BrowserUtils.wait(2);
+
         String expectedResult ="helpdesk24@cybertekschool.com";
         String actualResult = activityStream.get_message_addMention_DepartmentTab_peron();
         activityStream.click_message_addMention_DepartmentTab_peron();
+        BrowserUtils.wait(2);
         System.out.println("actualResult = " + actualResult);
         System.out.println("expectedResult = " + expectedResult);
 
         Assert.assertTrue(activityStream.to.getText().contains(expectedResult));
-
-        Driver.closeDriver();
-
-
     }
 
 
