@@ -90,4 +90,53 @@ public class MessageStepDefinition {
     public void employeeShouldAppearInTheDestinationBox(String employee) {
         Assert.assertEquals(activityStream.getTextFromSelectedEmployee(),employee);
     }
+    @When("user click \"message\"")
+    public void user_click_message() {
+
+        activityStream.click_message();
+    }
+
+    @And("user click \"quote text\" icon")
+    public void userClickIcon() {
+
+        activityStream.click_message_quote();
+    }
+
+    @Then("user should able to enter the quote")
+    public void user_should_able_to_enter_the_quote() {
+        Driver.getDriver().switchTo().frame(0);
+
+        String expectedResult = "test123";
+
+        activityStream.enter_message_quote(expectedResult);
+        String actualResult = activityStream.getText_message_quote();
+
+        Assert.assertEquals(expectedResult, actualResult);
+        Driver.closeDriver();
+    }
+
+    @When("user click \"Add mention\" icon")
+    public void user_click_icon() {
+
+        activityStream.click_message_addMention();
+    }
+
+    @Then("user should able to mention contacts from giving list;")
+    public void user_should_able_to_mention_contacts_from_giving_list() {
+
+        activityStream.click_message_addMention_DepartmentTab();
+        String expectedResult ="helpdesk24@cybertekschool.com";
+        String actualResult = activityStream.get_message_addMention_DepartmentTab_peron();
+        activityStream.click_message_addMention_DepartmentTab_peron();
+        System.out.println("actualResult = " + actualResult);
+        System.out.println("expectedResult = " + expectedResult);
+
+        Assert.assertTrue(activityStream.to.getText().contains(expectedResult));
+
+        Driver.closeDriver();
+
+
+    }
+
+
 }

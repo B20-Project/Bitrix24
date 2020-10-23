@@ -1,5 +1,6 @@
 package com.bitrix24.pages;
 
+
 import com.bitrix24.util.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -52,6 +53,7 @@ public class HomePage extends AbstractPageBase {
     @FindBy(xpath = "//div[@class='bx-desktop-tab-icon bx-desktop-tab-icon-im-lf']")
     private WebElement sidePopUpWindow_clones;
 
+
     public void click_sidePopUpWindow_contact_you(){
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
         notificationIcon.click();
@@ -86,7 +88,5 @@ public class HomePage extends AbstractPageBase {
         wait.until(ExpectedConditions.visibilityOf(sideWindowPopUp));
         sidePopUpWindow_clones.click();
     }
-
-
 
 }
