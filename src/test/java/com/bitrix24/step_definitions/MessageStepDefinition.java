@@ -90,8 +90,6 @@ public class MessageStepDefinition {
         Assert.assertEquals(activityStream.getTextFromSelectedEmployee(),employee);
     }
 
-
-
     @And("user click \"quote text\" icon")
     public void userClickIcon() {
 
@@ -131,8 +129,6 @@ public class MessageStepDefinition {
 
         Assert.assertTrue(activityStream.to.getText().contains(expectedResult));
     }
-
-
 
     @When("the user click on the link icon")
     public void the_user_click_on_the_link_icon() {
@@ -174,6 +170,7 @@ public class MessageStepDefinition {
     public void click_on_save_button() {
         activityStream.click_on_save_button("video");
     }
+
     @Then("new video link should be created on the text box")
     public void new_video_link_should_be_created_on_the_text_box() {
 

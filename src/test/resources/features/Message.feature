@@ -13,12 +13,12 @@ Feature: send custom message
     And  user uploads local file "C:/Users/Aji/Desktop/CRM24/old11file.txt"
     Then "old11file.txt" should display under attached files
 
-  @US1AC5
+  @enterQuote
   Scenario: Users should be able to create a quote by clicking on the Comma icon.
     And user click "quote text" icon
     Then user should able to enter the quote
 
-  @US1AC6
+  @addMention
   Scenario: Users should be able to create a quote by clicking on the Add mention icon.
     And user click "Add mention" icon
     Then user should able to mention contacts from giving list;
@@ -39,7 +39,6 @@ Feature: send custom message
   Scenario: get visual editor text bar
     And user clicks on "Visual editor" icon
     Then user should be able to see the editor text-bar displays on top message box
-
 
   @creatingLink @AC3
   Scenario: create link using link icon
