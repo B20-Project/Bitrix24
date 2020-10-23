@@ -5,8 +5,65 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.By;
 
-public class ActivityStreamPage extends AbstractPageBase{
+
+public class ActivityStreamPage extends AbstractPageBase {
+
+    @FindBy(xpath = "//span[.='Message']")
+    private WebElement message;
+
+    @FindBy(xpath = "//span[@title='Quote text']")
+    private WebElement message_quote;
+
+    @FindBy(xpath = "//blockquote[@class='bxhtmled-quote']")
+    private WebElement enter_message_quote;
+
+    @FindBy(xpath = "//span[@id='bx-b-mention-blogPostForm']")
+    private WebElement message_addMention;
+
+    @FindBy (xpath = "//a[ starts-with(@id,'destDepartmentTab')]")
+    private WebElement message_addMention_DepartmentTab;
+
+    @FindBy (xpath = "//a[@href='#U514']")
+    private WebElement message_addMention_DepartmentTab_peron;
+
+    @FindBy(xpath = "//div[@id='feed-add-post-destination-container']")
+    public WebElement to;
+
+    public void click_message(){
+        message.click();
+    }
+
+    public void click_message_quote(){
+        message_quote.click();
+    }
+
+    public  String getText_message_quote(){
+        return enter_message_quote.getText();
+    }
+
+    public void enter_message_quote(String Enter_quote){
+        enter_message_quote.sendKeys(Enter_quote);
+    }
+
+    public void click_message_addMention(){
+        message_addMention.click();
+    }
+
+    public void click_message_addMention_DepartmentTab(){
+        message_addMention_DepartmentTab.click();
+    }
+
+    public void click_message_addMention_DepartmentTab_peron(){
+        message_addMention_DepartmentTab_peron.click();
+    }
+
+    public String get_message_addMention_DepartmentTab_peron(){
+        return message_addMention_DepartmentTab_peron.getText();
+    }
+
+
 
     @FindBy(xpath = "//span[@class='bxhtmled-top-bar-wrap']")
     private WebElement editorTextBar;
@@ -42,6 +99,8 @@ public class ActivityStreamPage extends AbstractPageBase{
         return editorTextBar.isDisplayed();
     }
 
+
+
     protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
     protected String msgTabPostBtn = "//div[contains(@class,'form-wrap')]//span[contains(@title,'%s')]";
     protected String localFileBox = "//input[@name='bxu_files[]']";
@@ -56,43 +115,46 @@ public class ActivityStreamPage extends AbstractPageBase{
 
     //inserted extra wait time here
     public void clickActivityStreamTab(String tab){
-        driver.findElement(By.xpath(String.format(activityStreamTab,tab))).click();
-        BrowserUtils.wait(2);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(activityStreamTab,tab)))).click();
     }
 
     public void clickPostBtn(String btn){
-        driver.findElement(By.xpath(String.format(msgTabPostBtn,btn))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(msgTabPostBtn,btn)))).click();
     }
 
     public void uploadLocalFile(String fileAddress){
-        driver.findElement(By.xpath(localFileBox)).sendKeys(fileAddress);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(localFileBox))).sendKeys(fileAddress);
     }
 
     public String getTextFromAttachedFile(){
-        return driver.findElement(By.xpath(msgTabAttachedFile)).getText();
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(msgTabAttachedFile))).getText();
     }
 
     public void openBitrixRemoteDrive(){
-        driver.findElement(By.xpath(bitrixRemoteDrive)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(bitrixRemoteDrive))).click();
     }
 
     public void uploadFromCompanyDrive(String file){
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[.='Sales and marketing']")));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//span[.='Sales and marketing']"))));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[.='Sales and marketing']"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[.='Quotes']")));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='Quotes']"))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("//a[.='%s']",file))));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format("//a[.='%s']",file)))).click();
         driver.findElement(By.xpath("//span[.='Select document']")).click();
     }
 
     public void addEmployeeByTab(String employee, String tab){
-        driver.findElement(By.xpath(addContact)).click();
-        driver.findElement(By.xpath(String.format(contactPopupFormat,"All employees"))).click();
-        driver.findElement(By.xpath(String.format(contactPopupFormat,tab))).click();
-        driver.findElement(By.xpath(String.format(contactPopupFormat,employee))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(addContact))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(contactPopupFormat,"All employees")))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(contactPopupFormat,tab)))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(contactPopupFormat,employee)))).click();
         driver.findElement(By.xpath(contactPopupClose)).click();
     }
 
     public String getTextFromSelectedEmployee(){
-        return driver.findElement(By.xpath(selectedContact)).getText();
+        return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(selectedContact)))).getText();
     }
 
     //Methods for AC_3
