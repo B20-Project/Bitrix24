@@ -6,10 +6,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-                features = "src/test/resources/featurces",
+                features = "src/test/resources/features",
                 glue = "com/bitrix24/step_definitions",
                 dryRun = false,
-                tags = "@US1AC6"
+                tags = "@messageTab"
                 )
 public class CucumberRunner {
 

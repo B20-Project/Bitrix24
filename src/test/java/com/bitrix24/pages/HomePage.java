@@ -1,5 +1,6 @@
 package com.bitrix24.pages;
 
+
 import com.bitrix24.util.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class HomePage {
+public class HomePage extends AbstractPageBase {
 
     public HomePage(){
         PageFactory.initElements(Driver.getDriver(), this);
@@ -53,7 +54,6 @@ public class HomePage {
     private WebElement sidePopUpWindow_clones;
 
 
-
     public void click_sidePopUpWindow_contact_you(){
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
         notificationIcon.click();
@@ -88,10 +88,5 @@ public class HomePage {
         wait.until(ExpectedConditions.visibilityOf(sideWindowPopUp));
         sidePopUpWindow_clones.click();
     }
-
-
-
-
-
 
 }

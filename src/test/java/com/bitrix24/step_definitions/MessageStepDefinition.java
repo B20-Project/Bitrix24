@@ -1,19 +1,22 @@
 package com.bitrix24.step_definitions;
 
 import com.bitrix24.pages.ActivityStreamPage;
+import com.bitrix24.pages.HomePage;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.Assert;
 import com.bitrix24.pages.LoginPage;
 import com.bitrix24.util.ConfigurationReader;
 import com.bitrix24.util.Driver;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import org.testng.Assert;
+
+
 
 public class MessageStepDefinition {
 
-    ActivityStreamPage activityStreamPage = new ActivityStreamPage();
-     LoginPage loginPage = new LoginPage();
+    LoginPage loginPage = new LoginPage();
+    ActivityStreamPage activityStream = new ActivityStreamPage();
 
     @Given("user is on the home page")
     public void user_is_on_the_home_page() {
@@ -21,16 +24,82 @@ public class MessageStepDefinition {
         loginPage.login("marketing");
     }
 
+    @And("user click {string} module")
+    public void user_click_module(String string) throws InterruptedException {
+        activityStream.click_tab_under_activity_stream("Message");
+        Thread.sleep(3);
+    }
+    @And("user clicks on {string} icon")
+    public void user_clicks_on_icon(String string) {
+        activityStream.click_icon_under_activity_stream();
+
+    }
+    @Then("user should be able to see the editor text-bar displays on top message box")
+    public void user_should_be_able_to_see_the_editor_text_bar_displays_on_top_message_box() {
+        Assert.assertTrue(activityStream.editorTextBar_is_displayed());
+    }
+
+
+    HomePage home = new HomePage();
+
+
+    @And("user clicks menu {string}")
+    public void userClicksMenu(String item) {
+        home.click_menu(item);
+    }
+
+    @And("user clicks {string} tab under Activity Stream")
+    public void userClicksTabUnderActivityStream(String tab) {
+        activityStream.clickActivityStreamTab(tab);
+    }
+
+
+    @When("user clicks on post button {string}")
+    public void userClicksOnPostButton(String btn) {
+        activityStream.clickPostBtn(btn);
+    }
+
+    @And("user uploads local file {string}")
+    public void userUploadsLocalFile(String fileAddress) {
+        activityStream.uploadLocalFile(fileAddress);
+    }
+
+    @Then("{string} should display under attached files")
+    public void shouldDisplayUnderAttachedFiles(String fileName) {
+        Assert.assertEquals(activityStream.getTextFromAttachedFile(),fileName);
+    }
+
+    @And("user clicks bitrix24 remote drive")
+    public void userClicksBitrix24RemoteDrive() {
+        activityStream.openBitrixRemoteDrive();
+    }
+
+    @And("user uploads {string} file from company drive")
+    public void userUploadsFileFromQuotesSubfolder(String file) {
+        activityStream.uploadFromCompanyDrive(file);
+    }
+
+    @And("user adds employee {string} from contacts {string} tab")
+
+    public void userAddsEmployeeFromContactsTab(String employee, String tab) {
+
+        activityStream.addEmployeeByTab(employee,tab);
+    }
+
+    @Then("employee {string} should appear in the destination box")
+    public void employeeShouldAppearInTheDestinationBox(String employee) {
+        Assert.assertEquals(activityStream.getTextFromSelectedEmployee(),employee);
+    }
     @When("user click \"message\"")
     public void user_click_message() {
 
-        activityStreamPage.click_message();
+        activityStream.click_message();
     }
 
     @And("user click \"quote text\" icon")
     public void userClickIcon() {
 
-        activityStreamPage.click_message_quote();
+        activityStream.click_message_quote();
     }
 
     @Then("user should able to enter the quote")
@@ -39,30 +108,30 @@ public class MessageStepDefinition {
 
         String expectedResult = "test123";
 
-        activityStreamPage.enter_message_quote(expectedResult);
-        String actualResult = activityStreamPage.getText_message_quote();
+        activityStream.enter_message_quote(expectedResult);
+        String actualResult = activityStream.getText_message_quote();
 
         Assert.assertEquals(expectedResult, actualResult);
         Driver.closeDriver();
     }
-    
+
     @When("user click \"Add mention\" icon")
     public void user_click_icon() {
 
-        activityStreamPage.click_message_addMention();
+        activityStream.click_message_addMention();
     }
 
     @Then("user should able to mention contacts from giving list;")
     public void user_should_able_to_mention_contacts_from_giving_list() {
 
-        activityStreamPage.click_message_addMention_DepartmentTab();
+        activityStream.click_message_addMention_DepartmentTab();
         String expectedResult ="helpdesk24@cybertekschool.com";
-        String actualResult = activityStreamPage.get_message_addMention_DepartmentTab_peron();
-        activityStreamPage.click_message_addMention_DepartmentTab_peron();
+        String actualResult = activityStream.get_message_addMention_DepartmentTab_peron();
+        activityStream.click_message_addMention_DepartmentTab_peron();
         System.out.println("actualResult = " + actualResult);
         System.out.println("expectedResult = " + expectedResult);
 
-        Assert.assertTrue(activityStreamPage.to.getText().contains(expectedResult));
+        Assert.assertTrue(activityStream.to.getText().contains(expectedResult));
 
         Driver.closeDriver();
 
