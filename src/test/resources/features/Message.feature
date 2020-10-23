@@ -1,5 +1,5 @@
+@US1
 Feature: As a user, I should be able to send messages by clicking on the Message tab under Active Stream.
-
   @US1AC5
   Scenario: Users should be able to create a quote by clicking on the Comma icon.
     Given user is on the home page

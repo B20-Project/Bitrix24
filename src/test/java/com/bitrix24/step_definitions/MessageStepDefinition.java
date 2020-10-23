@@ -1,8 +1,11 @@
 package com.bitrix24.step_definitions;
 
 import com.bitrix24.pages.ActivityStreamPage;
+import com.bitrix24.pages.LoginPage;
+import com.bitrix24.util.ConfigurationReader;
 import com.bitrix24.util.Driver;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
@@ -10,6 +13,13 @@ import org.testng.Assert;
 public class MessageStepDefinition {
 
     ActivityStreamPage activityStreamPage = new ActivityStreamPage();
+     LoginPage loginPage = new LoginPage();
+
+    @Given("user is on the home page")
+    public void user_is_on_the_home_page() {
+        Driver.getDriver().get(ConfigurationReader.getProperty("URL"));
+        loginPage.login("marketing");
+    }
 
     @When("user click \"message\"")
     public void user_click_message() {
