@@ -29,3 +29,21 @@ Background: login
   Scenario: get visual editor text bar
     And user clicks on "Visual editor" icon
     Then user should be able to see the editor text-bar displays on top message box
+
+
+  @creatingLink @AC3
+  Scenario: create link using link icon
+    When the user click on the link icon
+    And the user click on Text to enter "sample link text"
+    And the user click on Link to enter "sample Link Url"
+    And click on link save button
+    Then new link should be created displaying "sample link text"
+
+  @insertVideo @AC4
+  Scenario: insert video using video icon
+    When the user click on the video icon
+    And the user enter video url "https://www.youtube.com/watch?v=-FlxM_0S2lA"
+    And click on save button
+    Then new video link should be created on the text box
+
+

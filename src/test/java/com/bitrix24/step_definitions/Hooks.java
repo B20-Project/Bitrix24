@@ -1,5 +1,6 @@
 package com.bitrix24.step_definitions;
 
+import com.bitrix24.util.BrowserUtils;
 import com.bitrix24.util.ConfigurationReader;
 import com.bitrix24.util.Driver;
 import io.cucumber.java.After;
@@ -19,8 +20,10 @@ public class Hooks {
         Driver.getDriver().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
+    //delete the wait time here
     @After
     public void tearDown(){
+        BrowserUtils.wait(3);
         Driver.closeDriver();
         System.out.println("::: End of test execution (*_*):::");
     }

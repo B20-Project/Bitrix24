@@ -45,7 +45,7 @@ public class MessageStepDefinition {
 
     @And("user clicks menu {string}")
     public void userClicksMenu(String item) {
-        home.click_menu(item);
+        activityStream.click_menu(item);
     }
 
     @And("user clicks {string} tab under Activity Stream")
@@ -90,4 +90,51 @@ public class MessageStepDefinition {
     public void employeeShouldAppearInTheDestinationBox(String employee) {
         Assert.assertEquals(activityStream.getTextFromSelectedEmployee(),employee);
     }
+
+    @When("the user click on the link icon")
+    public void the_user_click_on_the_link_icon() {
+        activityStream.click_on_link_icon();
+    }
+
+    @When("the user click on Text to enter {string}")
+    public void the_user_click_on_text_to_enter(String string) {
+        activityStream.enter_link_text(string);
+    }
+
+    @When("the user click on Link to enter {string}")
+    public void the_user_click_on_link_to_enter(String string) {
+        activityStream.enter_link_url(string);
+    }
+
+    @And("click on link save button")
+    public void click_on_link_save_button() {
+        activityStream.click_on_save_button("link");
+    }
+
+    @Then("new link should be created displaying {string}")
+    public void new_link_should_be_created_displaying(String string) {
+        System.out.println(activityStream.is_new_created_link_displayed(string));
+        Assert.assertTrue(activityStream.is_new_created_link_displayed(string));
+    }
+
+    @When("the user click on the video icon")
+    public void the_user_click_on_the_video_icon() {
+        activityStream.click_on_video_icon();
+    }
+
+    @And("the user enter video url {string}")
+    public void the_user_enter_video_url(String string) {
+        activityStream.enter_video_url(string);
+    }
+
+    @And("click on save button")
+    public void click_on_save_button() {
+        activityStream.click_on_save_button("video");
+    }
+    @Then("new video link should be created on the text box")
+    public void new_video_link_should_be_created_on_the_text_box() {
+
+    }
+
+
 }
