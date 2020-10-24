@@ -173,8 +173,36 @@ public class MessageStepDefinition {
 
     @Then("new video link should be created on the text box")
     public void new_video_link_should_be_created_on_the_text_box() {
+    }
 
+    @When("user clicks {string} icon")
+    public void user_clicks_icon(String string) {
+        BrowserUtils.wait(3);
+        activityStream.click_icon_under_message_tab("Topic");
+    }
+
+    @Then("Topic input box should display")
+    public void topic_input_box_should_display() {
+        activityStream.topicInputBox_is_displayed();
+        Assert.assertTrue(activityStream.topicInputBox_is_displayed());
+        BrowserUtils.wait(2);
+    }
+
+    @When("user clicks on icon {string}")
+    public void user_click_on_icon(String string) {
+        activityStream.click_recordVideo();
+    }
+
+    @Then("user should be able to see message in pop-up window")
+    public void user_should_be_able_to_see_pop_up_window() {
+        String expected = "You have to allow access to your camera and microphone to record a video.";
+        String actual = activityStream.deviceAccessPopUpWindow();
+        Assert.assertEquals(expected, actual);
     }
 
 
-}
+
+
+
+
+    }
