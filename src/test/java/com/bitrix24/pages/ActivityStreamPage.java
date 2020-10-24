@@ -27,7 +27,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy (xpath = "//a[ starts-with(@id,'destDepartmentTab')]")
     private WebElement message_addMention_DepartmentTab;
 
-    @FindBy (xpath = "//a[@href='#U514']")
+    @FindBy (xpath = "//div[@id='bx-lm-category-relation-129']/a[@href='#U514']")
     private WebElement message_addMention_DepartmentTab_peron;
 
     @FindBy(xpath = "//div[@id='feed-add-post-destination-container']")
