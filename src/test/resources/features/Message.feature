@@ -54,5 +54,3 @@ Feature: send custom message
     And the user enter video url "https://www.youtube.com/watch?v=-FlxM_0S2lA"
     And click on save button
     Then new video link should be created on the text box
-
-
