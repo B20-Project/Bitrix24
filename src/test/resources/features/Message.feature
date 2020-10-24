@@ -54,3 +54,15 @@ Feature: send custom message
     And the user enter video url "https://www.youtube.com/watch?v=-FlxM_0S2lA"
     And click on save button
     Then new video link should be created on the text box
+
+  @getTopicInputBox @AC8
+  Scenario: topic input box
+    When user clicks "Topic" icon
+    Then Topic input box should display
+
+  @recordVideo @AC9
+  Scenario: record video
+    When user clicks on icon "Record Video"
+    Then user should be able to see message in pop-up window
+
+

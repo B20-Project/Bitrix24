@@ -2,10 +2,12 @@ package com.bitrix24.pages;
 
 import com.bitrix24.util.BrowserUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class ActivityStreamPage extends AbstractPageBase {
@@ -51,6 +53,19 @@ public class ActivityStreamPage extends AbstractPageBase {
 
     @FindBy(xpath = "//input[contains(@id,'blogPostForm-source')]")
     private WebElement videoUrl;
+
+    @FindBy(xpath = "//input[@id='POST_TITLE']")
+    private WebElement topicInputBox;
+
+    @FindBy(xpath = "//span[@class='feed-add-post-form-but-cnt feed-add-videomessage']")
+    private WebElement recordVideoIcon;
+
+    @FindBy(xpath = "//div[@id='popup-window-content-bx-popup-videomessage-popup']")
+    private WebElement deviceAccessMessage;
+
+    @FindBy(xpath = "/div[@class='feed-add-close-icon']")
+    private WebElement closeButton;
+
 
     protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
     protected String msgTabPostBtn = "//div[contains(@class,'form-wrap')]//span[contains(@title,'%s')]";
@@ -177,6 +192,50 @@ public class ActivityStreamPage extends AbstractPageBase {
         BrowserUtils.wait(3);
         driver.findElement(By.xpath(String.format(saveButton,type))).click();
     }
+
+    public void click_icon_under_message_tab(String iconName){
+        String xpath = String.format("//span[@title='%s']", iconName);
+        driver.findElement(By.xpath(xpath)).click();
+    }
+
+    public void click_recordVideo(){
+        wait.until(ExpectedConditions.elementToBeClickable(recordVideoIcon)).click();
+    }
+
+    public String deviceAccessPopUpWindow(){
+        return deviceAccessMessage.getText();
+    }
+
+    public boolean topicInputBox_is_displayed(){
+        return topicInputBox.isDisplayed();
+    }
+
+    public boolean isAlertPresent(){
+        boolean foundAlert = false;
+        try {
+            wait.until(ExpectedConditions.alertIsPresent());
+            foundAlert = true;
+            System.out.println("isAlertPresent : " +foundAlert);
+        } catch (TimeoutException eTO) {
+            foundAlert = false;
+            System.out.println("isAlertPresent : " +foundAlert);
+        }
+        return foundAlert;
+    }
+
+    public void close_topic_input_box(){
+        if(topicInputBox.isDisplayed()){
+           closeButton.click();
+        }
+
+    }
+
+
+
+
+
+
+
 
 
 }
