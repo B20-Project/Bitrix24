@@ -24,10 +24,10 @@ public class MessageStepDefinition {
         loginPage.login("marketing");
     }
 
-    @And("user click {string} module")
-    public void user_click_module(String string) throws InterruptedException {
+    @And("user click {string} tab under Activity Stream")
+    public void user_click_on_tab_under_activity_stream(String string)  {
         activityStream.click_tab_under_activity_stream("Message");
-        Thread.sleep(3);
+        BrowserUtils.wait(2);
     }
 
     @And("user clicks on {string} icon")
@@ -177,11 +177,10 @@ public class MessageStepDefinition {
 
     @When("user clicks {string} icon")
     public void user_clicks_icon(String string) {
-        BrowserUtils.wait(3);
+        BrowserUtils.wait(2);
         if (string.equals("Topic")){
             activityStream.close_topic_input_box();
         }
-        BrowserUtils.wait(3);
         activityStream.click_icon_under_message_tab("Topic");
     }
 

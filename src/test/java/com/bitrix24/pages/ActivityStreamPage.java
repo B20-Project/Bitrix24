@@ -109,8 +109,8 @@ public class ActivityStreamPage extends AbstractPageBase {
         return message_addMention_DepartmentTab_peron.getText();
     }
 
-    public void click_tab_under_activity_stream(String module){
-        String xpath = String.format("//div[@id='feed-add-post-form-tab']/span[.='%s']", module);
+    public void click_tab_under_activity_stream(String tab){
+        String xpath = String.format("//div[@id='feed-add-post-form-tab']/span[.='%s']", tab);
         driver.findElement(By.xpath(xpath)).click();
     }
 
