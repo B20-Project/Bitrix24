@@ -63,6 +63,9 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "//div[@id='popup-window-content-bx-popup-videomessage-popup']")
     private WebElement deviceAccessMessage;
 
+    @FindBy(xpath = "/div[@class='feed-add-close-icon']")
+    private WebElement closeButton;
+
 
     protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
     protected String msgTabPostBtn = "//div[contains(@class,'form-wrap')]//span[contains(@title,'%s')]";
@@ -219,6 +222,15 @@ public class ActivityStreamPage extends AbstractPageBase {
         }
         return foundAlert;
     }
+
+    public void close_topic_input_box(){
+        if(topicInputBox.isDisplayed()){
+           closeButton.click();
+        }
+
+    }
+
+
 
 
 
