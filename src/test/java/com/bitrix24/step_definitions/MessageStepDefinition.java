@@ -178,6 +178,10 @@ public class MessageStepDefinition {
     @When("user clicks {string} icon")
     public void user_clicks_icon(String string) {
         BrowserUtils.wait(3);
+        if (string.equals("Topic")){
+            activityStream.close_topic_input_box();
+        }
+        BrowserUtils.wait(3);
         activityStream.click_icon_under_message_tab("Topic");
     }
 
