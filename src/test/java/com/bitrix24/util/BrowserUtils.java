@@ -2,6 +2,7 @@ package com.bitrix24.util;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 public class BrowserUtils {
+    private static WebDriverWait wait = new WebDriverWait(Driver.getDriver(),8);
 
     public static void wait(int seconds){
 
@@ -19,6 +21,18 @@ public class BrowserUtils {
         }catch(InterruptedException e){
             e.printStackTrace();
         }
+    }
+
+    public static void clickOnElement(WebElement element){
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
+
+    public static void enterText(WebElement element, String text){
+        wait.until(ExpectedConditions.visibilityOf(element));
+        element.clear();
+        element.sendKeys(text);
+        wait.until(ExpectedConditions.attributeToBe(element,"value",text));
+        System.out.println("Entering text: "+text);
     }
 
     public static List<String> getTextFromWebElements(List<WebElement> elements){
@@ -45,6 +59,7 @@ public class BrowserUtils {
      * clicks on an element using JavaScript
      */
     public static void clickWithJS(WebElement element){
+        wait.until(ExpectedConditions.elementToBeClickable(element));
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);",element);
         ((JavascriptExecutor)Driver.getDriver()).executeScript("arguments[0].click();",element);
 
@@ -54,16 +69,22 @@ public class BrowserUtils {
      * scroll to element using JavaScript
      * @param element
      */
-    public static void scrollTo(WebElement element){
+    public static void scrollToJS(WebElement element){
         ((JavascriptExecutor)Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);",element);
     }
 
-    public static void scrollBy(){
+    public static void scrollByJS(){
         ((JavascriptExecutor)Driver.getDriver()).executeScript("scroll(0,100)");
     }
 
+    public static void scrollTo(WebElement element) {
+        Actions actions = new Actions(Driver.getDriver());
+        actions.moveToElement(element);
+        actions.perform();
+    }
+
     /**
-     *
+     *getScreenShot
      * @param name screenshot name
      * @return path to the screenshot
      */

@@ -6,23 +6,10 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 
 public class ActivityStreamPage extends AbstractPageBase {
-
-    @FindBy(xpath = "//span[.='Message']")
-    private WebElement message;
-
-    @FindBy(xpath = "//span[@title='Quote text']")
-    private WebElement message_quote;
-
     @FindBy(xpath = "//blockquote[@class='bxhtmled-quote']")
     private WebElement enter_message_quote;
-
-    @FindBy(xpath = "//span[@id='bx-b-mention-blogPostForm']")
-    private WebElement message_addMention;
 
     @FindBy (xpath = "//a[ starts-with(@id,'destDepartmentTab')]")
     private WebElement message_addMention_DepartmentTab;
@@ -36,20 +23,11 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "//span[@class='bxhtmled-top-bar-wrap']")
     private WebElement editorTextBar;
 
-    @FindBy(xpath = "//span[@id='lhe_button_editor_blogPostForm']")
-    private WebElement visualEditorIcon;
-
-    @FindBy(xpath = "//span[@title='Link']")
-    private WebElement linkIcon;
-
     @FindBy(xpath = "//input[contains(@id,'blogPostForm-text')]")
     private WebElement linkText;
 
     @FindBy(xpath = "//input[contains(@id,'blogPostForm-href')]")
     private WebElement linkUrl;
-
-    @FindBy(xpath = "//span[@title='Insert video']")
-    private WebElement videoIcon;
 
     @FindBy(xpath = "//input[contains(@id,'blogPostForm-source')]")
     private WebElement videoUrl;
@@ -66,9 +44,8 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "/div[@class='feed-add-close-icon']")
     private WebElement closeButton;
 
-
     protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
-    protected String msgTabPostBtn = "//div[contains(@class,'form-wrap')]//span[contains(@title,'%s')]";
+    protected String msgTabPostBtn = "//div[@id='feed-add-post-content-message']//span[@title='%s']";
     protected String localFileBox = "//input[@name='bxu_files[]']";
     protected String msgTabAttachedFile = "//span[@title='Click to insert file']";
     protected String bitrixRemoteDrive = "//div[@style='display: block;']//span[.='Select document from Bitrix24']";
@@ -77,15 +54,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     protected String contactPopupClose = "//span[@class='popup-window-close-icon']";
     protected String selectedContact = "//span[@id='feed-add-post-destination-item']";
     protected String saveButton = "//div[contains(@class,'%s-dialog')]//input[@value = 'Save']";
-    protected String icon = "//span[@title='%s']";
 
-    public void click_message(){
-        message.click();
-    }
-
-    public void click_message_quote(){
-        message_quote.click();
-    }
 
     public  String getText_message_quote(){
         return enter_message_quote.getText();
@@ -93,10 +62,6 @@ public class ActivityStreamPage extends AbstractPageBase {
 
     public void enter_message_quote(String Enter_quote){
         enter_message_quote.sendKeys(Enter_quote);
-    }
-
-    public void click_message_addMention(){
-        message_addMention.click();
     }
 
     public void click_message_addMention_DepartmentTab(){
@@ -111,15 +76,6 @@ public class ActivityStreamPage extends AbstractPageBase {
         return message_addMention_DepartmentTab_peron.getText();
     }
 
-    public void click_tab_under_activity_stream(String tab){
-        String xpath = String.format("//div[@id='feed-add-post-form-tab']/span[.='%s']", tab);
-        driver.findElement(By.xpath(xpath)).click();
-    }
-
-    public void click_visualEditorIcon(){
-        wait.until(ExpectedConditions.elementToBeClickable(visualEditorIcon)).click();
-    }
-
     public boolean editorTextBar_is_displayed(){
         return editorTextBar.isDisplayed();
     }
@@ -129,6 +85,10 @@ public class ActivityStreamPage extends AbstractPageBase {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(activityStreamTab,tab)))).click();
     }
 
+    /**
+     *
+     * @param btn:Upload files, Link, Insert video, Quote text, Add mention, Visual editor, Topic
+     */
     public void clickPostBtn(String btn){
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(msgTabPostBtn,btn)))).click();
     }
@@ -168,8 +128,6 @@ public class ActivityStreamPage extends AbstractPageBase {
         return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(selectedContact)))).getText();
     }
 
-    //Methods for AC_3
-    public void click_on_link_icon(){ linkIcon.click(); }
     public void enter_link_text(String linktext){ linkText.sendKeys(linktext); }
     public void enter_link_url(String linkurl){ linkUrl.sendKeys(linkurl); }
 
@@ -180,8 +138,6 @@ public class ActivityStreamPage extends AbstractPageBase {
         return result;
     }
 
-    //Methods for AC_4
-    public void click_on_video_icon(){ videoIcon.click();}
     public void enter_video_url(String url){ videoUrl.sendKeys(url); }
 
     /**
@@ -191,10 +147,6 @@ public class ActivityStreamPage extends AbstractPageBase {
     public void click_on_save_button(String type){
         BrowserUtils.wait(3);
         driver.findElement(By.xpath(String.format(saveButton,type))).click();
-    }
-
-    public void click_icon_under_message_tab(String iconName){
-        driver.findElement(By.xpath(String.format(icon, iconName))).click();
     }
 
     public void click_recordVideo(){
@@ -228,13 +180,5 @@ public class ActivityStreamPage extends AbstractPageBase {
         }
 
     }
-
-
-
-
-
-
-
-
 
 }

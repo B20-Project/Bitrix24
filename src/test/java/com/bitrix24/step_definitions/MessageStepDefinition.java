@@ -24,24 +24,6 @@ public class MessageStepDefinition {
         loginPage.login("marketing");
     }
 
-    @And("user click {string} tab under Activity Stream")
-    public void user_click_on_tab_under_activity_stream(String string)  {
-        activityStream.click_tab_under_activity_stream("Message");
-        BrowserUtils.wait(2);
-    }
-
-    @And("user clicks on {string} icon")
-
-    public void user_clicks_on_icon(String string) {
-        activityStream.click_visualEditorIcon();
-
-    }
-
-    @Then("user should be able to see the editor text-bar displays on top message box")
-    public void user_should_be_able_to_see_the_editor_text_bar_displays_on_top_message_box() {
-        Assert.assertTrue(activityStream.editorTextBar_is_displayed());
-    }
-
     @And("user clicks menu {string}")
     public void userClicksMenu(String item) {
         activityStream.click_menu(item);
@@ -51,6 +33,11 @@ public class MessageStepDefinition {
     public void userClicksTabUnderActivityStream(String tab) {
         activityStream.clickActivityStreamTab(tab);
         BrowserUtils.wait(3);
+    }
+
+    @Then("user should be able to see the editor text-bar displays on top message box")
+    public void user_should_be_able_to_see_the_editor_text_bar_displays_on_top_message_box() {
+        Assert.assertTrue(activityStream.editorTextBar_is_displayed());
     }
 
     @When("user clicks on post button {string}")
@@ -79,7 +66,6 @@ public class MessageStepDefinition {
     }
 
     @And("user adds employee {string} from contacts {string} tab")
-
     public void userAddsEmployeeFromContactsTab(String employee, String tab) {
 
         activityStream.addEmployeeByTab(employee,tab);
@@ -88,12 +74,6 @@ public class MessageStepDefinition {
     @Then("employee {string} should appear in the destination box")
     public void employeeShouldAppearInTheDestinationBox(String employee) {
         Assert.assertEquals(activityStream.getTextFromSelectedEmployee(),employee);
-    }
-
-    @And("user click \"quote text\" icon")
-    public void userClickIcon() {
-
-        activityStream.click_message_quote();
     }
 
     @Then("user should able to enter the quote")
@@ -106,13 +86,6 @@ public class MessageStepDefinition {
         String actualResult = activityStream.getText_message_quote();
 
         Assert.assertEquals(expectedResult, actualResult);
-    }
-
-    @When("user click \"Add mention\" icon")
-    public void user_click_icon() {
-
-        activityStream.click_message_addMention();
-        BrowserUtils.wait(3);
     }
 
     @Then("user should able to mention contacts from giving list;")
@@ -128,11 +101,6 @@ public class MessageStepDefinition {
         System.out.println("expectedResult = " + expectedResult);
 
         Assert.assertTrue(activityStream.to.getText().contains(expectedResult));
-    }
-
-    @When("the user click on the link icon")
-    public void the_user_click_on_the_link_icon() {
-        activityStream.click_on_link_icon();
     }
 
     @When("the user click on Text to enter {string}")
@@ -156,11 +124,6 @@ public class MessageStepDefinition {
         Assert.assertTrue(activityStream.is_new_created_link_displayed(string));
     }
 
-    @When("the user click on the video icon")
-    public void the_user_click_on_the_video_icon() {
-        activityStream.click_on_video_icon();
-    }
-
     @And("the user enter video url {string}")
     public void the_user_enter_video_url(String string) {
         activityStream.enter_video_url(string);
@@ -175,15 +138,6 @@ public class MessageStepDefinition {
     public void new_video_link_should_be_created_on_the_text_box() {
     }
 
-    @When("user clicks {string} icon")
-    public void user_clicks_icon(String string) {
-        BrowserUtils.wait(2);
-        if (string.equals("Topic")){
-            activityStream.close_topic_input_box();
-        }
-        activityStream.click_icon_under_message_tab("Topic");
-    }
-
     @Then("Topic input box should display")
     public void topic_input_box_should_display() {
         activityStream.topicInputBox_is_displayed();
@@ -191,8 +145,8 @@ public class MessageStepDefinition {
         BrowserUtils.wait(2);
     }
 
-    @When("user clicks on icon {string}")
-    public void user_click_on_icon(String string) {
+    @When("user clicks on icon \"Record Video\"")
+    public void user_click_on_icon() {
         activityStream.click_recordVideo();
     }
 
@@ -202,10 +156,4 @@ public class MessageStepDefinition {
         String actual = activityStream.deviceAccessPopUpWindow();
         Assert.assertEquals(expected, actual);
     }
-
-
-
-
-
-
     }

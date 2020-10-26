@@ -7,20 +7,20 @@ Feature: send custom message
     And user clicks menu "Activity Stream"
     And user clicks "Message" tab under Activity Stream
 
-  @uploadFromLocal
+  @uploadFromLocal @bug
   Scenario: upload single file from local disk
     When user clicks on post button "Upload files"
     And  user uploads local file "C:/Users/Aji/Desktop/CRM24/old11file.txt"
     Then "old11file.txt" should display under attached files
 
-  @enterQuote
-  Scenario: Users should be able to create a quote by clicking on the Comma icon.
-    And user click "quote text" icon
+  @enterQuote @AC5
+  Scenario: Users should be able to create a quote by clicking on the Quote text icon.
+    And user clicks on post button "Quote text"
     Then user should able to enter the quote
 
-  @addMention
-  Scenario: Users should be able to create a quote by clicking on the Add mention icon.
-    And user click "Add mention" icon
+  @addMention @AC6
+  Scenario: Users should be able to mention people by clicking on the Add mention icon.
+    And user clicks on post button "Add mention"
     Then user should able to mention contacts from giving list;
 
   @uploadFromRemoteCompanyDrive
@@ -37,12 +37,12 @@ Feature: send custom message
 
   @getEditorTextBar @AC7
   Scenario: get visual editor text bar
-    And user clicks on "Visual editor" icon
+    And user clicks on post button "Visual editor"
     Then user should be able to see the editor text-bar displays on top message box
 
   @creatingLink @AC3
   Scenario: create link using link icon
-    When the user click on the link icon
+    When user clicks on post button "Link"
     And the user click on Text to enter "sample link text"
     And the user click on Link to enter "sample Link Url"
     And click on link save button
@@ -50,14 +50,14 @@ Feature: send custom message
 
   @insertVideo @AC4
   Scenario: insert video using video icon
-    When the user click on the video icon
+    When user clicks on post button "Insert video"
     And the user enter video url "https://www.youtube.com/watch?v=-FlxM_0S2lA"
     And click on save button
     Then new video link should be created on the text box
 
   @getTopicInputBox @AC8
   Scenario: topic input box
-    When user clicks "Topic" icon
+    When user clicks on post button "Topic"
     Then Topic input box should display
 
   @recordVideo @AC9
