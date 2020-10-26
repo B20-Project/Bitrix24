@@ -76,6 +76,8 @@ public class ActivityStreamPage extends AbstractPageBase {
     protected String contactPopupFormat = "//div[@id='BXSocNetLogDestination']//a[contains(.,'%s')]";
     protected String contactPopupClose = "//span[@class='popup-window-close-icon']";
     protected String selectedContact = "//span[@id='feed-add-post-destination-item']";
+    protected String saveButton = "//div[contains(@class,'%s-dialog')]//input[@value = 'Save']";
+    protected String icon = "//span[@title='%s']";
 
     public void click_message(){
         message.click();
@@ -114,15 +116,13 @@ public class ActivityStreamPage extends AbstractPageBase {
         driver.findElement(By.xpath(xpath)).click();
     }
 
-    public void click_icon_under_activity_stream(){
+    public void click_visualEditorIcon(){
         wait.until(ExpectedConditions.elementToBeClickable(visualEditorIcon)).click();
     }
 
     public boolean editorTextBar_is_displayed(){
         return editorTextBar.isDisplayed();
     }
-
-    protected String saveButton = "//div[contains(@class,'%s-dialog')]//input[@value = 'Save']";
 
     //inserted extra wait time here
     public void clickActivityStreamTab(String tab){
@@ -194,8 +194,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     }
 
     public void click_icon_under_message_tab(String iconName){
-        String xpath = String.format("//span[@title='%s']", iconName);
-        driver.findElement(By.xpath(xpath)).click();
+        driver.findElement(By.xpath(String.format(icon, iconName))).click();
     }
 
     public void click_recordVideo(){
