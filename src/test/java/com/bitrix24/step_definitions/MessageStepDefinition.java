@@ -33,7 +33,7 @@ public class MessageStepDefinition {
     @And("user clicks on {string} icon")
 
     public void user_clicks_on_icon(String string) {
-        activityStream.click_icon_under_activity_stream();
+        activityStream.click_visualEditorIcon();
 
     }
 
