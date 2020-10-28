@@ -65,4 +65,13 @@ Feature: send custom message
     When user clicks on icon "Record Video"
     Then user should be able to see message in pop-up window
 
+    @AC10
+    Scenario: verify user can send message by group, individual, and email
+      When user clicks on To
+      And enter "test@gmail.com" email address
+      And select Soccer team form My Groups
+      And select IT department form "Employees and departments
+      Then click "SEND" button
+      And verify message display on Activity Stream has "test@gmail.com"
+      And verify message display on Activity Stream has "Soccer team"
 

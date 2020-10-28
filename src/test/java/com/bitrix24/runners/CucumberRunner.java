@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
                 features = "src/test/resources/features",
                 glue = "com/bitrix24/step_definitions",
-                dryRun = false,
-                tags = "@messageTab"
+                dryRun =false,
+                tags = "@AC10"
                 )
 public class CucumberRunner {
 
