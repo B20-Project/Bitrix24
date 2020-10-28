@@ -1,5 +1,7 @@
 package com.bitrix24.pages;
 
+import static com.bitrix24.util.BrowserUtils.*;
+
 import com.bitrix24.util.BrowserUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -42,7 +44,14 @@ public class ActivityStreamPage extends AbstractPageBase {
     private WebElement deviceAccessMessage;
 
     @FindBy(xpath = "/div[@class='feed-add-close-icon']")
-    private WebElement closeButton;
+    private WebElement topicInputBoxCloseButton;
+
+    @FindBy(xpath = "//button[@id='blog-submit-button-save']")
+    private WebElement sendButton;
+
+
+
+
 
     protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
     protected String msgTabPostBtn = "//div[@id='feed-add-post-content-message']//span[@title='%s']";
@@ -54,6 +63,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     protected String contactPopupClose = "//span[@class='popup-window-close-icon']";
     protected String selectedContact = "//span[@id='feed-add-post-destination-item']";
     protected String saveButton = "//div[contains(@class,'%s-dialog')]//input[@value = 'Save']";
+    protected String uploadedFile= "//div[@id='log_internal_container']//a[@title='fileTest5.txt']";
 
 
     public  String getText_message_quote(){
@@ -176,8 +186,17 @@ public class ActivityStreamPage extends AbstractPageBase {
 
     public void close_topic_input_box(){
         if(topicInputBox.isDisplayed()){
-           closeButton.click();
+           topicInputBoxCloseButton.click();
         }
+    }
+
+    public void clickSendBtn(){
+       clickOnElement(sendButton);
+    }
+
+    public String getTextFromUploadedFile(){
+        return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(uploadedFile)))).getText();
+
 
     }
 

@@ -42,7 +42,11 @@ public class MessageStepDefinition {
 
     @When("user clicks on post button {string}")
     public void userClicksOnPostButton(String btn) {
+        if(btn.equals("Topic")){
+            activityStream.close_topic_input_box();
+        }
         activityStream.clickPostBtn(btn);
+
     }
 
     @And("user uploads local file {string}")
@@ -156,4 +160,21 @@ public class MessageStepDefinition {
         String actual = activityStream.deviceAccessPopUpWindow();
         Assert.assertEquals(expected, actual);
     }
+
+    @When("user clicks on {string} button")
+    public void user_clicks_on_button(String string) {
+        BrowserUtils.wait(2);
+       activityStream.clickSendBtn();
     }
+
+    @Then("{string} should display under Activity Stream")
+    public void should_display_under(String fileName) {
+        BrowserUtils.wait(1);
+        Assert.assertEquals(activityStream.getTextFromUploadedFile(),fileName);
+
+
+
+    }
+
+
+}
