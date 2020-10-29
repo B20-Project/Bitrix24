@@ -6,4 +6,10 @@ Feature: create task
     Given user is on the home page
     And user clicks menu "Activity Stream"
     And user clicks "Task" tab under Activity Stream
-    And user enter Task title and description
+    And user enters title on "Things to do" input box and enters "Create task"
+
+  @selectPeople
+    Scenario: select people
+    And user enters description "Task Description"
+
+
