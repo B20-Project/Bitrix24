@@ -64,6 +64,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     protected String selectedContact = "//span[@id='feed-add-post-destination-item']";
     protected String saveButton = "//div[contains(@class,'%s-dialog')]//input[@value = 'Save']";
     protected String uploadedFile= "//div[@id='log_internal_container']//a[@title='fileTest5.txt']";
+    protected String feedTitle = "(//input[@placeholder='%s'])[1]";
 
 
     public  String getText_message_quote(){
@@ -196,8 +197,23 @@ public class ActivityStreamPage extends AbstractPageBase {
 
     public String getTextFromUploadedFile(){
         return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(uploadedFile)))).getText();
-
-
     }
+
+    public void enterFeedTitle(String title, String text){
+        enterText(driver.findElement(By.xpath(String.format(feedTitle,title))),text);
+    }
+
+    public void enterDescription(String text){
+        driver.switchTo().frame(1);
+        driver.findElement(By.xpath("//body")).sendKeys(text);
+        driver.switchTo().defaultContent();
+    }
+
+
+
+
+
+
+
 
 }
