@@ -9,6 +9,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "//blockquote[@class='bxhtmled-quote']")
     private WebElement enter_message_quote;
@@ -196,8 +199,40 @@ public class ActivityStreamPage extends AbstractPageBase {
 
     public String getTextFromUploadedFile(){
         return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(uploadedFile)))).getText();
-
-
     }
+
+
+    @FindBy(xpath = "//input[@class='bx-calendar-year-input']")
+    private WebElement yearInput;
+
+    protected String calendar= "//div[@class='bx-calendar']//a[contains(@class,'%s')]";
+    protected String calendarMonth= "//div[@class='bx-calendar-%s-content']/span";
+
+    public String get_current_month(){
+        return driver.findElement(By.xpath(String.format(calendar, "month"))).getText();
+    }
+    public String get_current_year(){
+        return driver.findElement(By.xpath(String.format(calendar, "year"))).getText();
+    }
+
+    /**
+     *
+     * @param nums 1-12
+     */
+    public void set_month(int nums){
+        driver.findElement(By.xpath(String.format(calendar, "month"))).click();
+        List<WebElement> elementList = driver.findElements(By.xpath(String.format(calendarMonth, "month")));
+        elementList.get(nums-1).click();
+    }
+
+    public void set_year(int nums){
+        driver.findElement(By.xpath(String.format(calendar, "year"))).click();
+        enterText(yearInput,""+nums);
+    }
+
+
+
+
+
 
 }
