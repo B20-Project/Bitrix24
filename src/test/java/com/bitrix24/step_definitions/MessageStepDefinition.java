@@ -10,9 +10,7 @@ import com.bitrix24.pages.LoginPage;
 import com.bitrix24.util.ConfigurationReader;
 import com.bitrix24.util.Driver;
 import io.cucumber.java.en.Given;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+
 
 
 public class MessageStepDefinition {
@@ -44,7 +42,11 @@ public class MessageStepDefinition {
 
     @When("user clicks on post button {string}")
     public void userClicksOnPostButton(String btn) {
+        if(btn.equals("Topic")){
+            activityStream.close_topic_input_box();
+        }
         activityStream.clickPostBtn(btn);
+
     }
 
     @And("user uploads local file {string}")
@@ -159,40 +161,20 @@ public class MessageStepDefinition {
         Assert.assertEquals(expected, actual);
     }
 
-    @When("user clicks on To")
-    public void user_clicks_on_to() {
-        activityStream.click_toInputBox();
+    @When("user clicks on {string} button")
+    public void user_clicks_on_button(String string) {
+        BrowserUtils.wait(2);
+       activityStream.clickSendBtn();
     }
 
-    @When("select Soccer team form My Groups")
-    public void select_soccer_team_form_my_groups() {
-        activityStream.click_to_myGroup();
-        activityStream.click_to_myGroup_soccerTram();
-    }
+    @Then("{string} should display under Activity Stream")
+    public void should_display_under(String fileName) {
+        BrowserUtils.wait(1);
+        Assert.assertEquals(activityStream.getTextFromUploadedFile(),fileName);
 
-    @When("select IT department form \"Employees and departments")
-    public void select_it_department_form_employees_and_departments() {
-        activityStream.click_to_employeesAndDepartments();
-        activityStream.click_to_employeesAndDepartments_iT();
-        activityStream.click_to_employeesAndDepartments_iT_allBox();
-    }
 
-    @When("enter {string} email address")
-    public void enter_email_address(String eamil) {
 
-       activityStream.sendKey_To(eamil);
-    }
-
-    @Then("click {string} button")
-    public void click(String string) {
-        activityStream.click_sendButton();
     }
 
 
-    @Then("verify message display on Activity Stream has {string}")
-    public void verify_message_display_on_activity_stream_has(String string) {
-        Assert.assertEquals(activityStream.verify(string),string);
-
-    }
 }
-

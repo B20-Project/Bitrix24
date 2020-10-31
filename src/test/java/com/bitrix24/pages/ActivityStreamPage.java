@@ -1,18 +1,13 @@
 package com.bitrix24.pages;
 
+import static com.bitrix24.util.BrowserUtils.*;
+
 import com.bitrix24.util.BrowserUtils;
-import com.bitrix24.util.Driver;
-import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
-import com.sun.org.apache.bcel.internal.generic.DREM;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.List;
-import java.util.logging.XMLFormatter;
 
 public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "//blockquote[@class='bxhtmled-quote']")
@@ -26,9 +21,6 @@ public class ActivityStreamPage extends AbstractPageBase {
 
     @FindBy(xpath = "//div[@id='feed-add-post-destination-container']")
     public WebElement to;
-
-    @FindBy(xpath = "//input[@id='feed-add-post-destination-input']")
-    private WebElement toInput;
 
     @FindBy(xpath = "//span[@class='bxhtmled-top-bar-wrap']")
     private WebElement editorTextBar;
@@ -52,28 +44,14 @@ public class ActivityStreamPage extends AbstractPageBase {
     private WebElement deviceAccessMessage;
 
     @FindBy(xpath = "/div[@class='feed-add-close-icon']")
-    private WebElement closeButton;
+    private WebElement topicInputBoxCloseButton;
 
-    @FindBy(xpath = "//a[.='My Groups']")
-    private WebElement to_myGroup;
-
-    @FindBy(xpath = "//a[contains(@id,'group_SG4')]")
-    private WebElement to_myGroup_soccerTeam;
-
-    @FindBy(xpath = "//a[.='Employees and departments']")
-    private WebElement to_employeesAndDepartments;
-
-    @FindBy(xpath = "//div[@class='bx-finder-company-department']//div[.='IT ']/..")
-    private WebElement to_employeesAndDepartments_iT;
-
-    @FindBy(xpath = "//div[@class='bx-finder-company-department-check-arrow']")
-    private WebElement to_employeesAndDepartments_iT_allBox;
-
-    @FindBy(xpath = "//button[@id='blog-submit-button-save']" )
+    @FindBy(xpath = "//button[@id='blog-submit-button-save']")
     private WebElement sendButton;
 
-    @FindBy(xpath = "//a[.='marketing28@cybertekschool.com']/..//span//a")
-    private List<WebElement> verify;
+
+
+
 
     protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
     protected String msgTabPostBtn = "//div[@id='feed-add-post-content-message']//span[@title='%s']";
@@ -85,6 +63,8 @@ public class ActivityStreamPage extends AbstractPageBase {
     protected String contactPopupClose = "//span[@class='popup-window-close-icon']";
     protected String selectedContact = "//span[@id='feed-add-post-destination-item']";
     protected String saveButton = "//div[contains(@class,'%s-dialog')]//input[@value = 'Save']";
+    protected String uploadedFile= "//div[@id='log_internal_container']//a[@title='fileTest5.txt']";
+    protected String feedTitle = "(//input[@placeholder='%s'])[1]";
 
 
     public  String getText_message_quote(){
@@ -207,58 +187,33 @@ public class ActivityStreamPage extends AbstractPageBase {
 
     public void close_topic_input_box(){
         if(topicInputBox.isDisplayed()){
-           closeButton.click();
+           topicInputBoxCloseButton.click();
         }
-
     }
 
-    public void click_toInputBox(){
-        BrowserUtils.clickOnElement(to);
+    public void clickSendBtn(){
+       clickOnElement(sendButton);
     }
 
-    public void click_to_myGroup(){
-        BrowserUtils.clickOnElement(to_myGroup);
+    public String getTextFromUploadedFile(){
+        return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(uploadedFile)))).getText();
     }
 
-    public void click_to_myGroup_soccerTram(){
-        BrowserUtils.wait(2);
-       to_myGroup_soccerTeam.click();
+    public void enterFeedTitle(String title, String text){
+        enterText(driver.findElement(By.xpath(String.format(feedTitle,title))),text);
     }
 
-    public void click_to_employeesAndDepartments(){
-        BrowserUtils.clickOnElement(to_employeesAndDepartments);
+    public void enterDescription(String text){
+        driver.switchTo().frame(1);
+        driver.findElement(By.xpath("//body")).sendKeys(text);
+        driver.switchTo().defaultContent();
     }
 
-    public void click_to_employeesAndDepartments_iT(){
-        BrowserUtils.clickOnElement(to_employeesAndDepartments_iT);
-    }
-
-    public void click_to_employeesAndDepartments_iT_allBox(){
-        BrowserUtils.clickOnElement(to_employeesAndDepartments_iT_allBox);
-    }
-
-    public void sendKey_To(String email){
-        BrowserUtils.clickOnElement(to);
-        toInput.sendKeys(Keys.BACK_SPACE,email);
-        BrowserUtils.wait(3);
-        toInput.sendKeys(Keys.ENTER);
-        toInput.click();
-    }
-
-    public void click_sendButton(){
-        BrowserUtils.scrollTo(sendButton);
-        Driver.getDriver().switchTo().frame(0);
-        Driver.getDriver().findElement(By.xpath("//body")).click();
-        Driver.getDriver().findElement(By.xpath("//body")).sendKeys("test");
-        Driver.getDriver().switchTo().parentFrame();
-        BrowserUtils.clickOnElement(sendButton);
-    }
-
-    public String verify (String text){
-        BrowserUtils.wait(3);
-        WebElement element = Driver.getDriver().findElement(By.xpath("//a[.='marketing28@cybertekschool.com']/..//span//a[.='"+text+"']"));
-        return element.getText();
 
 
-    }
+
+
+
+
+
 }
