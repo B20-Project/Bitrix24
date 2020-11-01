@@ -8,8 +8,11 @@ Feature: create task
     And user clicks "Task" tab under Activity Stream
     And user enters title on "Things to do" input box and enters "Create task"
 
-  @selectPeople
-    Scenario: select people
-    And user enters description "Task Description"
+    @AC1
+  Scenario: create a simple task with repeat day
+    When user click "More"
+    And user click "Repeat task" check box
+    Then user select "day"
+    And enter every 1 select day type and with an interval of 0 mo.
 
 

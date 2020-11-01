@@ -3,6 +3,8 @@ package com.bitrix24.pages;
 import static com.bitrix24.util.BrowserUtils.*;
 
 import com.bitrix24.util.BrowserUtils;
+import com.bitrix24.util.Driver;
+import com.sun.org.apache.xerces.internal.util.DraconianErrorHandler;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
@@ -49,8 +51,25 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "//button[@id='blog-submit-button-save']")
     private WebElement sendButton;
 
+    @FindBy(xpath = "//div[@class='task-additional-alt-more']")
+    private WebElement task_more;
+
+    @FindBy(xpath = "//input[@data-bx-id='task-edit-flag task-edit-flag-replication']")
+    private WebElement task_more_repeatTaskCheckBox;
 
 
+    public void click_task_more_activate_repeatTerm(String repeatTerm){
+        WebElement element = Driver.getDriver().findElement(By.xpath("//span[.='"+repeatTerm+"']"));
+        BrowserUtils.clickOnElement(element);
+    }
+
+    public void click_taskMore(){
+        BrowserUtils.clickOnElement(task_more);
+    }
+
+    public void click_task_more_repeatTaskCheckBox(){
+        BrowserUtils.clickOnElement(task_more_repeatTaskCheckBox);
+    }
 
 
     protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
