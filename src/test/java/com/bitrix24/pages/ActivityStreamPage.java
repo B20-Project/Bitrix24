@@ -10,6 +10,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "//blockquote[@class='bxhtmled-quote']")
@@ -57,9 +58,49 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "//input[@data-bx-id='task-edit-flag task-edit-flag-replication']")
     private WebElement task_more_repeatTaskCheckBox;
 
+    @FindBy(xpath = "//input[@class='js-id-replication-every-day task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_day;
+
+    @FindBy(xpath = "//select[@class='js-id-replication-day-type task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_dayTypeSelector;
+
+    @FindBy(xpath = "//input[@class='js-id-replication-daily-month-interval task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_dayMo;
+
+    @FindBy(xpath = "//input[@class='js-id-replication-every-week task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_weekEnter;
+
+    public WebElement verify_task_more_repeatTask_repeatTerm_weekDayCheckBox(String str){
+        WebElement element = Driver.getDriver().findElement(By.xpath("//label[@class='task-options-day'][contains(text(),'"+str+"')]/input"));
+        BrowserUtils.scrollTo(element);
+        return element;
+    }
+
+    public void checkBox_task_more_repeatTask_repeatTerm_weekDayCheckBox(String str){
+        WebElement element = Driver.getDriver().findElement(By.xpath("//label[@class='task-options-day'][contains(text(),'"+str+"')]"));
+        BrowserUtils.clickOnElement(element);
+    }
+
+    public void enter_task_more_repeatTask_repeatTerm_weekEnter(int num){
+        BrowserUtils.enterText(task_more_repeatTask_repeatTerm_weekEnter,(num+""));
+    }
+
+    public void enter_task_more_repeatTask_repeatTerm_dayMo(int num){
+        BrowserUtils.enterText(task_more_repeatTask_repeatTerm_dayMo,(num+""));
+    }
+
+    public void select_task_more_repeatTask_repeatTerm_dayTypeSelector(String str){
+        Select select= new Select(task_more_repeatTask_repeatTerm_dayTypeSelector);
+        select.selectByVisibleText(str);
+    }
+
+    public void enter_task_more_repeatTask_repeatTerm_day(int num){
+        BrowserUtils.enterText(task_more_repeatTask_repeatTerm_day,(num+""));
+    }
 
     public void click_task_more_activate_repeatTerm(String repeatTerm){
-        WebElement element = Driver.getDriver().findElement(By.xpath("//span[.='"+repeatTerm+"']"));
+        WebElement element = Driver.getDriver().findElement(By.xpath("//span[contains(@class,'js')][.='"+repeatTerm+"']"));
+        ////span[contains(@class,'js-id-replication-period-type-option tasks-option')][.='week']
         BrowserUtils.clickOnElement(element);
     }
 
