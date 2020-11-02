@@ -68,9 +68,9 @@ Feature: send custom message
   @sendUploadedFileFromLocal
   Scenario: upload single file from local disk
     When user clicks on post button "Upload files"
-    And  user uploads local file "/Users/elvirakargabaeva/Desktop/fileTest5.txt"
+    And  user uploads local file "/Users/elvirakargabaeva/Desktop/Test.txt"
     And user clicks on "Send" button
-    Then "fileTest5.txt" should display under Activity Stream
+    Then "Test.txt" should display under Activity Stream
 
 
 
