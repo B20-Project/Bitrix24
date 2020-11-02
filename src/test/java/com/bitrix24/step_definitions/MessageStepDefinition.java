@@ -27,12 +27,13 @@ public class MessageStepDefinition {
     @And("user clicks menu {string}")
     public void userClicksMenu(String item) {
         activityStream.click_menu(item);
+        BrowserUtils.wait(1);
     }
 
     @And("user clicks {string} tab under Activity Stream")
     public void userClicksTabUnderActivityStream(String tab) {
         activityStream.clickActivityStreamTab(tab);
-        BrowserUtils.wait(3);
+        BrowserUtils.wait(1);
     }
 
     @Then("user should be able to see the editor text-bar displays on top message box")
@@ -45,8 +46,8 @@ public class MessageStepDefinition {
         if(btn.equals("Topic")){
             activityStream.close_topic_input_box();
         }
+        BrowserUtils.wait(1);
         activityStream.clickPostBtn(btn);
-
     }
 
     @And("user uploads local file {string}")
