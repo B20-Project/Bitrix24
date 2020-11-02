@@ -13,8 +13,8 @@ Feature: create task
   Scenario: selecting date and time in calendar
     When user clicks on Deadline input box under task
       #mm-dd-yyyy format
-    And Select "5-20-2020" as date
-    And Select "10-30-am" as time
+    And Select "6-13-2020" as date
+    And Select "8-00-am" as time
     And user clicks on select button in calendar
     Then "11/01/2020 05:59 am" should be displayed in the Deadline input box
 
