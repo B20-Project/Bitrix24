@@ -193,7 +193,7 @@ Feature: As a user I want to create customized task
     And click on date enter under repeat until
     #Then Select "10-12-2020" as date
 
-  @taskArpatAC1
+  @taskArpatAC11
   Scenario: create a simple task with repeat week
     When user click on More
     Then user click "Repeat task" check box

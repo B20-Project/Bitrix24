@@ -198,9 +198,10 @@ public class ActivityStreamPage extends AbstractPageBase {
     }
 
     public void click_task_more_repeatTask_repeatTerm_repeatUntil_checkBox(String checkBoxNames){
-
         WebElement element = Driver.getDriver().findElement(By.xpath(String.format(checkBoxName, checkBoxNames)));
-        BrowserUtils.scrollTo(element);
+        System.out.println("element = " + element);
+        BrowserUtils.scrollByJS(435, 931);
+        BrowserUtils.clickOnElement(element);
         element.click();
     }
 
