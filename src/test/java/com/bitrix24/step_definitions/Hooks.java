@@ -1,7 +1,5 @@
 package com.bitrix24.step_definitions;
 
-import com.bitrix24.util.BrowserUtils;
-import com.bitrix24.util.ConfigurationReader;
 import com.bitrix24.util.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
@@ -15,7 +13,7 @@ public class Hooks {
     public void setUp(Scenario scenario){
         System.out.println(scenario.getSourceTagNames());
         System.out.println("Starting Automation");
-        Driver.getDriver().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        Driver.getDriver().manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
     }
 
     @After
