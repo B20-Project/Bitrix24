@@ -6,8 +6,6 @@ Feature: create task
     Given user is on the home page
     And user clicks menu "Activity Stream"
     And user clicks "Task" tab under Activity Stream
-    And user enters title on "Things to do" input box and enters "Create task"
-    And user enters description "Task Description"
     And user enters title on "Things to do" input box and enters "Create a task"
     And user enters description "Toronto"
 
@@ -24,10 +22,6 @@ Feature: create task
     And user clicks on "Send" button
     Then "Task has been created" message should display in pop-up window
 
-
-
-
-
   @calendar
   Scenario: selecting date and time in calendar
     When user clicks on Deadline input box under task
@@ -37,7 +31,7 @@ Feature: create task
     And user clicks on select button in calendar
     Then "11/01/2020 05:59 am" should be displayed in the Deadline input box
 
-  @timePlanning
+  @timePlanning   @calendar
   Scenario: verify Time planning
     When user click on "time planning" next to Deadline
     And user click on "Start task on" under time planning
@@ -49,18 +43,18 @@ Feature: create task
     When user select "minutes" under duration
     Then "11/15/2020 05:00 am" should be displayed on finish input box
 
-  @options
+  @options   @calendar
   Scenario: verify options
     When user click on "options" next to Deadline
     Then user should be able to select all available checkboxes
 
-  @timeTracking
+  @timeTracking   @calendar
   Scenario: verify time tracking
     When user click on More
     And user select Task planned time checkbox
     Then enter "5" in hour and "12" minutes
 
-  @reminder
+  @reminder   @calendar
   Scenario: verify reminder
     When user click on More
     When user click on Add reminder
@@ -72,12 +66,3 @@ Feature: create task
     And user clicks on "message" icon in reminder
     And user clicks on Add in reminder
     Then new reminder tab should be displayed above Add reminder
-
-
-
-
-
-
-
-
-

@@ -57,6 +57,44 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy (xpath = "//div[@id='blogPostEditCreateTaskPopup']//div[.='Task has been created']")
     private WebElement createdTaskConfirmationMessage;
 
+    @FindBy (xpath = "//*[.='Task planned time']/input")
+    private WebElement taskPlannedTime;
+
+    @FindBy (xpath = "//span[@data-bx-id='reminder-open-form']")
+    private WebElement addReminder;
+
+    @FindBy (xpath = "//span[@data-bx-id='form-date']")
+    private WebElement reminderInputBox;
+
+    @FindBy (xpath = "//select[@data-bx-id='form-change-recipient']")
+    private WebElement reminderRoles;
+
+    @FindBy (xpath = "//button[@data-bx-id='form-submit']")
+    private WebElement reminderAddButton;
+
+    @FindBy(xpath = "//span[@data-bx-id='dateplanmanager-deadline']/input[1]")
+    private WebElement deadLine;
+
+    @FindBy(xpath = "//a[@data-action='submit']")
+    private WebElement sumbit;
+
+    @FindBy(xpath = "//span[@data-bx-id='dateplanmanager-deadline']/input[@data-bx-id='datepicker-value']")
+    private WebElement deadLineValue;
+
+    @FindBy(xpath = "//input[@class='bx-calendar-year-input']")
+    private WebElement yearInput;
+
+    @FindBy(xpath = "//input[@class='bx-calendar-form-input']")
+    private List<WebElement> calendarTime;
+
+    @FindBy(xpath = "//span[@data-action='time_ampm']")
+    private WebElement calendar_am_pm;
+
+    @FindBy(xpath = "//div[@class='task-options-field-inner']")
+    private List<WebElement> optionsCheckboxes;
+
+    @FindBy(className = "task-additional-alt-more")
+    private WebElement moreButton;
 
     protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
     protected String msgTabPostBtn = "//div[@id='feed-add-post-content-message']//span[@title='%s']";
@@ -70,7 +108,19 @@ public class ActivityStreamPage extends AbstractPageBase {
     protected String saveButton = "//div[contains(@class,'%s-dialog')]//input[@value = 'Save']";
     protected String uploadedFile= "//div[@id='log_internal_container']//a[@title='Test.txt']";
     protected String feedTitle = "(//input[@placeholder='%s'])[1]";
-
+    protected String plannedTime = "//input[contains(@class,'timeestimate-%s')]";
+    protected String reminderType = "//a[contains(@class,'link-%s')]";
+    protected String calendar = "//div[@class='bx-calendar']//a[contains(@class,'%s')]";
+    protected String calendarMonth = "//div[@class='bx-calendar-%s-content']/span";
+    protected String listOfDates = "//a[.='%s']";
+    protected String deadlineOptions = "//span[@data-target='%s']";
+    protected String timePlanningOptions = "//*[contains(@data-bx-id,'%s')]";
+    protected String durationOptions = "//span[@data-unit='%s']";
+    protected String calendarValue = "//*[contains(@data-bx-id,'%s')]//input[@data-bx-id='datepicker-value']";
+    protected String cancelSelectionBtn = "//div/span[.='%s']/..//span[@title='Cancel selection']";
+    protected String taskAdditionalBlock = "//span/span[.='%s']";
+    protected String finderBoxTabSelection ="//div[@class='bx-finder-box-tabs']/a[.='%s']";
+    protected String employeeName ="//div[@class='bx-finder-company-department-employee-info']/div[contains(text(),'%s')]";
 
     public String getText_message_quote() {
         return enter_message_quote.getText();
@@ -143,6 +193,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     }
 
     public void enter_link_text(String linktext){ linkText.sendKeys(linktext); }
+
     public void enter_link_url(String linkurl){ linkUrl.sendKeys(linkurl); }
 
     public boolean is_new_created_link_displayed(String text){
@@ -191,6 +242,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     }
 
     public void enterFeedTitle(String title, String text){
+        BrowserUtils.wait(2);
         enterText(driver.findElement(By.xpath(String.format(feedTitle,title))),text);
     }
 
@@ -200,14 +252,10 @@ public class ActivityStreamPage extends AbstractPageBase {
         driver.switchTo().defaultContent();
     }
 
-    protected String cancelSelectionBtn = "//div/span[.='%s']/..//span[@title='Cancel selection']";
-    protected String taskAdditionalBlock = "//span/span[.='%s']";
-    protected String finderBoxTabSelection ="//div[@class='bx-finder-box-tabs']/a[.='%s']";
-    protected String employeeName ="//div[@class='bx-finder-company-department-employee-info']/div[contains(text(),'%s')]";
-
     public void clickCancelSelectionBtn(String taskOption){
        clickOnElement(driver.findElement(By.xpath(String.format(cancelSelectionBtn, taskOption))));
     }
+
     public void clickTaskAdditionalBlock(String name){
         System.out.println(String.format(taskAdditionalBlock, name));
         clickOnElement(driver.findElement(By.xpath(String.format(taskAdditionalBlock, name))));
@@ -224,8 +272,7 @@ public class ActivityStreamPage extends AbstractPageBase {
         }else{
             driver.findElement(By.xpath(String.format("//span[contains(text(),'%s')]/..//div//a[contains(text(),'%s')][2]",block,btn))).click();
         }
-        }
-
+    }
 
     public void clickFinderBoxTabSelection(String tab){
         clickOnElement(driver.findElement(By.xpath(String.format(finderBoxTabSelection, tab))));
@@ -240,50 +287,8 @@ public class ActivityStreamPage extends AbstractPageBase {
     }
 
     public String getTextFromCreatedTaskConfirmationMessage(){
-        return createdTaskConfirmationMessage.getText();
+        return wait.until(ExpectedConditions.visibilityOf(createdTaskConfirmationMessage)).getText();
     }
-
-
-
-
-
-
-
-
-
-
-    @FindBy(xpath = "//span[@data-bx-id='dateplanmanager-deadline']/input[1]")
-    private WebElement deadLine;
-
-    @FindBy(xpath = "//a[@data-action='submit']")
-    private WebElement sumbit;
-
-    @FindBy(xpath = "//span[@data-bx-id='dateplanmanager-deadline']/input[@data-bx-id='datepicker-value']")
-    private WebElement deadLineValue;
-
-    @FindBy(xpath = "//input[@class='bx-calendar-year-input']")
-    private WebElement yearInput;
-
-    @FindBy(xpath = "//input[@class='bx-calendar-form-input']")
-    private List<WebElement> calendarTime;
-
-    @FindBy(xpath = "//span[@data-action='time_ampm']")
-    private WebElement calendar_am_pm;
-
-    @FindBy(xpath = "//div[@class='task-options-field-inner']")
-    private List<WebElement> optionsCheckboxes;
-
-    @FindBy(className = "task-additional-alt-more")
-    private WebElement moreButton;
-
-    protected String calendar = "//div[@class='bx-calendar']//a[contains(@class,'%s')]";
-    protected String calendarMonth = "//div[@class='bx-calendar-%s-content']/span";
-    protected String listOfDates = "//a[.='%s']";
-
-    protected String deadlineOptions = "//span[@data-target='%s']";
-    protected String timePlanningOptions = "//*[contains(@data-bx-id,'%s')]";
-    protected String durationOptions = "//span[@data-unit='%s']";
-    protected String calendarValue = "//*[contains(@data-bx-id,'%s')]//input[@data-bx-id='datepicker-value']";
 
     public String get_current_month() { return driver.findElement(By.xpath(String.format(calendar, "month"))).getText(); }
 
@@ -402,24 +407,6 @@ public class ActivityStreamPage extends AbstractPageBase {
     public void click_on_more_button_in_task(){
         clickOnElement(moreButton);
     }
-
-    @FindBy (xpath = "//*[.='Task planned time']/input")
-    private WebElement taskPlannedTime;
-
-    @FindBy (xpath = "//span[@data-bx-id='reminder-open-form']")
-    private WebElement addReminder;
-
-    @FindBy (xpath = "//span[@data-bx-id='form-date']")
-    private WebElement reminderInputBox;
-
-    @FindBy (xpath = "//select[@data-bx-id='form-change-recipient']")
-    private WebElement reminderRoles;
-
-    @FindBy (xpath = "//button[@data-bx-id='form-submit']")
-    private WebElement reminderAddButton;
-
-    protected String plannedTime = "//input[contains(@class,'timeestimate-%s')]";
-    protected String reminderType = "//a[contains(@class,'link-%s')]";
 
     public void select_task_planned_time_under_more_in_task(){
         if (!taskPlannedTime.isSelected()) clickOnElement(taskPlannedTime);

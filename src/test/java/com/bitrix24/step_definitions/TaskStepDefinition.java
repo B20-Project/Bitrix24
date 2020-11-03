@@ -11,12 +11,14 @@ import org.junit.Assert;
 
 
 public class TaskStepDefinition {
+
     ActivityStreamPage activityStream = new ActivityStreamPage();
 
     @Given("user enters title on {string} input box and enters {string}")
     public void user_enters_title_on_input_box(String string, String string2) {
         activityStream.enterFeedTitle(string, string2);
     }
+
     @And("user enters description {string}")
     public void user_enters_description(String text) {
         activityStream.enterDescription(text);
@@ -58,7 +60,6 @@ public class TaskStepDefinition {
 
     }
 
-
     @When("user clicks on Deadline input box under task")
     public void user_clicks_on_deadline_input_box_under_task() {
         activityStream.click_on_deadLine_in_tasks();
@@ -71,6 +72,7 @@ public class TaskStepDefinition {
         activityStream.set_year(HelperUtil.get_int_value(string,"year"));
         activityStream.set_date(HelperUtil.get_int_value(string,"date"));
     }
+
     @And("Select {string} as time")
     public void select_as_time(String string) {
         System.out.println("expected time: " + string);
@@ -133,7 +135,6 @@ public class TaskStepDefinition {
        activityStream.enter_hour_and_minutes_in_task_planning(string, string2);
     }
 
-
     @When("user click on Add reminder")
     public void user_click_on_add_reminder() {
        activityStream.click_on_add_reminder_btn_under_more_in_task();
@@ -148,10 +149,12 @@ public class TaskStepDefinition {
     public void select_any_role_under_reminder() {
        activityStream.select_random_roles_in_reminder_under_more_in_task();
     }
+
     @Then("user clicks on {string} icon in reminder")
     public void user_clicks_on_icon_in_reminder(String string) {
         activityStream.select_reminder_type_in_add_reminder(string);
     }
+
     @Then("user clicks on Add in reminder")
     public void user_clicks_on_add_in_reminder() {
         activityStream.click_on_Add_button_in_add_reminder();
@@ -161,8 +164,5 @@ public class TaskStepDefinition {
     public void new_reminder_tab_should_be_displayed_above_add_reminder() {
 
     }
-
-
-
 
 }
