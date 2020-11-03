@@ -66,3 +66,26 @@ Feature: create task
     And user clicks on "message" icon in reminder
     And user clicks on Add in reminder
     Then new reminder tab should be displayed above Add reminder
+
+    @selectMultiplePeople
+    Scenario: select multiple people
+      And user clicks on "Add more" button in "Responsible person" block
+      And user selects following from "Employees and departments"
+       | helpdesk22@cybertekschool.com |
+       | helpdesk23@cybertekschool.com |
+       | helpdesk24@cybertekschool.com |
+      When user clicks on task additional block "Participants"
+      And user clicks on "Add" button in "Participant" block
+      And user selects following from "Employees and departments"
+        | helpdesk25@cybertekschool.com |
+        | helpdesk26@cybertekschool.com |
+        | helpdesk27@cybertekschool.com |
+      When user clicks on task additional block "Observers"
+      And user clicks on "Add" button in "Observers" block
+      And user selects following from "Employees and departments"
+        | helpdesk28@cybertekschool.com |
+        | helpdesk29@cybertekschool.com |
+        | helpdesk30@cybertekschool.com |
+      And user clicks on "Send" button
+      Then "Task has been created" message should display in pop-up window
+

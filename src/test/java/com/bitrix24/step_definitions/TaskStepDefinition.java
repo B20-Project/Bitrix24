@@ -9,6 +9,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+import java.util.List;
+
 
 public class TaskStepDefinition {
 
@@ -164,5 +166,16 @@ public class TaskStepDefinition {
     public void new_reminder_tab_should_be_displayed_above_add_reminder() {
 
     }
+
+    @And("user selects following from {string}")
+    public void user_selects_following(String tab,List<String> list){
+        activityStream.clickFinderBoxTabSelection(tab);
+        BrowserUtils.wait(1);
+        for(String each : list){
+            activityStream.clickEmployeeName(each);
+        }
+        activityStream.closePopUpWindow();
+    }
+
 
 }
