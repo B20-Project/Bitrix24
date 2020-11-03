@@ -22,14 +22,14 @@ Feature: create task
     And user clicks on "Send" button
     Then "Task has been created" message should display in pop-up window
 
-  @taskArpatAC1
+  @taskArpatAC
   Scenario: create a simple task with repeat day
     When user click "More"
     And user click "Repeat task" check box
     Then user select "day"
     And enter every 1 "any" day with an interval of 0 mo.
 
-  @taskArpatAC2
+  @taskArpatAC
   Scenario: create a simple task with repeat week
     When user click "More"
     And user click "Repeat task" check box
@@ -52,14 +52,14 @@ Feature: create task
       | Fri |
       | Sat |
 
-  @taskArpatAC3
+  @taskArpatAC
   Scenario: create a simple task with repeat week
     When user click "More"
     And user click "Repeat task" check box
     Then user select "month"
     And select evert and enter 1 day of every 1 month
 
-  @taskArpatAC4
+  @taskArpatAC
   Scenario: create a simple task with repeat week
     When user click "More"
     And user click "Repeat task" check box
@@ -80,7 +80,7 @@ Feature: create task
       | Saturday  |
     And select evert and select "first" "Monday"
 
-  @taskArpatAC5
+  @taskArpatAC
   Scenario: create a simple task with repeat week
     When user click "More"
     And user click "Repeat task" check box
@@ -100,7 +100,7 @@ Feature: create task
       | December  |
     And enter 1 day "December" on first every under year
 
-  @taskArpatAC6
+  @taskArpatAC
   Scenario: create a simple task with repeat week
     When user click "More"
     And user click "Repeat task" check box

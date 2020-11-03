@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
                 features = "src/test/resources/features",
                 glue = "com/bitrix24/step_definitions",
-                tags = "@taskArpatAC6",
+                tags = "@taskArpatAC",
                 dryRun = false
                 )
 

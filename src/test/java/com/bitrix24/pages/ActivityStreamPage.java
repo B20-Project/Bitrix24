@@ -106,16 +106,28 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "//select[@class='js-id-replication-yearly-month-2 task-options-inp']")
     private WebElement task_more_repeatTask_repeatTerm_year_secondEvery_monthSelector;
 
+    /**@param day:
+     *
+     * @param day: first, second, third, fourth, last
+     */
     public void select_task_more_repeatTask_repeatTerm_year_secondEvery_dayTypeSelector(String day){
         Select select = new Select(task_more_repeatTask_repeatTerm_year_secondEvery_dayTypeSelector);
         select.selectByVisibleText(day);
     }
 
+    /**@param week:
+     *
+     * @param week:Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday  |
+     */
     public void select_task_more_repeatTask_repeatTerm_year_secondEvery_weekSelector(String week){
         Select select = new Select(task_more_repeatTask_repeatTerm_year_secondEvery_weekSelector);
         select.selectByVisibleText(week);
     }
 
+    /**@param month
+     *
+     * @param month:January, February, March, April, May, June, July, August, September, October, November, December
+     */
     public void select_task_more_repeatTask_repeatTerm_year_secondEvery_monthSelector(String month){
         Select select = new Select(task_more_repeatTask_repeatTerm_year_secondEvery_monthSelector);
         select.selectByVisibleText(month);
@@ -195,6 +207,10 @@ public class ActivityStreamPage extends AbstractPageBase {
         return element;
     }
 
+    /**@param str
+     *
+     * @param str: Sun, Mo, Tu, We, Thu, Fri, Sat
+     */
     public void checkBox_task_more_repeatTask_repeatTerm_weekDayCheckBox(String str){
         WebElement element = Driver.getDriver().findElement(By.xpath("//label[@class='task-options-day'][contains(text(),'"+str+"')]"));
         BrowserUtils.clickOnElement(element);
