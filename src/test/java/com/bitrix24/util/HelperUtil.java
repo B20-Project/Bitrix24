@@ -31,7 +31,20 @@ public class HelperUtil {
         return string.split("-");
     }
 
+    /**
+     * min inclusive, max exclusive
+     */
+    public static int get_random_int(int Min, int Max) {
+        return (int) (Math.random()*(Max-Min))+Min;
+    }
+
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(date_format("10-11-2020")));
+//        System.out.println(Arrays.toString(date_format("10-11-2020")));
+       int num = get_random_int(0,10);
+       while (num != 0){
+           num = get_random_int(0,10);
+           System.out.println(num);
+       }
+
     }
 }

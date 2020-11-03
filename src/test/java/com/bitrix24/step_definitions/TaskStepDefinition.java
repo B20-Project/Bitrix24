@@ -46,7 +46,85 @@ public class TaskStepDefinition {
 
     @Then("{string} should be displayed in the Deadline input box")
     public void should_be_displayed_in_the_deadline_input_box(String string) {
-        System.out.println("displayed value: " + activityStream.get_deadLine_displayed_value_in_tasks());
+        System.out.println("displayed value: " + activityStream.get_calendar_displayed_value_in_tasks("deadline"));
     }
+
+    @When("user click on {string} next to Deadline")
+    public void user_click_on_next_to_deadline(String string) {
+        activityStream.click_on_deadline_options_in_task(string);
+    }
+
+    @When("user click on {string} under time planning")
+    public void user_click_on_under_time_planning(String string) {
+        activityStream.click_on_timePlanning_options_in_task(string);
+    }
+
+    @Then("user enter {string} as duration")
+    public void user_enter_as_duration(String string) {
+        activityStream.enter_duration_under_timePlanning_in_task(string);
+    }
+
+    @When("user select {string} under duration")
+    public void user_select_under_duration(String string) {
+        activityStream.select_duration_options_under_timePlanning_in_task(string);
+    }
+
+    @Then("{string} should be displayed on finish input box")
+    public void should_be_displayed_on_finish_input_box(String string) {
+        System.out.println("displayed value: " + activityStream.get_calendar_displayed_value_in_tasks("end-date"));
+    }
+
+    @Then("user should be able to select all available checkboxes")
+    public void user_should_be_able_to_select_all_available_checkboxes() {
+        activityStream.select_all_the_available_checkboxes_under_options_in_task();
+    }
+
+    @When("user click on More")
+    public void user_click_on_more() {
+       activityStream.click_on_more_button_in_task();
+    }
+
+    @When("user select Task planned time checkbox")
+    public void user_select_task_planned_time_checkbox() {
+        activityStream.select_task_planned_time_under_more_in_task();
+    }
+
+    @Then("enter {string} in hour and {string} minutes")
+    public void enter_in_hour_and_minutes(String string, String string2) {
+       activityStream.enter_hour_and_minutes_in_task_planning(string, string2);
+    }
+
+
+    @When("user click on Add reminder")
+    public void user_click_on_add_reminder() {
+       activityStream.click_on_add_reminder_btn_under_more_in_task();
+    }
+
+    @When("user click on date input box")
+    public void user_click_on_date_input_box() {
+        activityStream.click_on_add_reminder_date_input_box_under_more_in_task();
+    }
+
+    @Then("select any role under reminder")
+    public void select_any_role_under_reminder() {
+       activityStream.select_random_roles_in_reminder_under_more_in_task();
+    }
+    @Then("user clicks on {string} icon in reminder")
+    public void user_clicks_on_icon_in_reminder(String string) {
+        activityStream.select_reminder_type_in_add_reminder(string);
+    }
+    @Then("user clicks on Add in reminder")
+    public void user_clicks_on_add_in_reminder() {
+        activityStream.click_on_Add_button_in_add_reminder();
+    }
+
+    @Then("new reminder tab should be displayed above Add reminder")
+    public void new_reminder_tab_should_be_displayed_above_add_reminder() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+
+
 
 }

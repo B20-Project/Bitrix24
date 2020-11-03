@@ -3,12 +3,14 @@ package com.bitrix24.pages;
 import static com.bitrix24.util.BrowserUtils.*;
 
 import com.bitrix24.util.BrowserUtils;
+import com.bitrix24.util.HelperUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -232,15 +234,23 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "//span[@data-action='time_ampm']")
     private WebElement calendar_am_pm;
 
+    @FindBy(xpath = "//div[@class='task-options-field-inner']")
+    private List<WebElement> optionsCheckboxes;
+
+    @FindBy(className = "task-additional-alt-more")
+    private WebElement moreButton;
 
     protected String calendar = "//div[@class='bx-calendar']//a[contains(@class,'%s')]";
     protected String calendarMonth = "//div[@class='bx-calendar-%s-content']/span";
     //a[contains(@class,'bx-calendar-cell') and .='%s']
     protected String listOfDates = "//a[.='%s']";
-    
-    public String get_current_month() {
-        return driver.findElement(By.xpath(String.format(calendar, "month"))).getText();
-    }
+
+    protected String deadlineOptions = "//span[@data-target='%s']";
+    protected String timePlanningOptions = "//*[contains(@data-bx-id,'%s')]";
+    protected String durationOptions = "//span[@data-unit='%s']";
+    protected String calendarValue = "//*[contains(@data-bx-id,'%s')]//input[@data-bx-id='datepicker-value']";
+
+    public String get_current_month() { return driver.findElement(By.xpath(String.format(calendar, "month"))).getText(); }
 
     public String get_current_year() {
         return driver.findElement(By.xpath(String.format(calendar, "year"))).getText();
@@ -302,15 +312,122 @@ public class ActivityStreamPage extends AbstractPageBase {
     public void set_time(String hour, String min, String am_pm){
         enterText(calendarTime.get(0),""+hour);
         enterText(calendarTime.get(1),""+min);
-        if (!calendar_am_pm.getText().equalsIgnoreCase(am_pm)){
-            calendar_am_pm.click();
-        }
+        if (!calendar_am_pm.getText().equalsIgnoreCase(am_pm)) calendar_am_pm.click();
         System.out.println("ampm set to: " + calendar_am_pm.getText());
     }
 
-    public String get_deadLine_displayed_value_in_tasks(){
-        return deadLineValue.getAttribute("value");
+    /**
+     *
+     * @param string start-date, end-date, deadline
+     * @return
+     */
+    public String get_calendar_displayed_value_in_tasks(String string){
+        return driver.findElement(By.xpath(String.format(calendarValue,string))).getAttribute("value");
     }
+
+    /**
+     *
+     * @param string date-plan, options
+     */
+    public void click_on_deadline_options_in_task(String string){
+        if (string.equalsIgnoreCase("time planning")) string = "date-plan";
+        clickOnElement(driver.findElement(By.xpath(String.format(deadlineOptions,string))));
+    }
+
+    /**
+     *
+     * @param string start-date, duration, end-date
+     */
+    public void click_on_timePlanning_options_in_task(String string){
+        if (string.equalsIgnoreCase("Start task on")) string = "start-date";
+        if (string.equalsIgnoreCase("finish")) string = "end-date";
+        clickOnElement(driver.findElement(By.xpath(String.format(timePlanningOptions,string))));
+    }
+
+    public void enter_duration_under_timePlanning_in_task(String string){
+        enterText(driver.findElement(By.xpath(String.format(timePlanningOptions,"duration"))),string);
+    }
+
+    /**
+     *
+     * @param string days, hours, mins
+     */
+    public void select_duration_options_under_timePlanning_in_task(String string){
+        if (string.equalsIgnoreCase("minutes")) string = "mins";
+        clickOnElement(driver.findElement(By.xpath(String.format(durationOptions,string))));
+    }
+
+    public void select_all_the_available_checkboxes_under_options_in_task(){
+        clickOnElement(optionsCheckboxes.get(0));
+        for (WebElement each: optionsCheckboxes){
+            clickOnElement(each);
+        }
+    }
+
+    //this method can be replaced
+    public void click_on_more_button_in_task(){
+        clickOnElement(moreButton);
+    }
+
+    @FindBy (xpath = "//*[.='Task planned time']/input")
+    private WebElement taskPlannedTime;
+
+    @FindBy (xpath = "//span[@data-bx-id='reminder-open-form']")
+    private WebElement addReminder;
+
+    @FindBy (xpath = "//span[@data-bx-id='form-date']")
+    private WebElement reminderInputBox;
+
+    @FindBy (xpath = "//select[@data-bx-id='form-change-recipient']")
+    private WebElement reminderRoles;
+
+    @FindBy (xpath = "//button[@data-bx-id='form-submit']")
+    private WebElement reminderAddButton;
+
+
+    protected String plannedTime = "//inpaut[contains(@class,'timeestimate-%s')]";
+    protected String reminderType = "//a[contains(@class,'link-%s')]";
+
+
+
+    public void select_task_planned_time_under_more_in_task(){
+        if (!taskPlannedTime.isSelected()) clickOnElement(taskPlannedTime);
+    }
+
+    public void enter_hour_and_minutes_in_task_planning(String hours, String minutes){
+        enterText(driver.findElement(By.xpath(String.format(plannedTime,"hour"))),hours);
+        enterText(driver.findElement(By.xpath(String.format(plannedTime,"minute"))),minutes);
+    }
+
+    public void click_on_add_reminder_btn_under_more_in_task(){
+        clickOnElement(addReminder);
+    }
+
+    public void click_on_add_reminder_date_input_box_under_more_in_task(){
+        clickOnElement(reminderInputBox);
+    }
+
+    public void select_random_roles_in_reminder_under_more_in_task(){
+        Select objSelect = new Select(reminderRoles);
+        int randomInt = HelperUtil.get_random_int(0, objSelect.getOptions().size());
+        objSelect.selectByIndex(randomInt);
+    }
+
+    /**
+     *
+     * @param string mes, mail
+     */
+    public void select_reminder_type_in_add_reminder(String string){
+        if (string.equalsIgnoreCase("email")) string = "mail";
+        if (string.equalsIgnoreCase("message")) string = "mes";
+        clickOnElement(driver.findElement(By.xpath(String.format(reminderType,string))));
+    }
+
+    public void click_on_Add_button_in_add_reminder(){
+        clickOnElement(reminderAddButton);
+    }
+
+
 
 
 
