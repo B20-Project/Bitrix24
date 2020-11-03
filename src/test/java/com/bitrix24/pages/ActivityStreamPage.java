@@ -48,11 +48,14 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "//div[@id='popup-window-content-bx-popup-videomessage-popup']")
     private WebElement deviceAccessMessage;
 
-    @FindBy(xpath = "/div[@class='feed-add-close-icon']")
+    @FindBy(xpath = "//div[@class='feed-add-close-icon']")
     private WebElement topicInputBoxCloseButton;
 
     @FindBy(xpath = "//button[@id='blog-submit-button-save']")
     private WebElement sendButton;
+
+    @FindBy (xpath = "//div[@id='blogPostEditCreateTaskPopup']//div[.='Task has been created']")
+    private WebElement createdTaskConfirmationMessage;
 
 
     protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
@@ -65,7 +68,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     protected String contactPopupClose = "//span[@class='popup-window-close-icon']";
     protected String selectedContact = "//span[@id='feed-add-post-destination-item']";
     protected String saveButton = "//div[contains(@class,'%s-dialog')]//input[@value = 'Save']";
-    protected String uploadedFile = "//div[@id='log_internal_container']//a[@title='fileTest5.txt']";
+    protected String uploadedFile= "//div[@id='log_internal_container']//a[@title='Test.txt']";
     protected String feedTitle = "(//input[@placeholder='%s'])[1]";
 
 
@@ -122,98 +125,132 @@ public class ActivityStreamPage extends AbstractPageBase {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[.='Sales and marketing']"))).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[.='Quotes']")));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='Quotes']"))).click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("//a[.='%s']", file))));
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format("//a[.='%s']", file)))).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("//a[.='%s']",file))));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format("//a[.='%s']",file)))).click();
         driver.findElement(By.xpath("//span[.='Select document']")).click();
     }
 
-    public void addEmployeeByTab(String employee, String tab) {
+    public void addEmployeeByTab(String employee, String tab){
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(addContact))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(contactPopupFormat, "All employees")))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(contactPopupFormat, tab)))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(contactPopupFormat, employee)))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(contactPopupFormat,"All employees")))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(contactPopupFormat,tab)))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(contactPopupFormat,employee)))).click();
         driver.findElement(By.xpath(contactPopupClose)).click();
     }
 
-    public String getTextFromSelectedEmployee() {
+    public String getTextFromSelectedEmployee(){
         return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(selectedContact)))).getText();
     }
 
-    public void enter_link_text(String linktext) {
-        linkText.sendKeys(linktext);
-    }
+    public void enter_link_text(String linktext){ linkText.sendKeys(linktext); }
+    public void enter_link_url(String linkurl){ linkUrl.sendKeys(linkurl); }
 
-    public void enter_link_url(String linkurl) {
-        linkUrl.sendKeys(linkurl);
-    }
-
-    public boolean is_new_created_link_displayed(String text) {
+    public boolean is_new_created_link_displayed(String text){
         driver.switchTo().frame(0);
         boolean result = driver.findElement(By.linkText(text)).isDisplayed();
         driver.switchTo().parentFrame();
         return result;
     }
 
-    public void enter_video_url(String url) {
-        videoUrl.sendKeys(url);
-    }
+    public void enter_video_url(String url){ videoUrl.sendKeys(url); }
 
     /**
+     *
      * @param type link, video
      */
-    public void click_on_save_button(String type) {
+    public void click_on_save_button(String type){
         BrowserUtils.wait(3);
-        driver.findElement(By.xpath(String.format(saveButton, type))).click();
+        driver.findElement(By.xpath(String.format(saveButton,type))).click();
     }
 
-    public void click_recordVideo() {
+    public void click_recordVideo(){
         wait.until(ExpectedConditions.elementToBeClickable(recordVideoIcon)).click();
     }
 
-    public String deviceAccessPopUpWindow() {
+    public String deviceAccessPopUpWindow(){
         return deviceAccessMessage.getText();
     }
 
-    public boolean topicInputBox_is_displayed() {
+    public boolean topicInputBox_is_displayed(){
         return topicInputBox.isDisplayed();
     }
 
-    public boolean isAlertPresent() {
-        boolean foundAlert = false;
-        try {
-            wait.until(ExpectedConditions.alertIsPresent());
-            foundAlert = true;
-            System.out.println("isAlertPresent : " + foundAlert);
-        } catch (TimeoutException eTO) {
-            foundAlert = false;
-            System.out.println("isAlertPresent : " + foundAlert);
-        }
-        return foundAlert;
-    }
-
-    public void close_topic_input_box() {
-        if (topicInputBox.isDisplayed()) {
-            topicInputBoxCloseButton.click();
+    public void close_topic_input_box(){
+        if(topicInputBox.isDisplayed()){
+           topicInputBoxCloseButton.click();
         }
     }
 
-    public void clickSendBtn() {
-        clickOnElement(sendButton);
+    public void clickSendBtn(){
+       clickOnElement(sendButton);
     }
 
-    public String getTextFromUploadedFile() {
-        return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(uploadedFile)))).getText();
+    public String getTextFromUploadedFile(){
+        BrowserUtils.wait(1);
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(uploadedFile))).getText();
     }
 
-    public void enterFeedTitle(String title, String text) {
-        enterText(driver.findElement(By.xpath(String.format(feedTitle, title))), text);
+    public void enterFeedTitle(String title, String text){
+        enterText(driver.findElement(By.xpath(String.format(feedTitle,title))),text);
     }
 
-    public void enterDescription(String text) {
+    public void enterDescription(String text){
         driver.switchTo().frame(1);
         driver.findElement(By.xpath("//body")).sendKeys(text);
         driver.switchTo().defaultContent();
     }
+
+    protected String cancelSelectionBtn = "//div/span[.='%s']/..//span[@title='Cancel selection']";
+    protected String taskAdditionalBlock = "//span/span[.='%s']";
+    protected String finderBoxTabSelection ="//div[@class='bx-finder-box-tabs']/a[.='%s']";
+    protected String employeeName ="//div[@class='bx-finder-company-department-employee-info']/div[contains(text(),'%s')]";
+
+    public void clickCancelSelectionBtn(String taskOption){
+       clickOnElement(driver.findElement(By.xpath(String.format(cancelSelectionBtn, taskOption))));
+    }
+    public void clickTaskAdditionalBlock(String name){
+        System.out.println(String.format(taskAdditionalBlock, name));
+        clickOnElement(driver.findElement(By.xpath(String.format(taskAdditionalBlock, name))));
+
+    }
+
+    public void clickAddBtn(String block, String btn) {
+        if (block.equals("Responsible person")){
+            driver.findElement(By.xpath(String.format("//span[contains(text(),'%s')]/..//div//a[contains(text(),'%s')]", block, btn))).click();
+        }else if(block.equals("Created by")){
+            driver.findElement(By.xpath(String.format("//span[contains(text(),'%s')]/..//div//a[contains(text(),'%s')]",block, btn))).click();
+        } else if (block.equals("Participants")){
+            driver.findElement(By.xpath(String.format("//span[contains(text(),'%s')]/..//div//a[contains(text(),'%s')][2]", block, btn))).click();
+        }else{
+            driver.findElement(By.xpath(String.format("//span[contains(text(),'%s')]/..//div//a[contains(text(),'%s')][2]",block,btn))).click();
+        }
+        }
+
+
+    public void clickFinderBoxTabSelection(String tab){
+        clickOnElement(driver.findElement(By.xpath(String.format(finderBoxTabSelection, tab))));
+    }
+
+    public void clickEmployeeName(String name){
+        clickOnElement(driver.findElement(By.xpath(String.format(employeeName, name))));
+    }
+
+    public void closePopUpWindow(){
+        clickOnElement(driver.findElement(By.xpath("//span[@class='popup-window-close-icon']")));
+    }
+
+    public String getTextFromCreatedTaskConfirmationMessage(){
+        return createdTaskConfirmationMessage.getText();
+    }
+
+
+
+
+
+
+
+
+
 
     @FindBy(xpath = "//span[@data-bx-id='dateplanmanager-deadline']/input[1]")
     private WebElement deadLine;

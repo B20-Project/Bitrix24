@@ -103,4 +103,16 @@ public class BrowserUtils {
         return path;
     }
 
+    public boolean isAlertPresent(){
+        boolean foundAlert = false;
+        try {
+            wait.until(ExpectedConditions.alertIsPresent());
+            foundAlert = true;
+            System.out.println("isAlertPresent : " +foundAlert);
+        } catch (TimeoutException eTO) {
+            foundAlert = false;
+            System.out.println("isAlertPresent : " +foundAlert);
+        }
+        return foundAlert;
+    }
 }
