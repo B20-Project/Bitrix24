@@ -67,21 +67,42 @@ Feature: As a user I want to create customized task
     Then new reminder tab should be displayed above Add reminder
 
   @taskArpatAC1
-  Scenario: create a simple task with repeat day
+  Scenario: Repeat task by bay
     When user click on More
     And user click "Repeat task" check box
     Then user select "day"
     And enter every 1 "any" day with an interval of 0 mo.
 
-  @taskArpatAC1
-  Scenario: create a simple task with repeat week
+  @RepeatByMonth1
+  Scenario: Repeat task by month
     When user click on More
     And user click "Repeat task" check box
     Then user select "month"
     And select evert and enter 1 day of every 1 month
 
-  @taskArpatAC1
-  Scenario: create a simple task with repeat week
+  @RepeatByMonth2
+  Scenario: Repeat task by month
+    When user click on More
+    And user click "Repeat task" check box
+    Then user select "month"
+    Then verify following type is in first selector under month
+      | first  |
+      | second |
+      | third  |
+      | fourth |
+      | last   |
+    Then verify following type is in second selector under month
+      | Sunday    |
+      | Monday    |
+      | Tuesday   |
+      | Wednesday |
+      | Thursday  |
+      | Friday    |
+      | Saturday  |
+    And select evert and select "first" "Thursday"
+
+  @RepeatByWeek1
+  Scenario: Repeat task by week
     When user click on More
     And user click "Repeat task" check box
     Then user select "week"
@@ -103,29 +124,8 @@ Feature: As a user I want to create customized task
       | Fri |
       | Sat |
 
-  @taskArpatAC1
-  Scenario: create a simple task with repeat week
-    When user click on More
-    And user click "Repeat task" check box
-    Then user select "month"
-    Then verify following type is in first selector under month
-      | first  |
-      | second |
-      | third  |
-      | fourth |
-      | last   |
-    Then verify following type is in second selector under month
-      | Sunday    |
-      | Monday    |
-      | Tuesday   |
-      | Wednesday |
-      | Thursday  |
-      | Friday    |
-      | Saturday  |
-    And select evert and select "first" "Thursday"
-
-  @taskArpatAC1
-  Scenario: create a simple task with repeat week
+  @RepeatByYear1
+  Scenario: Repeat task by year
     When user click on More
     And user click "Repeat task" check box
     Then user select "year"
@@ -144,8 +144,8 @@ Feature: As a user I want to create customized task
       | December  |
     And enter 1 day "December" on first every under year
 
-  @taskArpatAC1
-  Scenario: create a simple task with repeat week
+  @RepeatByYear2
+  Scenario: Repeat task by year
     When user click on More
     And user click "Repeat task" check box
     Then user select "year"
@@ -179,43 +179,43 @@ Feature: As a user I want to create customized task
       | December  |
     And select "last" "Wednesday" month "August" under year
 
-  @taskArpatAC1
-  Scenario: create a simple task with repeat week
+  @RepeatUntilNoEndDay
+  Scenario: Repeat task until no end date
     When user click on More
     And user click "Repeat task" check box
     Then verify that "no end date" is selected
 
-  @taskArpatAC1 @bug
-  Scenario: create a simple task with repeat week
+  @RepeatUntilEndDay @bug
+  Scenario: Repeat task until end date
     When user click on More
     And user click "Repeat task" check box
     Then select "end date" under repeat until
     And click on date enter under repeat until
     #Then Select "10-12-2020" as date
 
-  @taskArpatAC1
-  Scenario: create a simple task with repeat week
+  @RepeatUntilCompleteAfterDay
+  Scenario: Repeat task until complete after date
     When user click on More
     Then user click "Repeat task" check box
     And select "complete after" under repeat until
     Then enter 5 as iterations
 
-  @taskArpatAC1
-  Scenario: create a simple task with repeat week
+  @SubtaskTasks
+  Scenario: assigned Subtask tasks
     When user click on More
     And click +Add on "Subtask of"
     Then select "test [2336]" from recent tasks;
     Then click SELECT in Subtask popup
 
-  @taskArpatAC1
-  Scenario: create a simple task with repeat week
+  @Tags
+  Scenario: create Tags
     When user click on More
     And click +Add on "Tags"
     Then select "group28" from Tags popUp;
     Then click SAVE in Tags popUp
 
-  @taskArpatAC1
-  Scenario: create a simple task with repeat week
+  @DependentTasks
+  Scenario: assigned Dependent tasks
     When user click on More
     And click +Add on "Dependent tasks"
     Then select "test [2336]" from Dependent tasks popUp;
