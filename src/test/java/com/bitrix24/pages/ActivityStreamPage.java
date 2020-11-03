@@ -93,7 +93,6 @@ public class ActivityStreamPage extends AbstractPageBase {
         return editorTextBar.isDisplayed();
     }
 
-    //inserted extra wait time here
     public void clickActivityStreamTab(String tab) {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(activityStreamTab, tab)))).click();
     }
@@ -242,7 +241,6 @@ public class ActivityStreamPage extends AbstractPageBase {
 
     protected String calendar = "//div[@class='bx-calendar']//a[contains(@class,'%s')]";
     protected String calendarMonth = "//div[@class='bx-calendar-%s-content']/span";
-    //a[contains(@class,'bx-calendar-cell') and .='%s']
     protected String listOfDates = "//a[.='%s']";
 
     protected String deadlineOptions = "//span[@data-target='%s']";
@@ -319,7 +317,6 @@ public class ActivityStreamPage extends AbstractPageBase {
     /**
      *
      * @param string start-date, end-date, deadline
-     * @return
      */
     public String get_calendar_displayed_value_in_tasks(String string){
         return driver.findElement(By.xpath(String.format(calendarValue,string))).getAttribute("value");
@@ -384,11 +381,8 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy (xpath = "//button[@data-bx-id='form-submit']")
     private WebElement reminderAddButton;
 
-
-    protected String plannedTime = "//inpaut[contains(@class,'timeestimate-%s')]";
+    protected String plannedTime = "//input[contains(@class,'timeestimate-%s')]";
     protected String reminderType = "//a[contains(@class,'link-%s')]";
-
-
 
     public void select_task_planned_time_under_more_in_task(){
         if (!taskPlannedTime.isSelected()) clickOnElement(taskPlannedTime);
@@ -426,10 +420,5 @@ public class ActivityStreamPage extends AbstractPageBase {
     public void click_on_Add_button_in_add_reminder(){
         clickOnElement(reminderAddButton);
     }
-
-
-
-
-
 
 }

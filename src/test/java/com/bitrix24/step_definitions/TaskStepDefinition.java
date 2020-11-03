@@ -120,8 +120,7 @@ public class TaskStepDefinition {
 
     @Then("new reminder tab should be displayed above Add reminder")
     public void new_reminder_tab_should_be_displayed_above_add_reminder() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
 
 
