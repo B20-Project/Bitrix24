@@ -24,5 +24,4 @@ public class Hooks {
         System.out.println("::: End of test execution (*_*):::");
     }
 
-
 }

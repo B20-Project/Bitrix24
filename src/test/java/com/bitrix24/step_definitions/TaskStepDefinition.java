@@ -34,6 +34,7 @@ public class TaskStepDefinition {
     public void user_click_check_box() {
         activityStream.click_task_more_repeatTaskCheckBox();
     }
+
     @Given("user selects  responsible person {string} from {string}")
     public void user_selects_responsible_person_from(String name, String tab) {
         activityStream.clickCancelSelectionBtn("Responsible person");
@@ -92,7 +93,6 @@ public class TaskStepDefinition {
         for (String each :dataTable){
             activityStream.checkBox_task_more_repeatTask_repeatTerm_weekDayCheckBox(each);
         }
-
 
     }
 
@@ -167,6 +167,4 @@ public class TaskStepDefinition {
         System.out.println("Don");
 
     }
-
-
 }
