@@ -22,14 +22,14 @@ Feature: create task
     And user clicks on "Send" button
     Then "Task has been created" message should display in pop-up window
 
-  @AC1
+  @taskArpatAC1
   Scenario: create a simple task with repeat day
     When user click "More"
     And user click "Repeat task" check box
     Then user select "day"
     And enter every 1 "any" day with an interval of 0 mo.
 
-  @AC2
+  @taskArpatAC2
   Scenario: create a simple task with repeat week
     When user click "More"
     And user click "Repeat task" check box
@@ -52,9 +52,85 @@ Feature: create task
       | Fri |
       | Sat |
 
+  @taskArpatAC3
+  Scenario: create a simple task with repeat week
+    When user click "More"
+    And user click "Repeat task" check box
+    Then user select "month"
+    And select evert and enter 1 day of every 1 month
 
+  @taskArpatAC4
+  Scenario: create a simple task with repeat week
+    When user click "More"
+    And user click "Repeat task" check box
+    Then user select "month"
+    Then verify following type is in first selector under month
+      | first  |
+      | second |
+      | third  |
+      | fourth |
+      | last   |
+    Then verify following type is in second selector under month
+      | Sunday    |
+      | Monday    |
+      | Tuesday   |
+      | Wednesday |
+      | Thursday  |
+      | Friday    |
+      | Saturday  |
+    And select evert and select "first" "Monday"
 
+  @taskArpatAC5
+  Scenario: create a simple task with repeat week
+    When user click "More"
+    And user click "Repeat task" check box
+    Then user select "year"
+    Then verify following type is in first selector under year
+      | January   |
+      | February  |
+      | March     |
+      | April     |
+      | May       |
+      | June      |
+      | July      |
+      | August    |
+      | September |
+      | October   |
+      | November  |
+      | December  |
+    And enter 1 day "December" on first every under year
 
-
-
-
+  @taskArpatAC6
+  Scenario: create a simple task with repeat week
+    When user click "More"
+    And user click "Repeat task" check box
+    Then user select "year"
+    And select second every under year
+    Then verify following day type of day in second selector under year
+      | first  |
+      | second |
+      | third  |
+      | fourth |
+      | last   |
+    Then verify following week type of week in second selector under year
+      | Sunday    |
+      | Monday    |
+      | Tuesday   |
+      | Wednesday |
+      | Thursday  |
+      | Friday    |
+      | Saturday  |
+    Then verify following month type of month in second selector under year
+      | January   |
+      | February  |
+      | March     |
+      | April     |
+      | May       |
+      | June      |
+      | July      |
+      | August    |
+      | September |
+      | October   |
+      | November  |
+      | December  |
+    And select "last" "Wednesday" month "August" under year

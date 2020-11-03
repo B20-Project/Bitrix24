@@ -5,12 +5,15 @@ import static com.bitrix24.util.BrowserUtils.*;
 import com.bitrix24.util.BrowserUtils;
 import com.bitrix24.util.Driver;
 import com.sun.org.apache.xerces.internal.util.DraconianErrorHandler;
+import io.cucumber.java.eo.Se;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "//blockquote[@class='bxhtmled-quote']")
@@ -69,6 +72,122 @@ public class ActivityStreamPage extends AbstractPageBase {
 
     @FindBy(xpath = "//input[@class='js-id-replication-every-week task-options-inp']")
     private WebElement task_more_repeatTask_repeatTerm_weekEnter;
+
+    @FindBy(xpath = "//input[@class='js-id-replication-monthly-day-num task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_monthOfDayEnter;
+
+    @FindBy(xpath = "//input[@class='js-id-replication-monthly-month-num-1 task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_monthOfmonthEnter;
+
+    @FindBy(xpath = "//div[@class='js-id-replication-panel-monthly task-replication-params']//div[2]//input[@class='js-id-replication-monthly-type task-options-radio']")
+    private WebElement task_more_repeatTask_repeatTerm_month_secondEveryCheckBox;
+
+    @FindBy(xpath = "//select[@class='js-id-replication-monthly-week-day-num task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_month_secondEvery_firstSelector;
+
+    @FindBy(xpath = "//select[@class='js-id-replication-monthly-week-day task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_month_secondEvery_secondSelector;
+
+    @FindBy(xpath = "//select[@class='js-id-replication-yearly-month-1 task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_year_firstEvery_monthSelector;
+
+    @FindBy(xpath = "//input[@class='js-id-replication-yearly-day-num task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_year_firstEvery_monthEnter;
+
+    @FindBy(xpath = "//input[@class='js-id-replication-yearly-day-num task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_year_secondEveryCheckBox;
+
+    @FindBy(xpath = "//select[@class='js-id-replication-yearly-week-day-num task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_year_secondEvery_dayTypeSelector;
+
+    @FindBy(xpath = "//select[@class='js-id-replication-yearly-week-day task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_year_secondEvery_weekSelector;
+
+    @FindBy(xpath = "//select[@class='js-id-replication-yearly-month-2 task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_year_secondEvery_monthSelector;
+
+    public void select_task_more_repeatTask_repeatTerm_year_secondEvery_dayTypeSelector(String day){
+        Select select = new Select(task_more_repeatTask_repeatTerm_year_secondEvery_dayTypeSelector);
+        select.selectByVisibleText(day);
+    }
+
+    public void select_task_more_repeatTask_repeatTerm_year_secondEvery_weekSelector(String week){
+        Select select = new Select(task_more_repeatTask_repeatTerm_year_secondEvery_weekSelector);
+        select.selectByVisibleText(week);
+    }
+
+    public void select_task_more_repeatTask_repeatTerm_year_secondEvery_monthSelector(String month){
+        Select select = new Select(task_more_repeatTask_repeatTerm_year_secondEvery_monthSelector);
+        select.selectByVisibleText(month);
+    }
+
+    public List<String> get_task_more_repeatTask_repeatTerm_year_secondEvery_dayTypeSelector(){
+        Select select = new Select(task_more_repeatTask_repeatTerm_year_secondEvery_dayTypeSelector);
+
+        return BrowserUtils.getTextFromWebElements(select.getOptions());
+    }
+
+    public List<String> get_task_more_repeatTask_repeatTerm_year_secondEvery_weekSelector(){
+        Select select = new Select(task_more_repeatTask_repeatTerm_year_secondEvery_weekSelector);
+        return BrowserUtils.getTextFromWebElements(select.getOptions());
+    }
+
+    public List<String> get_task_more_repeatTask_repeatTerm_year_secondEvery_monthSelector(){
+        Select select = new Select(task_more_repeatTask_repeatTerm_year_secondEvery_monthSelector);
+
+        return BrowserUtils.getTextFromWebElements(select.getOptions());
+    }
+
+    public void click_task_more_repeatTask_repeatTerm_year_secondEveryCheckBox(){
+        BrowserUtils.clickOnElement(task_more_repeatTask_repeatTerm_year_secondEveryCheckBox);
+    }
+
+    public void enter_task_more_repeatTask_repeatTerm_year_firstEvery_monthEnter(int num){
+        BrowserUtils.enterText(task_more_repeatTask_repeatTerm_year_firstEvery_monthEnter,(num+""));
+    }
+
+    public void select_task_more_repeatTask_repeatTerm_year_firstEvery_monthSelector(String str){
+        Select select = new Select(task_more_repeatTask_repeatTerm_year_firstEvery_monthSelector);
+        select.selectByVisibleText(str);
+    }
+
+    public List<String> get_task_more_repeatTask_repeatTerm_year_firstEvery_monthSelector(){
+        Select select = new Select(task_more_repeatTask_repeatTerm_year_firstEvery_monthSelector);
+
+       return BrowserUtils.getTextFromWebElements(select.getOptions());
+    }
+
+    public List<String>  get_task_more_repeatTask_repeatTerm_month_secondEvery_firstSelector(){
+        Select select = new Select(task_more_repeatTask_repeatTerm_month_secondEvery_firstSelector);
+        return BrowserUtils.getTextFromWebElements(select.getOptions());
+    }
+
+    public List<String> get_task_more_repeatTask_repeatTerm_month_secondEvery_secondSelector() {
+        Select select = new Select(task_more_repeatTask_repeatTerm_month_secondEvery_secondSelector);
+       return BrowserUtils.getTextFromWebElements(select.getOptions());
+    }
+
+    public void select_task_more_repeatTask_repeatTerm_month_secondEvery_secondSelector(String str) {
+        Select select = new Select(task_more_repeatTask_repeatTerm_month_secondEvery_secondSelector);
+        select.selectByVisibleText(str);
+    }
+
+    public void select_task_more_repeatTask_repeatTerm_month_secondEvery_firstSelector(String str){
+        Select select = new Select(task_more_repeatTask_repeatTerm_month_secondEvery_firstSelector);
+        select.selectByVisibleText(str);
+    }
+
+    public void click_task_more_repeatTask_repeatTerm_month_secondEveryCheckBox(){
+        BrowserUtils.clickOnElement(task_more_repeatTask_repeatTerm_month_secondEveryCheckBox);
+    }
+
+    public void enter_task_more_repeatTask_repeatTerm_monthOfmonthEnter(int num){
+        BrowserUtils.enterText(task_more_repeatTask_repeatTerm_monthOfmonthEnter,(num+""));
+    }
+
+    public void enter_task_more_repeatTask_repeatTerm_monthOfDayEnter(int num){
+        BrowserUtils.enterText(task_more_repeatTask_repeatTerm_monthOfDayEnter,(num+""));
+    }
 
     public WebElement verify_task_more_repeatTask_repeatTerm_weekDayCheckBox(String str){
         WebElement element = Driver.getDriver().findElement(By.xpath("//label[@class='task-options-day'][contains(text(),'"+str+"')]/input"));
@@ -301,21 +420,5 @@ public class ActivityStreamPage extends AbstractPageBase {
     public String getTextFromCreatedTaskConfirmationMessage(){
         return createdTaskConfirmationMessage.getText();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

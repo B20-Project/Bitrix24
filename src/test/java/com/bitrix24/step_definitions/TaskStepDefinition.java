@@ -2,6 +2,7 @@ package com.bitrix24.step_definitions;
 
 import com.bitrix24.pages.ActivityStreamPage;
 import com.bitrix24.util.BrowserUtils;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -69,8 +70,6 @@ public class TaskStepDefinition {
 
     }
 
-
-
     @Then("user select {string}")
     public void user_select(String string) {
         activityStream.click_task_more_activate_repeatTerm(string);
@@ -103,5 +102,71 @@ public class TaskStepDefinition {
             Assert.assertTrue(activityStream.verify_task_more_repeatTask_repeatTerm_weekDayCheckBox(each).isSelected());
         }
     }
+
+    @Then("select evert and enter {int} day of every {int} month")
+    public void select_evert_day_of_every_month(Integer int1, Integer int2) {
+        activityStream.enter_task_more_repeatTask_repeatTerm_monthOfDayEnter(int1);
+        activityStream.enter_task_more_repeatTask_repeatTerm_monthOfmonthEnter(int2);
+    }
+
+    @Then("select evert and select {string} {string}")
+    public void select_evert_and_select(String string, String string2) {
+        activityStream.click_task_more_repeatTask_repeatTerm_month_secondEveryCheckBox();
+        activityStream.select_task_more_repeatTask_repeatTerm_month_secondEvery_firstSelector(string);
+        activityStream.select_task_more_repeatTask_repeatTerm_month_secondEvery_secondSelector(string2);
+    }
+
+    @Then("verify following type is in first selector under month")
+    public void verify_following_type_is_in_first_selector(List<String> dataTable) {
+        Assert.assertTrue(dataTable.containsAll(activityStream.get_task_more_repeatTask_repeatTerm_month_secondEvery_firstSelector()));
+    }
+
+    @Then("verify following type is in second selector under month")
+    public void verify_following_type_is_in_second_selector(List<String> dataTable) {
+        Assert.assertTrue(dataTable.containsAll(activityStream.get_task_more_repeatTask_repeatTerm_month_secondEvery_secondSelector()));
+
+    }
+
+    @Then("verify following type is in first selector under year")
+    public void verify_following_type_is_in_first_selector_under_year(List<String> dataTable) {
+
+        Assert.assertTrue(dataTable.containsAll(activityStream.get_task_more_repeatTask_repeatTerm_year_firstEvery_monthSelector()));
+    }
+
+    @Then("enter {int} day {string} on first every under year")
+    public void enter_day_on_first_every_under_year(Integer int1, String string) {
+        activityStream.enter_task_more_repeatTask_repeatTerm_year_firstEvery_monthEnter(int1);
+        activityStream.select_task_more_repeatTask_repeatTerm_year_firstEvery_monthSelector(string);
+    }
+
+    @Then("select second every under year")
+    public void select_second_every_under_year() {
+    activityStream.click_task_more_repeatTask_repeatTerm_year_secondEveryCheckBox();
+    }
+
+    @Then("verify following day type of day in second selector under year")
+    public void verify_following_type_of_day_in_second_selector_under_year(List<String> dataTable) {
+        Assert.assertTrue(dataTable.containsAll(activityStream.get_task_more_repeatTask_repeatTerm_year_secondEvery_dayTypeSelector()));
+    }
+
+    @Then("verify following week type of week in second selector under year")
+    public void verify_following_type_of_week_in_second_selector_under_year(List<String> dataTable) {
+        Assert.assertTrue(dataTable.containsAll(activityStream.get_task_more_repeatTask_repeatTerm_year_secondEvery_weekSelector()));
+    }
+
+    @Then("verify following month type of month in second selector under year")
+    public void verify_following_type_of_month_in_second_selector_under_year(List<String> dataTable) {
+        Assert.assertTrue(dataTable.containsAll(activityStream.get_task_more_repeatTask_repeatTerm_year_secondEvery_monthSelector()));
+    }
+
+    @Then("select {string} {string} month {string} under year")
+    public void select_month_under_year(String string, String string2, String string3) {
+        activityStream.select_task_more_repeatTask_repeatTerm_year_secondEvery_dayTypeSelector(string);
+        activityStream.select_task_more_repeatTask_repeatTerm_year_secondEvery_weekSelector(string2);
+        activityStream.select_task_more_repeatTask_repeatTerm_year_secondEvery_monthSelector(string3);
+        System.out.println("Don");
+
+    }
+
 
 }
