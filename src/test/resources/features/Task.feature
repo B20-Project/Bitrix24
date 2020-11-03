@@ -193,11 +193,33 @@ Feature: As a user I want to create customized task
     And click on date enter under repeat until
     #Then Select "10-12-2020" as date
 
-  @taskArpatAC11
+  @taskArpatAC1
   Scenario: create a simple task with repeat week
     When user click on More
     Then user click "Repeat task" check box
     And select "complete after" under repeat until
     Then enter 5 as iterations
+
+  @taskArpatAC1
+  Scenario: create a simple task with repeat week
+    When user click on More
+    And click +Add on "Subtask of"
+    Then select "test [2336]" from recent tasks;
+    Then click SELECT in Subtask popup
+
+  @taskArpatAC1
+  Scenario: create a simple task with repeat week
+    When user click on More
+    And click +Add on "Tags"
+    Then select "group28" from Tags popUp;
+    Then click SAVE in Tags popUp
+
+  @taskArpatAC1
+  Scenario: create a simple task with repeat week
+    When user click on More
+    And click +Add on "Dependent tasks"
+    Then select "test [2336]" from Dependent tasks popUp;
+    Then click SELECT in Dependent tasks popUp
+
 
 

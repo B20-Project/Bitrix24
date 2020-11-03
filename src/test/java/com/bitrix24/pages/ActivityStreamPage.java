@@ -162,6 +162,16 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(className = "task-additional-alt-more")
     private WebElement moreButton;
 
+    @FindBy(xpath = "//div[@id='task-item-set-popupparenttask']//span[@class='popup-window-button popup-window-button-accept']")
+    private WebElement subtaskOf_popUp_selectButton;
+
+    @FindBy(xpath = "//span[@class='popup-window-button popup-window-button-create'][.='Save']")
+    private WebElement tags_popUp_saveButton;
+
+    @FindBy(xpath = "//span[@class='popup-window-button popup-window-button-accept'][.='Select']")
+    private WebElement dependentTasks_popUp_selectButton;
+
+
     protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
     protected String msgTabPostBtn = "//div[@id='feed-add-post-content-message']//span[@title='%s']";
     protected String localFileBox = "//input[@name='bxu_files[]']";
@@ -191,6 +201,56 @@ public class ActivityStreamPage extends AbstractPageBase {
     protected String weekDayCheckBox_verify="//label[@class='task-options-day'][contains(text(),'%s')]/input";
     protected String weekDayCheckBox_checkBox="//label[@class='task-options-day'][contains(text(),'%s')]/input";
     protected String repeatTerm="//span[contains(@class,'js')][.='%s']";
+    protected String taskTypes="//span[.='%s']/following-sibling::div//span[contains(text(),'Add')]";
+    protected String subtaskOf_popUp_recentTasks="//div[@id='task-item-set-popupparenttask']//div[@class='finder-box-item-text'][.='%s']";
+    protected String tags_popUp="//label[.='%s']/preceding-sibling::input";
+    protected String dependentTasks_popUp="//div[@id='task-item-set-popupdependson']//div[@class='finder-box-item-text'][.='%s']";
+
+    public void click_dependentTasks_popUp_selectButton(){
+        BrowserUtils.clickOnElement(dependentTasks_popUp_selectButton);
+    }
+
+    public void click_dependentTasks_popUp(String str){
+        WebElement element = Driver.getDriver().findElement(By.xpath(String.format(dependentTasks_popUp, str)));
+        BrowserUtils.clickOnElement(element);
+    }
+
+    public void click_tags_popUp_saveButton(){
+        BrowserUtils.clickOnElement(tags_popUp_saveButton);
+    }
+
+    public void click_tags_popUp(String str){
+        WebElement element = Driver.getDriver().findElement(By.xpath(String.format(tags_popUp, str)));
+        BrowserUtils.clickOnElement(element);
+    }
+
+    public void click_subtaskOf_popUp_selectButton(){
+        BrowserUtils.clickOnElement(subtaskOf_popUp_selectButton);
+    }
+
+    public void click_subtaskOf_popUp_recentTasks(String str){
+        WebElement element = Driver.getDriver().findElement(By.xpath(String.format(subtaskOf_popUp_recentTasks, str)));
+        BrowserUtils.clickOnElement(element);
+    }
+
+    public void click_addTaskType(String taskType){
+
+        if (taskType.equalsIgnoreCase("tags")){
+            WebElement element = Driver.getDriver().findElement(By.xpath(String.format((taskTypes+"[2]"), taskType)));
+            System.out.println("element = " + element);
+            System.out.println("element = " + element.getLocation());
+            //BrowserUtils.scrollByJS(434, 926);
+            element.click();
+        }else {
+            WebElement element = Driver.getDriver().findElement(By.xpath(String.format(taskTypes, taskType)));
+            System.out.println("element = " + element);
+            System.out.println("element = " + element.getLocation());
+            BrowserUtils.scrollByJS(434, 926);
+
+            element.click();
+            //BrowserUtils.clickOnElement(element);
+        }
+    }
 
     public void enter_task_more_repeatTask_repeatTerm_repeatUntil_completeAfterInput(int num){
         BrowserUtils.scrollTo(task_more_repeatTask_repeatTerm_repeatUntil_completeAfterInput);
@@ -676,10 +736,5 @@ public class ActivityStreamPage extends AbstractPageBase {
     public void click_on_Add_button_in_add_reminder(){
         clickOnElement(reminderAddButton);
     }
-
-
-
-
-
 
 }

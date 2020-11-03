@@ -24,11 +24,6 @@ public class TaskStepDefinition {
         activityStream.enterDescription(text);
     }
 
-//    @When("user click \"More\"")
-//    public void user_click() {
-//        activityStream.click_taskMore();
-//    }
-
     @When("user click \"Repeat task\" check box")
     public void user_click_check_box() {
         activityStream.click_task_more_repeatTaskCheckBox();
@@ -290,6 +285,42 @@ public class TaskStepDefinition {
     @Then("enter {int} as iterations")
     public void enter_as_iterations(Integer int1) {
         activityStream.enter_task_more_repeatTask_repeatTerm_repeatUntil_completeAfterInput(int1);
+    }
+
+    @When("click +Add on {string}")
+    public void click_add_on(String string) {
+        activityStream.click_addTaskType(string);
+        BrowserUtils.wait(5);
+    }
+
+    @Then("select {string} from recent tasks;")
+    public void select_from_recent_tasks(String string) {
+        activityStream.click_subtaskOf_popUp_recentTasks(string);
+    }
+
+    @Then("click SELECT in Subtask popup")
+    public void click_select_in_subtask_popup() {
+        activityStream.click_subtaskOf_popUp_selectButton();
+    }
+
+    @Then("select {string} from Tags popUp;")
+    public void select_from_tags_pop_up(String string) {
+        activityStream.click_tags_popUp(string);
+    }
+
+    @Then("click SAVE in Tags popUp")
+    public void click_save_in_tags_pop_up() {
+        activityStream.click_tags_popUp_saveButton();
+    }
+
+    @Then("select {string} from Dependent tasks popUp;")
+    public void select_from_dependent_tasks_pop_up(String string) {
+      activityStream.click_dependentTasks_popUp(string);
+    }
+
+    @Then("click SELECT in Dependent tasks popUp")
+    public void click_select_in_dependent_tasks_pop_up() {
+        activityStream.click_dependentTasks_popUp_selectButton();
     }
 
 }
