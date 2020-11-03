@@ -6,6 +6,7 @@ import com.bitrix24.util.BrowserUtils;
 import com.bitrix24.util.Driver;
 import com.bitrix24.util.HelperUtil;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -413,6 +414,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     public void click_task_more_repeatTaskCheckBox(){
         BrowserUtils.clickOnElement(task_more_repeatTaskCheckBox);
     }
+    protected String inputBox = "(//div[@class='task-options task-options-main']//span[.='%s']/.. //input)[1]";
 
     public String getText_message_quote() {
         return enter_message_quote.getText();
@@ -736,5 +738,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     public void click_on_Add_button_in_add_reminder(){
         clickOnElement(reminderAddButton);
     }
+
+
 
 }

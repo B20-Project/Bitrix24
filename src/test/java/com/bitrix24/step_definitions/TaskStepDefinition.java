@@ -323,4 +323,15 @@ public class TaskStepDefinition {
         activityStream.click_dependentTasks_popUp_selectButton();
     }
 
+    @And("user selects following from {string}")
+    public void user_selects_following(String tab,List<String> list){
+        activityStream.clickFinderBoxTabSelection(tab);
+        BrowserUtils.wait(1);
+        for(String each : list){
+            activityStream.clickEmployeeName(each);
+        }
+        activityStream.closePopUpWindow();
+    }
+
+
 }
