@@ -121,6 +121,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     protected String taskAdditionalBlock = "//span/span[.='%s']";
     protected String finderBoxTabSelection ="//div[@class='bx-finder-box-tabs']/a[.='%s']";
     protected String employeeName ="//div[@class='bx-finder-company-department-employee-info']/div[contains(text(),'%s')]";
+    protected String inputBox = "(//div[@class='task-options task-options-main']//span[.='%s']/.. //input)[1]";
 
     public String getText_message_quote() {
         return enter_message_quote.getText();
@@ -444,5 +445,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     public void click_on_Add_button_in_add_reminder(){
         clickOnElement(reminderAddButton);
     }
+
+
 
 }
