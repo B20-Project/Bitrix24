@@ -28,6 +28,7 @@ Feature: create task
     And user click "Repeat task" check box
     Then user select "day"
     And enter every 1 "any" day with an interval of 0 mo.
+
   @calendar
   Scenario: selecting date and time in calendar
     When user clicks on Deadline input box under task
@@ -59,6 +60,7 @@ Feature: create task
       | Thu |
       | Fri |
       | Sat |
+
   @timePlanning   @calendar
   Scenario: verify Time planning
     When user click on "time planning" next to Deadline
@@ -75,6 +77,7 @@ Feature: create task
   Scenario: verify options
     When user click on "options" next to Deadline
     Then user should be able to select all available checkboxes
+
   @taskArpatAC
   Scenario: create a simple task with repeat week
     When user click "More"
@@ -87,6 +90,7 @@ Feature: create task
     When user click on More
     And user select Task planned time checkbox
     Then enter "5" in hour and "12" minutes
+
   @taskArpatAC
   Scenario: create a simple task with repeat week
     When user click "More"
@@ -120,6 +124,7 @@ Feature: create task
     And user clicks on "message" icon in reminder
     And user clicks on Add in reminder
     Then new reminder tab should be displayed above Add reminder
+
   @taskArpatAC
   Scenario: create a simple task with repeat week
     When user click "More"

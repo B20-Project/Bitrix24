@@ -495,7 +495,6 @@ public class ActivityStreamPage extends AbstractPageBase {
         clickOnElement(sumbit);
     }
 
-
     /**
      * @param num 1-12
      */

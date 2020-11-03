@@ -11,9 +11,7 @@ import org.junit.Assert;
 
 import java.util.List;
 
-
 public class TaskStepDefinition {
-
     ActivityStreamPage activityStream = new ActivityStreamPage();
 
     @Given("user enters title on {string} input box and enters {string}")
@@ -127,6 +125,7 @@ public class TaskStepDefinition {
         Assert.assertTrue(dataTable.containsAll(activityStream.get_task_more_repeatTask_repeatTerm_month_secondEvery_secondSelector()));
 
     }
+
     @When("user clicks on Deadline input box under task")
     public void user_clicks_on_deadline_input_box_under_task() {
         activityStream.click_on_deadLine_in_tasks();
@@ -214,13 +213,14 @@ public class TaskStepDefinition {
 
     @Then("verify following type is in first selector under year")
     public void verify_following_type_is_in_first_selector_under_year(List<String> dataTable) {
-    @Then("select any role under reminder")
-    public void select_any_role_under_reminder() {
-       activityStream.select_random_roles_in_reminder_under_more_in_task();
-    }
-
         Assert.assertTrue(dataTable.containsAll(activityStream.get_task_more_repeatTask_repeatTerm_year_firstEvery_monthSelector()));
     }
+
+    @Then("select any role under reminder")
+    public void select_any_role_under_reminder() {
+        activityStream.select_random_roles_in_reminder_under_more_in_task();
+    }
+
     @Then("user clicks on {string} icon in reminder")
     public void user_clicks_on_icon_in_reminder(String string) {
         activityStream.select_reminder_type_in_add_reminder(string);
@@ -231,6 +231,7 @@ public class TaskStepDefinition {
         activityStream.enter_task_more_repeatTask_repeatTerm_year_firstEvery_monthEnter(int1);
         activityStream.select_task_more_repeatTask_repeatTerm_year_firstEvery_monthSelector(string);
     }
+
     @Then("user clicks on Add in reminder")
     public void user_clicks_on_add_in_reminder() {
         activityStream.click_on_Add_button_in_add_reminder();
@@ -240,6 +241,7 @@ public class TaskStepDefinition {
     public void new_reminder_tab_should_be_displayed_above_add_reminder() {
 
     }
+
     @Then("select second every under year")
     public void select_second_every_under_year() {
     activityStream.click_task_more_repeatTask_repeatTerm_year_secondEveryCheckBox();
