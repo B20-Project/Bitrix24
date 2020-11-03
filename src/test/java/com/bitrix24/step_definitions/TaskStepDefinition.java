@@ -24,10 +24,10 @@ public class TaskStepDefinition {
         activityStream.enterDescription(text);
     }
 
-    @When("user click \"More\"")
-    public void user_click() {
-        activityStream.click_taskMore();
-    }
+//    @When("user click \"More\"")
+//    public void user_click() {
+//        activityStream.click_taskMore();
+//    }
 
     @When("user click \"Repeat task\" check box")
     public void user_click_check_box() {

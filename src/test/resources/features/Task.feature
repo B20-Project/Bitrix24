@@ -24,7 +24,7 @@ Feature: create task
 
   @taskArpatAC
   Scenario: create a simple task with repeat day
-    When user click "More"
+    When user click on More
     And user click "Repeat task" check box
     Then user select "day"
     And enter every 1 "any" day with an interval of 0 mo.
@@ -40,7 +40,7 @@ Feature: create task
 
   @taskArpatAC
   Scenario: create a simple task with repeat week
-    When user click "More"
+    When user click on More
     And user click "Repeat task" check box
     Then user select "week"
     And enter every 1 week
@@ -80,7 +80,7 @@ Feature: create task
 
   @taskArpatAC
   Scenario: create a simple task with repeat week
-    When user click "More"
+    When user click on More
     And user click "Repeat task" check box
     Then user select "month"
     And select evert and enter 1 day of every 1 month
@@ -93,7 +93,7 @@ Feature: create task
 
   @taskArpatAC
   Scenario: create a simple task with repeat week
-    When user click "More"
+    When user click on More
     And user click "Repeat task" check box
     Then user select "month"
     Then verify following type is in first selector under month
@@ -127,7 +127,7 @@ Feature: create task
 
   @taskArpatAC
   Scenario: create a simple task with repeat week
-    When user click "More"
+    When user click on More
     And user click "Repeat task" check box
     Then user select "year"
     Then verify following type is in first selector under year
@@ -147,7 +147,7 @@ Feature: create task
 
   @taskArpatAC
   Scenario: create a simple task with repeat week
-    When user click "More"
+    When user click on More
     And user click "Repeat task" check box
     Then user select "year"
     And select second every under year
