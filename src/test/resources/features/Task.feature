@@ -66,7 +66,7 @@ Feature: As a user I want to create customized task
     And user clicks on Add in reminder
     Then new reminder tab should be displayed above Add reminder
 
-  @taskArpatAC1
+  @RepeatByDay1
   Scenario: Repeat task by bay
     When user click on More
     And user click "Repeat task" check box
@@ -221,10 +221,7 @@ Feature: As a user I want to create customized task
     Then select "test [2336]" from Dependent tasks popUp;
     Then click SELECT in Dependent tasks popUp
 
-
-
-
-    @selectMultiplePeople
+  @selectMultiplePeople
     Scenario: select multiple people
       And user clicks on "Add more" button in "Responsible person" block
       And user selects following from "Employees and departments"

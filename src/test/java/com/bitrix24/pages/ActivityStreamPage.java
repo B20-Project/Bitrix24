@@ -172,7 +172,6 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "//span[@class='popup-window-button popup-window-button-accept'][.='Select']")
     private WebElement dependentTasks_popUp_selectButton;
 
-
     protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
     protected String msgTabPostBtn = "//div[@id='feed-add-post-content-message']//span[@title='%s']";
     protected String localFileBox = "//input[@name='bxu_files[]']";
@@ -738,7 +737,5 @@ public class ActivityStreamPage extends AbstractPageBase {
     public void click_on_Add_button_in_add_reminder(){
         clickOnElement(reminderAddButton);
     }
-
-
 
 }
