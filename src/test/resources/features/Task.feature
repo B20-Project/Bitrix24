@@ -66,21 +66,21 @@ Feature: As a user I want to create customized task
     And user clicks on Add in reminder
     Then new reminder tab should be displayed above Add reminder
 
-  @taskArpatAC
+  @taskArpatAC1
   Scenario: create a simple task with repeat day
     When user click on More
     And user click "Repeat task" check box
     Then user select "day"
     And enter every 1 "any" day with an interval of 0 mo.
 
-  @taskArpatAC
+  @taskArpatAC1
   Scenario: create a simple task with repeat week
     When user click on More
     And user click "Repeat task" check box
     Then user select "month"
     And select evert and enter 1 day of every 1 month
 
-  @taskArpatAC
+  @taskArpatAC1
   Scenario: create a simple task with repeat week
     When user click on More
     And user click "Repeat task" check box
@@ -103,7 +103,7 @@ Feature: As a user I want to create customized task
       | Fri |
       | Sat |
 
-  @taskArpatAC
+  @taskArpatAC1
   Scenario: create a simple task with repeat week
     When user click on More
     And user click "Repeat task" check box
@@ -124,7 +124,7 @@ Feature: As a user I want to create customized task
       | Saturday  |
     And select evert and select "first" "Thursday"
 
-  @taskArpatAC
+  @taskArpatAC1
   Scenario: create a simple task with repeat week
     When user click on More
     And user click "Repeat task" check box
@@ -144,7 +144,7 @@ Feature: As a user I want to create customized task
       | December  |
     And enter 1 day "December" on first every under year
 
-  @taskArpatAC
+  @taskArpatAC1
   Scenario: create a simple task with repeat week
     When user click on More
     And user click "Repeat task" check box
@@ -178,3 +178,26 @@ Feature: As a user I want to create customized task
       | November  |
       | December  |
     And select "last" "Wednesday" month "August" under year
+
+  @taskArpatAC1
+  Scenario: create a simple task with repeat week
+    When user click on More
+    And user click "Repeat task" check box
+    Then verify that "no end date" is selected
+
+  @taskArpatAC1 @bug
+  Scenario: create a simple task with repeat week
+    When user click on More
+    And user click "Repeat task" check box
+    Then select "end date" under repeat until
+    And click on date enter under repeat until
+    #Then Select "10-12-2020" as date
+
+  @taskArpatAC1
+  Scenario: create a simple task with repeat week
+    When user click on More
+    Then user click "Repeat task" check box
+    And select "complete after" under repeat until
+    Then enter 5 as iterations
+
+

@@ -105,6 +105,114 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "//select[@class='js-id-replication-yearly-month-2 task-options-inp']")
     private WebElement task_more_repeatTask_repeatTerm_year_secondEvery_monthSelector;
 
+    @FindBy(xpath = "//input[@id='replication-repeat-constraint-none']")
+    private WebElement task_more_repeatTask_repeatTerm_repeatUntil_noEndDateCheckBox;
+
+    @FindBy(xpath = "//input[@id='replication-repeat-constraint-date']")
+    private WebElement task_more_repeatTask_repeatTerm_repeatUntil_endDateCheckBox;
+
+    @FindBy(xpath = "//span[@class='js-id-replication-end-date-datepicker task-options-inp-container task-options-date t-empty']//input[@class='js-id-datepicker-display task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_repeatUntil_endDateInput;
+
+    @FindBy(xpath = "//input[@id='replication-repeat-constraint-times']")
+    private WebElement task_more_repeatTask_repeatTerm_repeatUntil_completeAfterCheckBox;
+
+    @FindBy(xpath = "//input[@class='js-id-replication-times task-options-inp']")
+    private WebElement task_more_repeatTask_repeatTerm_repeatUntil_completeAfterInput;
+
+    @FindBy (xpath = "//div[@id='blogPostEditCreateTaskPopup']//div[.='Task has been created']")
+    private WebElement createdTaskConfirmationMessage;
+
+    @FindBy (xpath = "//*[.='Task planned time']/input")
+    private WebElement taskPlannedTime;
+
+    @FindBy (xpath = "//span[@data-bx-id='reminder-open-form']")
+    private WebElement addReminder;
+
+    @FindBy (xpath = "//span[@data-bx-id='form-date']")
+    private WebElement reminderInputBox;
+
+    @FindBy (xpath = "//select[@data-bx-id='form-change-recipient']")
+    private WebElement reminderRoles;
+
+    @FindBy (xpath = "//button[@data-bx-id='form-submit']")
+    private WebElement reminderAddButton;
+
+    @FindBy(xpath = "//span[@data-bx-id='dateplanmanager-deadline']/input[1]")
+    private WebElement deadLine;
+
+    @FindBy(xpath = "//a[@data-action='submit']")
+    private WebElement sumbit;
+
+    @FindBy(xpath = "//span[@data-bx-id='dateplanmanager-deadline']/input[@data-bx-id='datepicker-value']")
+    private WebElement deadLineValue;
+
+    @FindBy(xpath = "//input[@class='bx-calendar-year-input']")
+    private WebElement yearInput;
+
+    @FindBy(xpath = "//input[@class='bx-calendar-form-input']")
+    private List<WebElement> calendarTime;
+
+    @FindBy(xpath = "//span[@data-action='time_ampm']")
+    private WebElement calendar_am_pm;
+
+    @FindBy(xpath = "//div[@class='task-options-field-inner']")
+    private List<WebElement> optionsCheckboxes;
+
+    @FindBy(className = "task-additional-alt-more")
+    private WebElement moreButton;
+
+    protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
+    protected String msgTabPostBtn = "//div[@id='feed-add-post-content-message']//span[@title='%s']";
+    protected String localFileBox = "//input[@name='bxu_files[]']";
+    protected String msgTabAttachedFile = "//span[@title='Click to insert file']";
+    protected String bitrixRemoteDrive = "//div[@style='display: block;']//span[.='Select document from Bitrix24']";
+    protected String addContact = "//a[.='Add more']";
+    protected String contactPopupFormat = "//div[@id='BXSocNetLogDestination']//a[contains(.,'%s')]";
+    protected String contactPopupClose = "//span[@class='popup-window-close-icon']";
+    protected String selectedContact = "//span[@id='feed-add-post-destination-item']";
+    protected String saveButton = "//div[contains(@class,'%s-dialog')]//input[@value = 'Save']";
+    protected String uploadedFile= "//div[@id='log_internal_container']//a[@title='Test.txt']";
+    protected String feedTitle = "(//input[@placeholder='%s'])[1]";
+    protected String plannedTime = "//input[contains(@class,'timeestimate-%s')]";
+    protected String reminderType = "//a[contains(@class,'link-%s')]";
+    protected String calendar = "//div[@class='bx-calendar']//a[contains(@class,'%s')]";
+    protected String calendarMonth = "//div[@class='bx-calendar-%s-content']/span";
+    protected String listOfDates = "//a[.='%s']";
+    protected String deadlineOptions = "//span[@data-target='%s']";
+    protected String timePlanningOptions = "//*[contains(@data-bx-id,'%s')]";
+    protected String durationOptions = "//span[@data-unit='%s']";
+    protected String calendarValue = "//*[contains(@data-bx-id,'%s')]//input[@data-bx-id='datepicker-value']";
+    protected String cancelSelectionBtn = "//div/span[.='%s']/..//span[@title='Cancel selection']";
+    protected String taskAdditionalBlock = "//span/span[.='%s']";
+    protected String finderBoxTabSelection ="//div[@class='bx-finder-box-tabs']/a[.='%s']";
+    protected String employeeName ="//div[@class='bx-finder-company-department-employee-info']/div[contains(text(),'%s')]";
+    protected String checkBoxName="//label[.='%s']/../preceding-sibling::input";
+    protected String weekDayCheckBox_verify="//label[@class='task-options-day'][contains(text(),'%s')]/input";
+    protected String weekDayCheckBox_checkBox="//label[@class='task-options-day'][contains(text(),'%s')]/input";
+    protected String repeatTerm="//span[contains(@class,'js')][.='%s']";
+
+    public void enter_task_more_repeatTask_repeatTerm_repeatUntil_completeAfterInput(int num){
+        BrowserUtils.scrollTo(task_more_repeatTask_repeatTerm_repeatUntil_completeAfterInput);
+        task_more_repeatTask_repeatTerm_repeatUntil_completeAfterInput.sendKeys((num+""));
+    }
+
+    public void click_task_more_repeatTask_repeatTerm_repeatUntil_checkBox(String checkBoxNames){
+
+        WebElement element = Driver.getDriver().findElement(By.xpath(String.format(checkBoxName, checkBoxNames)));
+        BrowserUtils.scrollTo(element);
+        element.click();
+    }
+
+    public void click_task_more_repeatTask_repeatTerm_repeatUntil_endDateEnter(){
+        BrowserUtils.scrollTo(task_more_repeatTask_repeatTerm_repeatUntil_endDateInput);
+        BrowserUtils.clickOnElement(task_more_repeatTask_repeatTerm_repeatUntil_endDateInput);
+    }
+
+    public boolean is_task_more_repeatTask_repeatTerm_repeatUntil_noEndDateCheckBox_select(){
+        return task_more_repeatTask_repeatTerm_repeatUntil_noEndDateCheckBox.isSelected();
+    }
+
     /**@param day:
      *
      * @param day: first, second, third, fourth, last
@@ -201,7 +309,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     }
 
     public WebElement verify_task_more_repeatTask_repeatTerm_weekDayCheckBox(String str){
-        WebElement element = Driver.getDriver().findElement(By.xpath("//label[@class='task-options-day'][contains(text(),'"+str+"')]/input"));
+        WebElement element = Driver.getDriver().findElement(By.xpath(String.format(weekDayCheckBox_verify,str)));
         BrowserUtils.scrollTo(element);
         return element;
     }
@@ -211,7 +319,7 @@ public class ActivityStreamPage extends AbstractPageBase {
      * @param str: Sun, Mo, Tu, We, Thu, Fri, Sat
      */
     public void checkBox_task_more_repeatTask_repeatTerm_weekDayCheckBox(String str){
-        WebElement element = Driver.getDriver().findElement(By.xpath("//label[@class='task-options-day'][contains(text(),'"+str+"')]"));
+        WebElement element = Driver.getDriver().findElement(By.xpath(String.format(weekDayCheckBox_checkBox,str)));
         BrowserUtils.clickOnElement(element);
     }
 
@@ -232,9 +340,8 @@ public class ActivityStreamPage extends AbstractPageBase {
         BrowserUtils.enterText(task_more_repeatTask_repeatTerm_day,(num+""));
     }
 
-    public void click_task_more_activate_repeatTerm(String repeatTerm){
-        WebElement element = Driver.getDriver().findElement(By.xpath("//span[contains(@class,'js')][.='"+repeatTerm+"']"));
-        ////span[contains(@class,'js-id-replication-period-type-option tasks-option')][.='week']
+    public void click_task_more_activate_repeatTerm(String repeatTerms){
+        WebElement element = Driver.getDriver().findElement(By.xpath(String.format(repeatTerm, repeatTerms)));
         BrowserUtils.clickOnElement(element);
     }
 
@@ -245,73 +352,6 @@ public class ActivityStreamPage extends AbstractPageBase {
     public void click_task_more_repeatTaskCheckBox(){
         BrowserUtils.clickOnElement(task_more_repeatTaskCheckBox);
     }
-    @FindBy (xpath = "//div[@id='blogPostEditCreateTaskPopup']//div[.='Task has been created']")
-    private WebElement createdTaskConfirmationMessage;
-
-    @FindBy (xpath = "//*[.='Task planned time']/input")
-    private WebElement taskPlannedTime;
-
-    @FindBy (xpath = "//span[@data-bx-id='reminder-open-form']")
-    private WebElement addReminder;
-
-    @FindBy (xpath = "//span[@data-bx-id='form-date']")
-    private WebElement reminderInputBox;
-
-    @FindBy (xpath = "//select[@data-bx-id='form-change-recipient']")
-    private WebElement reminderRoles;
-
-    @FindBy (xpath = "//button[@data-bx-id='form-submit']")
-    private WebElement reminderAddButton;
-
-    @FindBy(xpath = "//span[@data-bx-id='dateplanmanager-deadline']/input[1]")
-    private WebElement deadLine;
-
-    @FindBy(xpath = "//a[@data-action='submit']")
-    private WebElement sumbit;
-
-    @FindBy(xpath = "//span[@data-bx-id='dateplanmanager-deadline']/input[@data-bx-id='datepicker-value']")
-    private WebElement deadLineValue;
-
-    @FindBy(xpath = "//input[@class='bx-calendar-year-input']")
-    private WebElement yearInput;
-
-    @FindBy(xpath = "//input[@class='bx-calendar-form-input']")
-    private List<WebElement> calendarTime;
-
-    @FindBy(xpath = "//span[@data-action='time_ampm']")
-    private WebElement calendar_am_pm;
-
-    @FindBy(xpath = "//div[@class='task-options-field-inner']")
-    private List<WebElement> optionsCheckboxes;
-
-    @FindBy(className = "task-additional-alt-more")
-    private WebElement moreButton;
-
-    protected String activityStreamTab = "//div[@id='feed-add-post-form-tab']/span[.='%s']";
-    protected String msgTabPostBtn = "//div[@id='feed-add-post-content-message']//span[@title='%s']";
-    protected String localFileBox = "//input[@name='bxu_files[]']";
-    protected String msgTabAttachedFile = "//span[@title='Click to insert file']";
-    protected String bitrixRemoteDrive = "//div[@style='display: block;']//span[.='Select document from Bitrix24']";
-    protected String addContact = "//a[.='Add more']";
-    protected String contactPopupFormat = "//div[@id='BXSocNetLogDestination']//a[contains(.,'%s')]";
-    protected String contactPopupClose = "//span[@class='popup-window-close-icon']";
-    protected String selectedContact = "//span[@id='feed-add-post-destination-item']";
-    protected String saveButton = "//div[contains(@class,'%s-dialog')]//input[@value = 'Save']";
-    protected String uploadedFile= "//div[@id='log_internal_container']//a[@title='Test.txt']";
-    protected String feedTitle = "(//input[@placeholder='%s'])[1]";
-    protected String plannedTime = "//input[contains(@class,'timeestimate-%s')]";
-    protected String reminderType = "//a[contains(@class,'link-%s')]";
-    protected String calendar = "//div[@class='bx-calendar']//a[contains(@class,'%s')]";
-    protected String calendarMonth = "//div[@class='bx-calendar-%s-content']/span";
-    protected String listOfDates = "//a[.='%s']";
-    protected String deadlineOptions = "//span[@data-target='%s']";
-    protected String timePlanningOptions = "//*[contains(@data-bx-id,'%s')]";
-    protected String durationOptions = "//span[@data-unit='%s']";
-    protected String calendarValue = "//*[contains(@data-bx-id,'%s')]//input[@data-bx-id='datepicker-value']";
-    protected String cancelSelectionBtn = "//div/span[.='%s']/..//span[@title='Cancel selection']";
-    protected String taskAdditionalBlock = "//span/span[.='%s']";
-    protected String finderBoxTabSelection ="//div[@class='bx-finder-box-tabs']/a[.='%s']";
-    protected String employeeName ="//div[@class='bx-finder-company-department-employee-info']/div[contains(text(),'%s')]";
 
     public String getText_message_quote() {
         return enter_message_quote.getText();

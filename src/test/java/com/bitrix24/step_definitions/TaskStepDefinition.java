@@ -270,4 +270,26 @@ public class TaskStepDefinition {
         System.out.println("Don");
 
     }
+
+    @Then("verify that \"no end date\" is selected")
+    public void verify_that_is_selected() {
+        Assert.assertTrue(activityStream.is_task_more_repeatTask_repeatTerm_repeatUntil_noEndDateCheckBox_select());
+    }
+
+    @Then("click on date enter under repeat until")
+    public void click_on_date_enter_under_reat_until() {
+        BrowserUtils.wait(3);
+        activityStream.click_task_more_repeatTask_repeatTerm_repeatUntil_endDateEnter();
+    }
+
+    @Then("select {string} under repeat until")
+    public void select_under_repeat_until(String checkBoxName) {
+        activityStream.click_task_more_repeatTask_repeatTerm_repeatUntil_checkBox(checkBoxName);
+    }
+
+    @Then("enter {int} as iterations")
+    public void enter_as_iterations(Integer int1) {
+        activityStream.enter_task_more_repeatTask_repeatTerm_repeatUntil_completeAfterInput(int1);
+    }
+
 }
