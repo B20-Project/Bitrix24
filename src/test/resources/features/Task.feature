@@ -354,18 +354,4 @@ Feature: As a user I want to create customized task
 #    And user clicks on "Send" button
 
 
-  Scenario: creating simple task
-    When user clicks on "Send" button
-    Then "Task has been created" message should display in pop-up window
-
-  Scenario: creating task with deadline and for responsible person
-    And user selects  responsible person "helpdesk22@cybertekschool.com" from "Employees and departments"
-    When user clicks on Deadline input box under task
-      #mm-dd-yyyy format
-    And Select "6-13-2020" as date
-    And Select "8-00-am" as time
-    And user clicks on select button in calendar
-    When user click on More
-
-
 
