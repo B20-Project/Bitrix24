@@ -145,7 +145,7 @@ public class MessageStepDefinition {
     public void topic_input_box_should_display() {
         activityStream.topicInputBox_is_displayed();
         Assert.assertTrue(activityStream.topicInputBox_is_displayed());
-        BrowserUtils.wait(2);
+        //BrowserUtils.wait(2);
     }
 
     @When("user clicks on icon \"Record Video\"")
@@ -174,6 +174,5 @@ public class MessageStepDefinition {
 
 
     }
-
 
 }

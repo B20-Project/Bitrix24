@@ -48,7 +48,6 @@ public class HomePage extends AbstractPageBase {
     @FindBy(xpath = "//div[@class='bx-desktop-tab-icon bx-desktop-tab-icon-im-lf']")
     private WebElement sidePopUpWindow_clones;
 
-
     public void click_sidePopUpWindow_contact_you(){
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
         notificationIcon.click();
