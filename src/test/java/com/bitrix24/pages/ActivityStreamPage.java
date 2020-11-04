@@ -186,7 +186,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     protected String feedTitle = "(//input[@placeholder='%s'])[1]";
     protected String plannedTime = "//input[contains(@class,'timeestimate-%s')]";
     protected String reminderType = "//a[contains(@class,'link-%s')]";
-    protected String calendar = "//div[@class='bx-calendar']//a[contains(@class,'%s')]";
+    protected String calendar = "//div[contains(@class,'bx-calendar')]//a[contains(@class,'%s')]";
     protected String calendarMonth = "//div[@class='bx-calendar-%s-content']/span";
     protected String listOfDates = "//a[.='%s']";
     protected String deadlineOptions = "//span[@data-target='%s']";
@@ -535,7 +535,8 @@ public class ActivityStreamPage extends AbstractPageBase {
     }
 
     public void enterFeedTitle(String title, String text){
-        BrowserUtils.wait(2);
+//        BrowserUtils.wait(1);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format(feedTitle,title))));
         enterText(driver.findElement(By.xpath(String.format(feedTitle,title))),text);
     }
 

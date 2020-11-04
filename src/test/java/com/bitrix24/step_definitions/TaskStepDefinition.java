@@ -56,7 +56,7 @@ public class TaskStepDefinition {
     @When("user clicks on {string} button in {string} block")
     public void user_clicks_on_button_in_block(String block, String string2) {
         activityStream.clickAddBtn(string2,block);
-        BrowserUtils.wait(1);
+//        BrowserUtils.wait(1);
     }
 
     @Then("{string} message should display in pop-up window")
@@ -273,7 +273,7 @@ public class TaskStepDefinition {
 
     @Then("click on date enter under repeat until")
     public void click_on_date_enter_under_reat_until() {
-        BrowserUtils.wait(3);
+//        BrowserUtils.wait(3);
         activityStream.click_task_more_repeatTask_repeatTerm_repeatUntil_endDateEnter();
     }
 
@@ -290,7 +290,7 @@ public class TaskStepDefinition {
     @When("click +Add on {string}")
     public void click_add_on(String string) {
         activityStream.click_addTaskType(string);
-        BrowserUtils.wait(5);
+//        BrowserUtils.wait(5);
     }
 
     @Then("select {string} from recent tasks;")

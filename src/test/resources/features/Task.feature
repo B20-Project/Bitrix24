@@ -30,7 +30,7 @@ Feature: As a user I want to create customized task
     And user clicks on select button in calendar
     Then "11/01/2020 05:59 am" should be displayed in the Deadline input box
 
-  @timePlanning   @calendar
+  @timePlanning
   Scenario: verify Time planning
     When user click on "time planning" next to Deadline
     And user click on "Start task on" under time planning
@@ -42,18 +42,18 @@ Feature: As a user I want to create customized task
     When user select "minutes" under duration
     Then "11/15/2020 05:00 am" should be displayed on finish input box
 
-  @options   @calendar
+  @options
   Scenario: verify options
     When user click on "options" next to Deadline
     Then user should be able to select all available checkboxes
 
-  @timeTracking   @calendar
+  @timeTracking
   Scenario: verify time tracking
     When user click on More
     And user select Task planned time checkbox
     Then enter "5" in hour and "12" minutes
 
-  @reminder   @calendar
+  @reminder
   Scenario: verify reminder
     When user click on More
     When user click on Add reminder
@@ -191,7 +191,8 @@ Feature: As a user I want to create customized task
     And user click "Repeat task" check box
     Then select "end date" under repeat until
     And click on date enter under repeat until
-    #Then Select "10-12-2020" as date
+    Then Select "10-12-2020" as date
+
 
   @RepeatUntilCompleteAfterDay
   Scenario: Repeat task until complete after date
@@ -242,4 +243,115 @@ Feature: As a user I want to create customized task
         | helpdesk30@cybertekschool.com |
       And user clicks on "Send" button
       Then "Task has been created" message should display in pop-up window
+
+  @end_to_end
+  Scenario: end to end testing
+    #selectPeople
+    And user selects  responsible person "helpdesk22@cybertekschool.com" from "Employees and departments"
+    And user clicks on task additional block "Created by"
+    When user clicks on task additional block "Participants"
+    And user clicks on "Add" button in "Participant" block
+    And user selects "helpdesk23@cybertekschool.com" from "Employees and departments"
+    When user clicks on task additional block "Observers"
+    And user clicks on "Add" button in "Observers" block
+    And user selects "helpdesk24@cybertekschool.com" from "Employees and departments"
+
+    #calendar
+    When user clicks on Deadline input box under task
+      #mm-dd-yyyy format
+    And Select "6-13-2020" as date
+    And Select "8-00-am" as time
+    And user clicks on select button in calendar
+
+    #timePlanning
+    When user click on "time planning" next to Deadline
+    And user click on "Start task on" under time planning
+    And Select "10-12-2020" as date
+    And Select "06-00-am" as time
+    And user clicks on select button in calendar
+    Then user click on "duration" under time planning
+    And user enter "10" as duration
+    When user select "minutes" under duration
+
+    #options
+    When user click on "options" next to Deadline
+    Then user should be able to select all available checkboxes
+
+    #timeTracking
+    When user click on More
+    And user select Task planned time checkbox
+    Then enter "5" in hour and "12" minutes
+
+    #reminder
+    When user click on Add reminder
+    And user click on date input box
+    And Select "07-11-2020" as date
+    And Select "06-00-am" as time
+    And user clicks on select button in calendar
+    Then select any role under reminder
+    And user clicks on "message" icon in reminder
+    And user clicks on Add in reminder
+
+    #RepeatByDay1
+    And user click "Repeat task" check box
+    Then user select "day"
+    And enter every 1 "any" day with an interval of 0 mo.
+
+     #RepeatByWeek1
+    Then user select "week"
+    And enter every 1 week
+    And select following day
+      | Sun |
+      | Mo  |
+      | Tu  |
+      | We  |
+      | Thu |
+      | Fri |
+      | Sat |
+
+    #RepeatByMonth1
+    Then user select "month"
+    And select evert and enter 1 day of every 1 month
+
+    #RepeatByMonth2
+    And select evert and select "first" "Thursday"
+
+    #RepeatByYear1
+    Then user select "year"
+    And enter 1 day "December" on first every under year
+
+    #RepeatByYear2
+    And select second every under year
+    And select "last" "Wednesday" month "August" under year
+
+    #RepeatUntilNoEndDay
+    Then verify that "no end date" is selected
+
+    #RepeatUntilEndDay
+    Then select "end date" under repeat until
+    And click on date enter under repeat until
+    Then Select "10-12-2020" as date
+
+    #RepeatUntilCompleteAfterDay
+    And select "complete after" under repeat until
+    Then enter 5 as iterations
+
+    #SubtaskTasks
+#    And click +Add on "Subtask of"
+#    Then select "test [2404]" from recent tasks;
+#    Then click SELECT in Subtask popup
+
+    #Tags
+    And click +Add on "Tags"
+    Then select "group28" from Tags popUp;
+    Then click SAVE in Tags popUp
+
+    #DependentTasks
+#    And click +Add on "Dependent tasks"
+#    Then select "test [2432]" from Dependent tasks popUp;
+#    Then click SELECT in Dependent tasks popUp
+
+#    And user clicks on "Send" button
+
+
 
