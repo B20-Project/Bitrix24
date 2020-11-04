@@ -535,7 +535,8 @@ public class ActivityStreamPage extends AbstractPageBase {
     }
 
     public void enterFeedTitle(String title, String text){
-        BrowserUtils.wait(1);
+//        BrowserUtils.wait(1);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format(feedTitle,title))));
         enterText(driver.findElement(By.xpath(String.format(feedTitle,title))),text);
     }
 
