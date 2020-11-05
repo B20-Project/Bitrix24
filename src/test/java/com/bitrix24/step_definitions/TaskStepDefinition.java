@@ -333,6 +333,7 @@ public class TaskStepDefinition {
 
     @And("user selects following from {string}")
     public void user_selects_following(String tab,List<String> list){
+        BrowserUtils.wait(1);
         activityStream.clickFinderBoxTabSelection(tab);
         BrowserUtils.wait(1);
         for(String each : list){
