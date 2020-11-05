@@ -205,7 +205,7 @@ Feature: As a user I want to create customized task
   Scenario: assigned Subtask tasks
     When user click on More
     And click +Add on "Subtask of"
-    Then select "test [2336]" from recent tasks;
+    Then select "first" from recent tasks;
     Then click SELECT in Subtask popup
 
   @Tags
@@ -219,7 +219,7 @@ Feature: As a user I want to create customized task
   Scenario: assigned Dependent tasks
     When user click on More
     And click +Add on "Dependent tasks"
-    Then select "test [2336]" from Dependent tasks popUp;
+    Then select "first" from Dependent tasks popUp;
     Then click SELECT in Dependent tasks popUp
 
   @selectMultiplePeople

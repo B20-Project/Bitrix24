@@ -295,7 +295,11 @@ public class TaskStepDefinition {
 
     @Then("select {string} from recent tasks;")
     public void select_from_recent_tasks(String string) {
-        activityStream.click_subtaskOf_popUp_recentTasks(string);
+        if (string.equalsIgnoreCase("first")){
+        activityStream.click_subtaskOf_popUp_recentTasks();
+        }else {
+            activityStream.click_subtaskOf_popUp_recentTasks(string);
+        }
     }
 
     @Then("click SELECT in Subtask popup")
@@ -315,7 +319,11 @@ public class TaskStepDefinition {
 
     @Then("select {string} from Dependent tasks popUp;")
     public void select_from_dependent_tasks_pop_up(String string) {
-      activityStream.click_dependentTasks_popUp(string);
+        if (string.equalsIgnoreCase("first")){
+            activityStream.click_dependentTasks_popUp();
+        }else {
+            activityStream.click_dependentTasks_popUp(string);
+        }
     }
 
     @Then("click SELECT in Dependent tasks popUp")

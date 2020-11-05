@@ -215,6 +215,11 @@ public class ActivityStreamPage extends AbstractPageBase {
         BrowserUtils.clickOnElement(element);
     }
 
+    public void click_dependentTasks_popUp(){
+        WebElement element = Driver.getDriver().findElement(By.xpath("//div[@id='task-item-set-popupdependson']//table[@class='finder-box-tab-columns']/tbody/tr/td/div[1]"));
+        BrowserUtils.clickOnElement(element);
+    }
+
     public void click_tags_popUp_saveButton(){
         BrowserUtils.clickOnElement(tags_popUp_saveButton);
     }
@@ -230,6 +235,11 @@ public class ActivityStreamPage extends AbstractPageBase {
 
     public void click_subtaskOf_popUp_recentTasks(String str){
         WebElement element = Driver.getDriver().findElement(By.xpath(String.format(subtaskOf_popUp_recentTasks, str)));
+        BrowserUtils.clickOnElement(element);
+    }
+
+    public void click_subtaskOf_popUp_recentTasks(){
+        WebElement element = Driver.getDriver().findElement(By.xpath("//div[@id='task-item-set-popupparenttask']//table[@class='finder-box-tab-columns']/tbody/tr/td/div[1]"));
         BrowserUtils.clickOnElement(element);
     }
 
