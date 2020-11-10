@@ -423,7 +423,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     public void click_task_more_repeatTaskCheckBox(){
         BrowserUtils.clickOnElement(task_more_repeatTaskCheckBox);
     }
-    protected String inputBox = "(//div[@class='task-options task-options-main']//span[.='%s']/.. //input)[1]";
+    //protected String inputBox = "(//div[@class='task-options task-options-main']//span[.='%s']/.. //input)[1]";
 
     public String getText_message_quote() {
         return enter_message_quote.getText();
@@ -579,7 +579,7 @@ public class ActivityStreamPage extends AbstractPageBase {
     }
 
     public void clickFinderBoxTabSelection(String tab){
-        clickOnElement(driver.findElement(By.xpath(String.format(finderBoxTabSelection, tab))));
+        clickOnElement(Driver.getDriver().findElement(By.xpath(String.format(finderBoxTabSelection, tab))));
     }
 
     public void clickEmployeeName(String name){
