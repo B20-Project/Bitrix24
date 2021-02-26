@@ -2,8 +2,8 @@ package com.bitrix24.step_definitions;
 
 import com.bitrix24.util.Driver;
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import org.junit.Before;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -16,6 +16,7 @@ public class Hooks {
         System.out.println(scenario.getSourceTagNames());
         System.out.println("Starting Automation");
         Driver.getDriver().manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+
     }
 
     @After

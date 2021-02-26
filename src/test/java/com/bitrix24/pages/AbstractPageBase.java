@@ -49,5 +49,9 @@ public abstract class AbstractPageBase {
         String xpath = String.format("//a[contains(@title,'%s')]", tabName );
         driver.findElement(By.xpath(xpath)).click();
     }
+
+
+
+
 }
 
