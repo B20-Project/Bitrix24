@@ -4,6 +4,8 @@ import com.bitrix24.util.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
 import org.junit.Before;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,8 +19,12 @@ public class Hooks {
     }
 
     @After
-    public void tearDown(){
-        // Driver.closeDriver();
+    public void tearDown(Scenario scenario){
+        if (scenario.isFailed()){
+            byte[]screenshot = ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot,"image/png", scenario.getName());
+        }
+        Driver.closeDriver();
         System.out.println("::: End of test execution (*_*):::");
     }
 
