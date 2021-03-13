@@ -31,7 +31,7 @@ public class BrowserUtils {
         wait.until(ExpectedConditions.visibilityOf(element));
         element.clear();
         element.sendKeys(text);
-        wait.until(ExpectedConditions.attributeToBe(element,"value",text));
+//        wait.until(ExpectedConditions.attributeToBe(element,"value",text));
         System.out.println("Entering text: "+text);
     }
 
@@ -73,8 +73,8 @@ public class BrowserUtils {
         ((JavascriptExecutor)Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);",element);
     }
 
-    public static void scrollByJS(){
-        ((JavascriptExecutor)Driver.getDriver()).executeScript("scroll(0,100)");
+    public static void scrollByJS(int num1,int num2){
+        ((JavascriptExecutor)Driver.getDriver()).executeScript("scroll("+num1+","+num2+")");
     }
 
     public static void scrollTo(WebElement element) {

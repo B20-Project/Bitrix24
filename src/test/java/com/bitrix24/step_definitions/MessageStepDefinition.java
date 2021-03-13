@@ -11,8 +11,6 @@ import com.bitrix24.util.ConfigurationReader;
 import com.bitrix24.util.Driver;
 import io.cucumber.java.en.Given;
 
-
-
 public class MessageStepDefinition {
 
     LoginPage loginPage = new LoginPage();
@@ -147,7 +145,7 @@ public class MessageStepDefinition {
     public void topic_input_box_should_display() {
         activityStream.topicInputBox_is_displayed();
         Assert.assertTrue(activityStream.topicInputBox_is_displayed());
-        BrowserUtils.wait(2);
+        //BrowserUtils.wait(2);
     }
 
     @When("user clicks on icon \"Record Video\"")
@@ -165,7 +163,7 @@ public class MessageStepDefinition {
     @When("user clicks on {string} button")
     public void user_clicks_on_button(String string) {
         BrowserUtils.wait(2);
-       activityStream.clickSendBtn();
+        activityStream.clickSendBtn();
     }
 
     @Then("{string} should display under Activity Stream")
@@ -176,6 +174,5 @@ public class MessageStepDefinition {
 
 
     }
-
 
 }
