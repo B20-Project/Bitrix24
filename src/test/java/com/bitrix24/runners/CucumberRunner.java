@@ -8,9 +8,10 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
                 features = "src/test/resources/features",
                 glue = "com/bitrix24/step_definitions",
-                dryRun = false,
-                tags = "@createTask"
+                tags = "@calendar",
+                dryRun = false
                 )
+
 public class CucumberRunner {
 
 }

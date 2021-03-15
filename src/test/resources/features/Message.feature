@@ -71,7 +71,3 @@ Feature: send custom message
     And  user uploads local file "/Users/elvirakargabaeva/Desktop/Test.txt"
     And user clicks on "Send" button
     Then "Test.txt" should display under Activity Stream
-
-
-
-

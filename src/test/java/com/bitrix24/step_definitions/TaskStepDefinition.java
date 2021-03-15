@@ -11,9 +11,7 @@ import org.junit.Assert;
 
 import java.util.List;
 
-
 public class TaskStepDefinition {
-
     ActivityStreamPage activityStream = new ActivityStreamPage();
 
     @Given("user enters title on {string} input box and enters {string}")
@@ -24,6 +22,11 @@ public class TaskStepDefinition {
     @And("user enters description {string}")
     public void user_enters_description(String text) {
         activityStream.enterDescription(text);
+    }
+
+    @When("user click \"Repeat task\" check box")
+    public void user_click_check_box() {
+        activityStream.click_task_more_repeatTaskCheckBox();
     }
 
     @Given("user selects  responsible person {string} from {string}")
@@ -53,12 +56,68 @@ public class TaskStepDefinition {
     @When("user clicks on {string} button in {string} block")
     public void user_clicks_on_button_in_block(String block, String string2) {
         activityStream.clickAddBtn(string2,block);
-        BrowserUtils.wait(1);
+//        BrowserUtils.wait(1);
     }
 
     @Then("{string} message should display in pop-up window")
     public void message_should_display_in_pop_up_window(String string) {
         Assert.assertEquals(activityStream.getTextFromCreatedTaskConfirmationMessage(), string);
+
+    }
+
+    @Then("user select {string}")
+    public void user_select(String string) {
+        activityStream.click_task_more_activate_repeatTerm(string);
+    }
+
+    @Then("enter every {int} {string} day with an interval of {int} mo.")
+    public void enter_every_day_with_an_interval_of_mo(Integer int1, String string, Integer int2) {
+        activityStream.enter_task_more_repeatTask_repeatTerm_day(int1);
+        activityStream.select_task_more_repeatTask_repeatTerm_dayTypeSelector(string);
+        activityStream.enter_task_more_repeatTask_repeatTerm_dayMo(int2);
+    }
+
+    @Then("enter every {int} week")
+    public void enter_every_week(Integer int1) {
+    activityStream.enter_task_more_repeatTask_repeatTerm_weekEnter(int1);
+    }
+
+    @Then("select following day")
+    public void select_following_day(List<String> dataTable) {
+        for (String each :dataTable){
+            activityStream.checkBox_task_more_repeatTask_repeatTerm_weekDayCheckBox(each);
+        }
+
+    }
+
+    @Then("verify following day is selected")
+    public void verify_following_day_is_selected(List<String> dataTable) {
+        for (String each : dataTable){
+            Assert.assertTrue(activityStream.verify_task_more_repeatTask_repeatTerm_weekDayCheckBox(each).isSelected());
+        }
+    }
+
+    @Then("select evert and enter {int} day of every {int} month")
+    public void select_evert_day_of_every_month(Integer int1, Integer int2) {
+        activityStream.enter_task_more_repeatTask_repeatTerm_monthOfDayEnter(int1);
+        activityStream.enter_task_more_repeatTask_repeatTerm_monthOfmonthEnter(int2);
+    }
+
+    @Then("select evert and select {string} {string}")
+    public void select_evert_and_select(String string, String string2) {
+        activityStream.click_task_more_repeatTask_repeatTerm_month_secondEveryCheckBox();
+        activityStream.select_task_more_repeatTask_repeatTerm_month_secondEvery_firstSelector(string);
+        activityStream.select_task_more_repeatTask_repeatTerm_month_secondEvery_secondSelector(string2);
+    }
+
+    @Then("verify following type is in first selector under month")
+    public void verify_following_type_is_in_first_selector(List<String> dataTable) {
+        Assert.assertTrue(dataTable.containsAll(activityStream.get_task_more_repeatTask_repeatTerm_month_secondEvery_firstSelector()));
+    }
+
+    @Then("verify following type is in second selector under month")
+    public void verify_following_type_is_in_second_selector(List<String> dataTable) {
+        Assert.assertTrue(dataTable.containsAll(activityStream.get_task_more_repeatTask_repeatTerm_month_secondEvery_secondSelector()));
 
     }
 
@@ -147,14 +206,25 @@ public class TaskStepDefinition {
         activityStream.click_on_add_reminder_date_input_box_under_more_in_task();
     }
 
+    @Then("verify following type is in first selector under year")
+    public void verify_following_type_is_in_first_selector_under_year(List<String> dataTable) {
+        Assert.assertTrue(dataTable.containsAll(activityStream.get_task_more_repeatTask_repeatTerm_year_firstEvery_monthSelector()));
+    }
+
     @Then("select any role under reminder")
     public void select_any_role_under_reminder() {
-       activityStream.select_random_roles_in_reminder_under_more_in_task();
+        activityStream.select_random_roles_in_reminder_under_more_in_task();
     }
 
     @Then("user clicks on {string} icon in reminder")
     public void user_clicks_on_icon_in_reminder(String string) {
         activityStream.select_reminder_type_in_add_reminder(string);
+    }
+
+    @Then("enter {int} day {string} on first every under year")
+    public void enter_day_on_first_every_under_year(Integer int1, String string) {
+        activityStream.enter_task_more_repeatTask_repeatTerm_year_firstEvery_monthEnter(int1);
+        activityStream.select_task_more_repeatTask_repeatTerm_year_firstEvery_monthSelector(string);
     }
 
     @Then("user clicks on Add in reminder")
@@ -165,6 +235,92 @@ public class TaskStepDefinition {
     @Then("new reminder tab should be displayed above Add reminder")
     public void new_reminder_tab_should_be_displayed_above_add_reminder() {
 
+    }
+
+    @Then("select second every under year")
+    public void select_second_every_under_year() {
+    activityStream.click_task_more_repeatTask_repeatTerm_year_secondEveryCheckBox();
+    }
+
+    @Then("verify following day type of day in second selector under year")
+    public void verify_following_type_of_day_in_second_selector_under_year(List<String> dataTable) {
+        Assert.assertTrue(dataTable.containsAll(activityStream.get_task_more_repeatTask_repeatTerm_year_secondEvery_dayTypeSelector()));
+    }
+
+    @Then("verify following week type of week in second selector under year")
+    public void verify_following_type_of_week_in_second_selector_under_year(List<String> dataTable) {
+        Assert.assertTrue(dataTable.containsAll(activityStream.get_task_more_repeatTask_repeatTerm_year_secondEvery_weekSelector()));
+    }
+
+    @Then("verify following month type of month in second selector under year")
+    public void verify_following_type_of_month_in_second_selector_under_year(List<String> dataTable) {
+        Assert.assertTrue(dataTable.containsAll(activityStream.get_task_more_repeatTask_repeatTerm_year_secondEvery_monthSelector()));
+    }
+
+    @Then("select {string} {string} month {string} under year")
+    public void select_month_under_year(String string, String string2, String string3) {
+        activityStream.select_task_more_repeatTask_repeatTerm_year_secondEvery_dayTypeSelector(string);
+        activityStream.select_task_more_repeatTask_repeatTerm_year_secondEvery_weekSelector(string2);
+        activityStream.select_task_more_repeatTask_repeatTerm_year_secondEvery_monthSelector(string3);
+        System.out.println("Don");
+
+    }
+
+    @Then("verify that \"no end date\" is selected")
+    public void verify_that_is_selected() {
+        Assert.assertTrue(activityStream.is_task_more_repeatTask_repeatTerm_repeatUntil_noEndDateCheckBox_select());
+    }
+
+    @Then("click on date enter under repeat until")
+    public void click_on_date_enter_under_reat_until() {
+//        BrowserUtils.wait(3);
+        activityStream.click_task_more_repeatTask_repeatTerm_repeatUntil_endDateEnter();
+    }
+
+    @Then("select {string} under repeat until")
+    public void select_under_repeat_until(String checkBoxName) {
+        activityStream.click_task_more_repeatTask_repeatTerm_repeatUntil_checkBox(checkBoxName);
+    }
+
+    @Then("enter {int} as iterations")
+    public void enter_as_iterations(Integer int1) {
+        activityStream.enter_task_more_repeatTask_repeatTerm_repeatUntil_completeAfterInput(int1);
+    }
+
+    @When("click +Add on {string}")
+    public void click_add_on(String string) {
+        activityStream.click_addTaskType(string);
+//        BrowserUtils.wait(5);
+    }
+
+    @Then("select {string} from recent tasks;")
+    public void select_from_recent_tasks(String string) {
+        activityStream.click_subtaskOf_popUp_recentTasks(string);
+    }
+
+    @Then("click SELECT in Subtask popup")
+    public void click_select_in_subtask_popup() {
+        activityStream.click_subtaskOf_popUp_selectButton();
+    }
+
+    @Then("select {string} from Tags popUp;")
+    public void select_from_tags_pop_up(String string) {
+        activityStream.click_tags_popUp(string);
+    }
+
+    @Then("click SAVE in Tags popUp")
+    public void click_save_in_tags_pop_up() {
+        activityStream.click_tags_popUp_saveButton();
+    }
+
+    @Then("select {string} from Dependent tasks popUp;")
+    public void select_from_dependent_tasks_pop_up(String string) {
+      activityStream.click_dependentTasks_popUp(string);
+    }
+
+    @Then("click SELECT in Dependent tasks popUp")
+    public void click_select_in_dependent_tasks_pop_up() {
+        activityStream.click_dependentTasks_popUp_selectButton();
     }
 
     @And("user selects following from {string}")
