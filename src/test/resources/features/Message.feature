@@ -7,12 +7,6 @@ Feature: send custom message
     And user clicks menu "Activity Stream"
     And user clicks "Message" tab under Activity Stream
 
-  @uploadFromLocal @bug
-  Scenario: upload single file from local disk
-    When user clicks on post button "Upload files"
-    And  user uploads local file "C:/Users/Aji/Desktop/CRM24/old11file.txt"
-    Then "old11file.txt" should display under attached files
-
   @enterQuote @AC5
   Scenario: Users should be able to create a quote by clicking on the Quote text icon.
     And user clicks on post button "Quote text"
@@ -71,3 +65,6 @@ Feature: send custom message
     And  user uploads local file "/Users/elvirakargabaeva/Desktop/Test.txt"
     And user clicks on "Send" button
     Then "Test.txt" should display under Activity Stream
+
+
+    #test test
